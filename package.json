@@ -15,6 +15,6 @@
     "request": "~2.30.0",
     "xml2json": "~0.3.2",
     "colorful": "~2.1.0",
-    "underscore": "~1.5.2"
+    "html-entities": "~1.0.10"
   }
 }
