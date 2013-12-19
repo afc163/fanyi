@@ -1,0 +1,20 @@
+{
+  "name": "fanyi",
+  "version": "0.1.0",
+  "description": "A translate tool in your command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "afc163 <afc163@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "fanyi": "./bin/fanyi"
+  },
+  "dependencies": {
+    "request": "~2.30.0",
+    "xml2json": "~0.3.2",
+    "colorful": "~2.1.0",
+    "underscore": "~1.5.2"
+  }
+}
