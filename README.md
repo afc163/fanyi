@@ -5,6 +5,8 @@
 
 A translate tool in your command line.
 
+![](https://i.alipayobjects.com/e/201312/1ia17LGXtd.png)
+
 ---
 
 ## Install
