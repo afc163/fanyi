@@ -11,6 +11,15 @@
   "bin": {
     "fanyi": "./bin/fanyi"
   },
+  "keywords": [
+    "translate",
+    "iciba",
+    "youdao",
+    "translation"
+  ],
+  "engines": {
+    "node": ">= 0.8.1"
+  },
   "dependencies": {
     "request": "~2.30.0",
     "xml2json": "~0.3.2",
