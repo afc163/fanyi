@@ -64,10 +64,14 @@ More words.
 $ fanyi make love
 ```
 
-支持中文到英文。
+Support Chinese, even sentence.
 
 ```bash
 $ fanyi 和谐
+```
+
+```bash
+$ fanyi 子非鱼焉知鱼之乐
 ```
 
 ## LICENSE
