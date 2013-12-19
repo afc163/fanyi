@@ -70,6 +70,6 @@ $ fanyi make love
 $ fanyi 和谐
 ```
 
-## LISENCE
+## LICENSE
 
 MIT
