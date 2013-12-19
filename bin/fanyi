@@ -3,10 +3,11 @@
 require('colorful').toxic();
 
 if (!process.argv[2]) {
-  console.log('fanyi ~ ' + require('../package').version);
-  console.log('Translate tools in command line');
-  console.log(' $ fanyi word');
-  console.log(' $ fanyi world peace');
+  console.log('fanyi ~ ' + require('../package').version.green);
+  console.log('Translate tools in command line'.grey);
+  console.log('  $ '.cyan + 'fanyi word');
+  console.log('  $ '.cyan + 'fanyi world peace');
+  console.log('  $ '.cyan + 'fanyi chinglish');
   return;
 }
 
