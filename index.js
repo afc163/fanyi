@@ -8,7 +8,10 @@ entities = new Entities();
 module.exports = function(word) {
   request.get(SOURCE['iciba'] + encodeURIComponent(word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var data = JSON.parse(entities.decode(parser.toJson(body))).dict;
+      // escape " -> '
+      body = body.replace(/&quot;/g, '&#39;');
+      // iciba need twice decode ...
+      var data = JSON.parse(entities.decode(entities.decode(parser.toJson(body)))).dict;
       print.iciba(data);
     }
   });
