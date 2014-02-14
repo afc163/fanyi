@@ -1,7 +1,7 @@
 # Fanyi
 
 [![NPM version](https://badge.fury.io/js/fanyi.png)](http://badge.fury.io/js/fanyi)
-[![David Status](https://david-dm.org/afc163/fanyi.png)](https://david-dm.org/afc163/fanyi) 
+[![David Status](https://david-dm.org/afc163/fanyi.png)](https://david-dm.org/afc163/fanyi)
 
 A translate tool in your command line.
 
@@ -30,24 +30,24 @@ $ fanyi love
 
 ```
  love  [ lʌv ]  ~  fanyi.youdao.com
- 
+
  - n. 恋爱；亲爱的；酷爱；喜爱的事物；爱情，爱意；疼爱；热爱；爱人，所爱之物
  - v. 爱，热爱；爱戴；赞美，称赞；喜爱；喜好；喜欢；爱慕
  - n. （英）洛夫（人名）
- 
+
  1. Love
     爱,爱情,恋爱
  2. Endless Love
     无尽的爱,不了情,蓝色生死恋
  3. puppy love
     早恋,青春期恋爱,初恋
- 
+
  love [ lʌv ] [ lʌv ]  ~  iciba.com
- 
+
  - vt.&vi. 爱，热爱；爱戴；喜欢；赞美，称赞；
  - vt. 喜爱；喜好；喜欢；爱慕；
  - n. 爱情，爱意；疼爱；热爱；爱人，所爱之物；
- 
+
  1. They happily reflect the desire for a fusional love that inspired the legendary LOVE bracelet Cartier.
     快乐地反映出为富有传奇色彩的卡地亚LOVE手镯所赋予的水乳交融之爱恋情愫。
  2. Love is the radical of lovely, loveliness, and loving.
