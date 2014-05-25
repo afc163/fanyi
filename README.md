@@ -18,7 +18,7 @@ $ npm install fanyi -g
 ## Usage
 
 Translation data is fetched from [iciba.com](http://iciba.com) and [fanyi.youdao.com](http://fanyi.youdao.com),
-and only support Chinese and English translation.
+and only support translation between Chinese and English.
 
 In Mac/Linux bash, words will be pronounced  by `say` command.
 
