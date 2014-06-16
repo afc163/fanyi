@@ -1,5 +1,5 @@
 var request = require('request');
-var parser = require('xml2json');
+var parser = require('xml2json2');
 var SOURCE = require('./lib/source.json');
 var print = require('./lib/print');
 var spawn = require('child_process').spawn;
