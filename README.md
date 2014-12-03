@@ -1,7 +1,7 @@
 # Fanyi
 
-[![NPM version](https://badge.fury.io/js/fanyi.png)](http://badge.fury.io/js/fanyi)
-[![David Status](https://david-dm.org/afc163/fanyi.png)](https://david-dm.org/afc163/fanyi)
+[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat)](https://npmjs.org/package/fanyi)
+[![David Status](https://img.shields.io/david/afc163/fanyi.svg)](https://david-dm.org/afc163/fanyi)
 
 A translate tool in your command line.
 
