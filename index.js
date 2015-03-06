@@ -1,12 +1,15 @@
 var request = require('request');
 var parser = require('xml2json');
 var SOURCE = require('./lib/source.json');
+var Options = require('./lib/options');
+var history = require('./lib/history');
 var print = require('./lib/print');
 var spawn = require('child_process').spawn;
 var Entities = require('html-entities').AllHtmlEntities;
 entities = new Entities();
 
-module.exports = function(word) {
+module.exports = function(word, options) {
+  options = new Options(options);
 
   // avoid no say command
   process.on('uncaughtException', function(err) {
@@ -14,6 +17,14 @@ module.exports = function(word) {
       console.log(err);
     }
   });
+
+  // history
+  if (options.enableHistory) {
+    history.write(word, {
+      filesize: options.historyFileSize,
+      filepath: options.historyFilePath
+    });
+  }
 
   // say it
   spawn('say', [word]);
