@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -25,7 +25,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "request": "^2.36.0",
-    "xml2json": "^0.5.0",
+    "xml2json": "^0.6.2",
     "colorful": "^2.1.0",
     "html-entities": "^1.1.2"
   }
