@@ -28,5 +28,12 @@
     "xml2json": "^0.6.2",
     "colorful": "^2.1.0",
     "html-entities": "^1.1.2"
+  },
+  "devDependencies": {
+    "coffee": "~1.0.1",
+    "mocha": "~2.2.5"
+  },
+  "scripts": {
+    "test": "mocha tests/index.js"
   }
 }
