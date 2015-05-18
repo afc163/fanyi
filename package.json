@@ -34,6 +34,6 @@
     "mocha": "~2.2.5"
   },
   "scripts": {
-    "test": "mocha tests/index.js"
+    "test": "mocha tests/index.js --timeout 0"
   }
 }
