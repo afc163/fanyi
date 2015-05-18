@@ -6,5 +6,5 @@ node_js:
   - "0.12"
   - "iojs"
 
-before_script:
+install:
   - npm install -g
