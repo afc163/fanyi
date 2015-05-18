@@ -13,6 +13,5 @@ describe('fanyi', function() {
       .expect('code', 0)
       .end(done);
   });
-
 });
 
