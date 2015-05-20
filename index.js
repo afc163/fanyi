@@ -1,6 +1,6 @@
 var request = require('request');
 var parser = require('xml2json');
-var SOURCE = require('./lib/source.json');
+var SOURCE = require('./lib/source');
 var print = require('./lib/print');
 var spawn = require('child_process').spawn;
 var Entities = require('html-entities').AllHtmlEntities;
@@ -18,8 +18,10 @@ module.exports = function(word) {
   // say it
   spawn('say', [word]);
 
+  word = encodeURIComponent(word);
+
   // iciba
-  request.get(SOURCE['iciba'] + encodeURIComponent(word), function (error, response, body) {
+  request.get(SOURCE.iciba + word, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // escape " -> '
       body = body.replace(/&quot;/g, '&#39;');
@@ -30,7 +32,7 @@ module.exports = function(word) {
   });
 
   // youdao
-  request.get(SOURCE['youdao'] + encodeURIComponent(word), function (error, response, body) {
+  request.get(SOURCE.youdao + word, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(entities.decode(body));
       print.youdao(data);
