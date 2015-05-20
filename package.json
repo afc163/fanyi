@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -27,11 +27,11 @@
     "colorful": "^2.1.0",
     "html-entities": "^1.1.2",
     "request": "^2.36.0",
-    "xml2js": "~0.4.8"
+    "xml2js": "^0.4.8"
   },
   "devDependencies": {
-    "coffee": "~1.0.1",
-    "mocha": "~2.2.5"
+    "coffee": "^1.0.1",
+    "mocha": "^2.2.5"
   },
   "scripts": {
     "test": "mocha tests/index.js --timeout 0"
