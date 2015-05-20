@@ -24,10 +24,10 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "request": "^2.36.0",
-    "xml2json": "^0.6.2",
     "colorful": "^2.1.0",
-    "html-entities": "^1.1.2"
+    "html-entities": "^1.1.2",
+    "request": "^2.36.0",
+    "xml2js": "~0.4.8"
   },
   "devDependencies": {
     "coffee": "~1.0.1",
