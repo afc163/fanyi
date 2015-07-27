@@ -5,18 +5,15 @@ var spawn = require('child_process').spawn;
 var Entities = require('html-entities').AllHtmlEntities;
 entities = new Entities();
 var parseString = require('xml2js').parseString;
+var which = require('shelljs').which;
+var hasSay = !!which('say');
 
 module.exports = function(word) {
 
-  // avoid no say command
-  process.on('uncaughtException', function(err) {
-    if (err.toString().indexOf('spawn ENOENT') < 0) {
-      console.log(err.stack);
-    }
-  });
-
   // say it
-  spawn('say', [word]);
+  if (hasSay) {
+    spawn('say', [word]);
+  }
 
   word = encodeURIComponent(word);
 
