@@ -1,3 +1,4 @@
+[![Beerpay](https://beerpay.io/afc163/fanyi/badge.svg?style=flat-square)](https://beerpay.io/afc163/fanyi)
 # Fanyi
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat)](https://npmjs.org/package/fanyi)
