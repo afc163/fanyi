@@ -17,7 +17,7 @@ module.exports = function(word) {
   word = encodeURIComponent(word);
 
   // iciba
-  request.get(SOURCE.iciba + word, function (error, response, body) {
+  request.get(SOURCE.iciba.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       parseString(body, function (err, result) {
         print.iciba(result.dict);
@@ -26,10 +26,19 @@ module.exports = function(word) {
   });
 
   // youdao
-  request.get(SOURCE.youdao + word, function (error, response, body) {
+  request.get(SOURCE.youdao.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(entities.decode(body));
       print.youdao(data);
+    }
+  });
+
+  // dictionaryapi
+  request.get(SOURCE.dictionaryapi.replace('${word}', word), function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      parseString(body, function (err, result) {
+        print.dictionaryapi(result.entry_list.entry, word);
+      });
     }
   });
 };
