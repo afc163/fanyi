@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-require('colorful').toxic();
-
 if (!process.argv[2]) {
   console.log('fanyi ~ ' + require('../package').version.green);
   console.log('Translate tools in command line'.grey);
