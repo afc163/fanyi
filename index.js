@@ -28,8 +28,12 @@ module.exports = function(word) {
   // youdao
   request.get(SOURCE.youdao.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var data = JSON.parse(entities.decode(body));
-      print.youdao(data);
+      try {
+        var data = JSON.parse(entities.decode(body));
+        print.youdao(data);
+      } catch(e) {
+        // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
+      }
     }
   });
 
