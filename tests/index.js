@@ -17,4 +17,3 @@ describe('fanyi', function() {
       .end(done);
   });
 });
-
