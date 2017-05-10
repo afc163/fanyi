@@ -6,13 +6,12 @@ var Entities = require('html-entities').AllHtmlEntities;
 entities = new Entities();
 var parseString = require('xml2js').parseString;
 var which = require('shelljs').which;
-var hasSay = !!which('say');
+var say = require('say');
+var isChinese = require('is-chinese');
 
 module.exports = function(word) {
   // say it
-  if (hasSay) {
-    spawn('say', [word]);
-  }
+  say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
 
   word = encodeURIComponent(word);
 
