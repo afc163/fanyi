@@ -11,7 +11,9 @@ var isChinese = require('is-chinese');
 
 module.exports = function(word) {
   // say it
-  say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
+  try {
+    say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
+  } catch(e) {}
 
   word = encodeURIComponent(word);
 
