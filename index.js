@@ -21,6 +21,9 @@ module.exports = function(word) {
   request.get(SOURCE.iciba.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       parseString(body, function (err, result) {
+        if (err) {
+          return;
+        }
         print.iciba(result.dict);
       });
     }
