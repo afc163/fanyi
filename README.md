@@ -4,7 +4,6 @@
 [![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat)](https://travis-ci.org/afc163/fanyi)
 [![David Status](https://img.shields.io/david/afc163/fanyi.svg?style=flat)](https://david-dm.org/afc163/fanyi)
 [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat)](https://npmjs.org/package/fanyi)
-[![Beerpay](https://beerpay.io/afc163/fanyi/badge.svg)](https://beerpay.io/afc163/fanyi)
 [![Code Sponsor](https://app.codesponsor.io/embed/ZNMHk5c6iQhad7FH54X8PxG6/afc163/fanyi.svg)](https://app.codesponsor.io/link/ZNMHk5c6iQhad7FH54X8PxG6/afc163/fanyi)
 
 A translate tool in your command line.
