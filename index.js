@@ -46,7 +46,7 @@ module.exports = function(word) {
     if (!error && response.statusCode == 200) {
       parseString(body, function (err, result) {
         if (!err)
-        	print.dictionaryapi(result.entry_list.entry, word);
+          print.dictionaryapi(result.entry_list.entry, word);
       });
     }
   });
