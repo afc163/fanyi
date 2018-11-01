@@ -29,13 +29,13 @@
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "request": "^2.81.0",
-    "say": "^0.14.0",
-    "shelljs": "^0.7.0",
+    "say": "^0.15.0",
+    "shelljs": "^0.8.2",
     "xml2js": "^0.4.8"
   },
   "devDependencies": {
-    "coffee": "^4.1.0",
-    "mocha": "^4.0.1"
+    "coffee": "^5.1.0",
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "test": "mocha tests/index.js --timeout 0"
