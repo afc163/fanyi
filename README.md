@@ -7,7 +7,7 @@
 
 A translate tool in your terminal. 🌐
 
-![](https://gw.alipayobjects.com/zos/rmsportal/wenrjICAVizvdWjTkiIe.png)
+![](https://gw.alipayobjects.com/zos/rmsportal/wenrjICAVizvdWjTkiIe.png?renew)
 
 ---
 
