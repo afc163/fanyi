@@ -4,7 +4,6 @@ const print = require('./lib/print');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const parseString = require('xml2js').parseString;
-const say = require('say');
 const isChinese = require('is-chinese');
 const ora = require('ora');
 
@@ -12,7 +11,9 @@ module.exports = function(word, callback) {
   const spinner = ora().start();
   // say it
   try {
-    say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
+    if (!process.env.CI) {
+      require('say').speak(word, isChinese(word) ? 'Ting-Ting' : null);
+    }
   } catch(e) {
     // do nothing
   }
