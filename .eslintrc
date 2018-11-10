@@ -1,0 +1,10 @@
+{
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "no-console": "off"
+  }
+}

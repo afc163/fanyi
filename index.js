@@ -1,19 +1,19 @@
-var request = require('request');
-var SOURCE = require('./lib/source');
-var print = require('./lib/print');
-var spawn = require('child_process').spawn;
-var Entities = require('html-entities').AllHtmlEntities;
-entities = new Entities();
-var parseString = require('xml2js').parseString;
-var which = require('shelljs').which;
-var say = require('say');
-var isChinese = require('is-chinese');
+const request = require('request');
+const SOURCE = require('./lib/source');
+const print = require('./lib/print');
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+const parseString = require('xml2js').parseString;
+const say = require('say');
+const isChinese = require('is-chinese');
 
 module.exports = function(word) {
   // say it
   try {
     say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
-  } catch(e) {}
+  } catch(e) {
+    // do nothing
+  }
 
   word = encodeURIComponent(word);
 
@@ -33,7 +33,7 @@ module.exports = function(word) {
   request.get(SOURCE.youdao.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       try {
-        var data = JSON.parse(entities.decode(body));
+        const data = JSON.parse(entities.decode(body));
         print.youdao(data);
       } catch(e) {
         // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问

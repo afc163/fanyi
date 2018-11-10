@@ -21,23 +21,30 @@
     "fanyi"
   ],
   "engines": {
-    "node": ">= 0.10"
+    "node": ">=6.0.0"
   },
   "readmeFilename": "README.md",
+  "files": [
+    "index.js",
+    "bin",
+    "lib"
+  ],
   "dependencies": {
     "chalk": "^2.3.0",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "request": "^2.81.0",
     "say": "^0.15.0",
-    "shelljs": "^0.8.2",
     "xml2js": "^0.4.8"
   },
   "devDependencies": {
     "coffee": "^5.1.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-node": "^8.0.0",
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "mocha tests/index.js --timeout 0"
+    "lint": "eslint .",
+    "test": "npm run lint && mocha tests/index.js --timeout 0"
   }
 }

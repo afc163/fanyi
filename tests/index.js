@@ -1,6 +1,6 @@
-var coffee = require('coffee');
-var path = require('path');
-var version = require('../package').version;
+const coffee = require('coffee');
+const path = require('path');
+const version = require('../package').version;
 
 describe('fanyi', function() {
   it('should show help info', function(done) {
@@ -12,7 +12,7 @@ describe('fanyi', function() {
 
   it('should translate word', function(done) {
     coffee.fork(path.join(__dirname, '../bin/fanyi'), ['word'])
-      .expect('stdout', /word  \[ wɜːd \]  ~  fanyi\.youdao\.com/gi)
+      .expect('stdout', /word {2}\[ wɜːd \] {2}~ {2}fanyi\.youdao\.com/gi)
       .expect('code', 0)
       .end(done);
   });
