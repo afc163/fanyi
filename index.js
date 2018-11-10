@@ -6,8 +6,10 @@ const entities = new Entities();
 const parseString = require('xml2js').parseString;
 const say = require('say');
 const isChinese = require('is-chinese');
+const ora = require('ora');
 
 module.exports = function(word, callback) {
+  const spinner = ora().start();
   // say it
   try {
     say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
@@ -19,6 +21,7 @@ module.exports = function(word, callback) {
   const callbackAll = () => {
     count += 1;
     if (count >= 3) {
+      spinner.stop();
       callback && callback();
     }
   };
