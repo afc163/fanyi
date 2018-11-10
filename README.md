@@ -5,7 +5,7 @@
 [![David Status](https://img.shields.io/david/afc163/fanyi.svg?style=flat-square)](https://david-dm.org/afc163/fanyi)
 [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
-A translate tool in your command line. 🌐
+A translate tool in your terminal. 🌐
 
 ![](https://t.alipayobjects.com/images/T1h_JfXkXhXXXXXXXX.png)
 
