@@ -7,13 +7,21 @@ const parseString = require('xml2js').parseString;
 const say = require('say');
 const isChinese = require('is-chinese');
 
-module.exports = function(word) {
+module.exports = function(word, callback) {
   // say it
   try {
     say.speak(word, isChinese(word) ? 'Ting-Ting' : null);
   } catch(e) {
     // do nothing
   }
+
+  let count = 0;
+  const callbackAll = () => {
+    count += 1;
+    if (count >= 3) {
+      callback && callback();
+    }
+  };
 
   word = encodeURIComponent(word);
 
@@ -27,6 +35,7 @@ module.exports = function(word) {
         print.iciba(result.dict);
       });
     }
+    callbackAll();
   });
 
   // youdao
@@ -39,6 +48,7 @@ module.exports = function(word) {
         // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
       }
     }
+    callbackAll();
   });
 
   // dictionaryapi
@@ -50,5 +60,6 @@ module.exports = function(word) {
         }
       });
     }
+    callbackAll();
   });
 };
