@@ -13,8 +13,6 @@ A translate tool in your terminal. 🌐
 
 </div>
 
----
-
 ## Install
 
 ```bash
