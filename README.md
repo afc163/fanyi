@@ -6,6 +6,7 @@
 [![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi)
 [![David Status](https://img.shields.io/david/afc163/fanyi.svg?style=flat-square)](https://david-dm.org/afc163/fanyi)
 [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
+[![](https://badge.juejin.im/entry/5be959e16fb9a049ec6a9908/likes.svg?style=flat-square)](https://juejin.im/entry/5be959e16fb9a049ec6a9908/detail)
 
 A translate tool in your terminal. 🌐
 
