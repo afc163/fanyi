@@ -1,3 +1,5 @@
+<div align="center">
+
 # Fanyi
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
@@ -8,6 +10,8 @@
 A translate tool in your terminal. 🌐
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
+
+</div>
 
 ---
 
