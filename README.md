@@ -1,6 +1,6 @@
 <div align="center">
 
-# Fanyi 🌐
+# 🌐 Fanyi 🌐
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 [![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi)
