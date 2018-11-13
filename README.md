@@ -91,6 +91,10 @@ $ fanyi 和谐
 $ fanyi 子非鱼焉知鱼之乐
 ```
 
-## LICENSE
+##  Error: spawn festival ENOENT
 
-MIT.
+Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
+
+```
+sudo apt-get install festival festvox-kallpc16k
+```
