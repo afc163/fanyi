@@ -8,6 +8,7 @@ if (!process.argv[2]) {
   console.log(chalk.cyan('  $ ') + 'fanyi word');
   console.log(chalk.cyan('  $ ') + 'fanyi world peace');
   console.log(chalk.cyan('  $ ') + 'fanyi chinglish');
+  console.log(chalk.cyan('  $ ') + 'fanyi hello --simple');
   return;
 }
 
