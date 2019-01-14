@@ -81,6 +81,11 @@ More words.
 $ fanyi make love
 ```
 
+Skip example sentences.
+```bash
+$ fanyi hello --simple
+```
+
 Support Chinese, even sentence.
 
 ```bash
