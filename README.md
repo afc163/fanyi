@@ -83,7 +83,27 @@ $ fanyi make love
 
 Skip example sentences.
 ```bash
-$ fanyi hello --simple
+$ fanyi love --simple
+```
+
+```js
+⠴  love  [ lʌv ]  ~  fanyi.youdao.com
+ 
+ - n. 恋爱；亲爱的；酷爱；喜爱的事物
+ - vt. 喜欢；热爱；爱慕
+ - vi. 爱
+ - n. (Love)人名；(英)洛夫
+ 
+  -------- 
+ 
+⠧  love  英[ lʌv ]  美[ lʌv ]  ~  iciba.com
+ 
+ - vt.& vi. 爱，热爱；爱戴；喜欢；赞美，称赞；
+ - vt. 喜爱；喜好；喜欢；爱慕；
+ - n. 爱情，爱意；疼爱；热爱；爱人，所爱之物；
+ 
+  -------- 
+
 ```
 
 Support Chinese, even sentence.
