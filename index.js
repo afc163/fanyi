@@ -9,7 +9,6 @@ const ora = require('ora');
 
 module.exports = function(word, callback) {
   const spinner = ora().start();
-  // say it
   try {
     if (!process.env.CI) {
       require('say').speak(word, isChinese(word) ? 'Ting-Ting' : null);
