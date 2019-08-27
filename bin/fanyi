@@ -1,17 +1,31 @@
 #!/usr/bin/env node
 
+var program = require('commander');
 var chalk = require('chalk');
 
-if (!process.argv[2]) {
-  console.log(chalk.green('fanyi ~ ' + require('../package').version));
-  console.log(chalk.gray('Translate tools in command line'));
+program
+  .option('-C, --nocolor', 'Output without color.')
+  // .option('-I, --iciba', 'Just output iciba.com\'s translate result.')
+  // .option('-Y, --youdao', 'Just output fanyi.youdao.com\'s translate result.')
+  // .option('-D, --dictionaryapi', 'Just output dictionaryapi.com\'s translate result.')
+  .version(require('../package').version);
+
+program.on('--help', function(){
+  console.log('');
+  console.log(chalk.gray('Examples:'));
   console.log(chalk.cyan('  $ ') + 'fanyi word');
   console.log(chalk.cyan('  $ ') + 'fanyi world peace');
   console.log(chalk.cyan('  $ ') + 'fanyi chinglish');
-  return;
-}
+  console.log('');
+});
 
-console.log();
+program.parse(process.argv);
 
 var fanyi = require('..');
-fanyi(process.argv.slice(2).join(' '));
+var nocolor = program.nocolor;
+if (nocolor) {
+  chalk = new chalk.constructor({enabled: false});
+}
+fanyi(program.args.join(' '), {
+  nocolor,
+});

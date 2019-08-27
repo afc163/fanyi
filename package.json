@@ -35,6 +35,7 @@
   ],
   "dependencies": {
     "chalk": "^2.3.0",
+    "commander": "^3.0.0",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "ora": "^3.0.0",
