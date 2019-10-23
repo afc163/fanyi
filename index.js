@@ -8,6 +8,7 @@ const isChinese = require('is-chinese');
 const ora = require('ora');
 
 module.exports = function(word, options, callback) {
+  console.log('');
   const spinner = ora().start();
   // say it
   try {

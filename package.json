@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {

@@ -5,6 +5,8 @@ const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 
+updateNotifier({ pkg }).notify();
+
 program
   .option('-C, --nocolor', 'Output without color.')
   // .option('-I, --iciba', 'Just output iciba.com\'s translate result.')
@@ -32,8 +34,6 @@ const nocolor = program.nocolor;
 if (nocolor) {
   chalk = new chalk.constructor({enabled: false});
 }
-
-updateNotifier({ pkg }).notify();
 
 fanyi(program.args.join(' '), {
   nocolor,
