@@ -3,7 +3,7 @@
 const program = require('commander');
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 program
   .option('-C, --nocolor', 'Output without color.')
