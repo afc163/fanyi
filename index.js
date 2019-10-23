@@ -56,7 +56,7 @@ module.exports = function(word, options, callback) {
   });
 
   // dictionaryapi
-  request.get(SOURCE.dictionaryapi.replace('${word}', word), { timeout: 3000 }, function(
+  request.get(SOURCE.dictionaryapi.replace('${word}', word), { timeout: 6000 }, function(
     error,
     response,
     body,
