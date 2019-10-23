@@ -7,14 +7,20 @@ const data = require('./data');
 const { version } = require('../package');
 
 describe('fanyi', () => {
-  it('should show help info in terminal', (done) => {
-    coffee.fork(path.join(__dirname, '../bin/fanyi'))
-      .expect('stdout', 'fanyi ~ ' + version + '\nTranslate tools in command line\n  $ fanyi word\n  $ fanyi world peace\n  $ fanyi chinglish\n')
+  it('should show help info in terminal', done => {
+    coffee
+      .fork(path.join(__dirname, '../bin/fanyi'))
+      .expect(
+        'stdout',
+        'fanyi ~ ' +
+          version +
+          '\nTranslate tools in command line\n  $ fanyi word\n  $ fanyi world peace\n  $ fanyi chinglish\n',
+      )
       .expect('code', 0)
       .end(done);
   });
 
-  it('should translate word', (done) => {
+  it('should translate word', done => {
     sinon.spy(console, 'log');
     nock('http://dict-co.iciba.com')
       .get(/api/)

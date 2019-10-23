@@ -4,11 +4,7 @@
 
 A translate tool in your terminal.
 
-[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
-[![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi)
-[![David Status](https://img.shields.io/david/afc163/fanyi.svg?style=flat-square)](https://david-dm.org/afc163/fanyi)
-[![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
-[![](https://badge.juejin.im/entry/5be959e16fb9a049ec6a9908/likes.svg?style=flat-square)](https://juejin.im/entry/5be959e16fb9a049ec6a9908/detail)
+[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi) [![David Status](https://img.shields.io/david/afc163/fanyi.svg?style=flat-square)](https://david-dm.org/afc163/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
 
@@ -32,10 +28,9 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](http://iciba.com) and [fanyi.youdao.com](http://fanyi.youdao.com),
-and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](http://iciba.com) and [fanyi.youdao.com](http://fanyi.youdao.com), and only support translation between Chinese and English.
 
-In Mac/Linux bash, words will be pronounced  by `say` command.
+In Mac/Linux bash, words will be pronounced by `say` command.
 
 Translate one word.
 
@@ -91,7 +86,7 @@ $ fanyi 和谐
 $ fanyi 子非鱼焉知鱼之乐
 ```
 
-##  Error: spawn festival ENOENT
+## Error: spawn festival ENOENT
 
 Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
 

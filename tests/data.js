@@ -1,6 +1,25 @@
 module.exports = {
   word: {
-    youdao: {"translation":["词"],"basic":{"us-phonetic":"wɝd","phonetic":"wɜːd","uk-phonetic":"wɜːd","explains":["n. [语] 单词；话语；消息；诺言；命令","vt. 用言辞表达","n. (Word)人名；(英)沃德"]},"query":"word","errorCode":0,"web":[{"value":["单词","字","字 (计算机)"],"key":"word"},{"value":["构词法","造词法","词性转换"],"key":"Word Formation"},{"value":["关键字","中心词","关键词"],"key":"key word"}]},
+    youdao: {
+      translation: ['词'],
+      basic: {
+        'us-phonetic': 'wɝd',
+        phonetic: 'wɜːd',
+        'uk-phonetic': 'wɜːd',
+        explains: [
+          'n. [语] 单词；话语；消息；诺言；命令',
+          'vt. 用言辞表达',
+          'n. (Word)人名；(英)沃德',
+        ],
+      },
+      query: 'word',
+      errorCode: 0,
+      web: [
+        { value: ['单词', '字', '字 (计算机)'], key: 'word' },
+        { value: ['构词法', '造词法', '词性转换'], key: 'Word Formation' },
+        { value: ['关键字', '中心词', '关键词'], key: 'key word' },
+      ],
+    },
     iciba: `<?xml version="1.0" encoding="UTF-8"?>
     <dict num="219" id="219" name="219">
     <key>word</key>
