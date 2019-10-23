@@ -58,7 +58,7 @@
   "scripts": {
     "format": "prettier --write '**/*.{json,js}'",
     "pretty-quick": "pretty-quick",
-    "test": "npm run lint && mocha tests/index.js --timeout 0"
+    "test": "mocha tests/index.js --timeout 0"
   },
   "husky": {
     "hooks": {
