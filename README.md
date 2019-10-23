@@ -1,6 +1,6 @@
 <div align="center">
 
-# Fanyi 🌐
+# Fanyi
 
 A 🇨🇳 and 🇺🇸 translate tool in your command line.
 
