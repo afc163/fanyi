@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -38,7 +38,7 @@
     "commander": "^3.0.0",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
-    "ora": "^4.2.0",
+    "ora": "^4.0.2",
     "request": "^2.81.0",
     "xml2js": "^0.4.8"
   },
