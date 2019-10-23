@@ -56,8 +56,15 @@ module.exports = function(word, options, callback) {
   });
 
   // dictionaryapi
-  request.get(SOURCE.dictionaryapi.replace('${word}', word), function(error, response, body) {
-    if (!error && response.statusCode == 200) {
+  request.get(SOURCE.dictionaryapi.replace('${word}', word), { timeout: 3000 }, function(
+    error,
+    response,
+    body,
+  ) {
+    if (error) {
+      return callbackAll();
+    }
+    if (response.statusCode == 200) {
       parseString(body, function(err, result) {
         if (!err) {
           print.dictionaryapi(result.entry_list.entry, word, options);
