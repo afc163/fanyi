@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var chalk = require('chalk');
+const program = require('commander');
+const chalk = require('chalk');
+const updateNotifier = require('update-notifier');
+const pkg = require('./package.json');
 
 program
   .option('-C, --nocolor', 'Output without color.')
@@ -21,11 +23,14 @@ program.on('--help', function(){
 
 program.parse(process.argv);
 
-var fanyi = require('..');
-var nocolor = program.nocolor;
+const fanyi = require('..');
+const nocolor = program.nocolor;
 if (nocolor) {
   chalk = new chalk.constructor({enabled: false});
 }
+
+updateNotifier({ pkg }).notify();
+
 fanyi(program.args.join(' '), {
   nocolor,
 });
