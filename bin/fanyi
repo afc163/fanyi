@@ -10,7 +10,7 @@ program
   // .option('-I, --iciba', 'Just output iciba.com\'s translate result.')
   // .option('-Y, --youdao', 'Just output fanyi.youdao.com\'s translate result.')
   // .option('-D, --dictionaryapi', 'Just output dictionaryapi.com\'s translate result.')
-  .version(require('../package').version);
+  .version(pkg.version);
 
 program.on('--help', function(){
   console.log('');
@@ -22,6 +22,10 @@ program.on('--help', function(){
 });
 
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
 
 const fanyi = require('..');
 const nocolor = program.nocolor;
