@@ -49,8 +49,8 @@
   "devDependencies": {
     "coffee": "^5.1.0",
     "husky": "^3.0.9",
-    "mocha": "^5.2.0",
-    "nock": "^10.0.2",
+    "mocha": "^6.2.2",
+    "nock": "^11.5.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
     "sinon": "^7.1.1"
