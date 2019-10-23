@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -44,7 +44,7 @@
     "xml2js": "^0.4.8"
   },
   "optionalDependencies": {
-    "say": "^0.15.0"
+    "say": "^0.16.0"
   },
   "devDependencies": {
     "coffee": "^5.1.0",
