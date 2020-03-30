@@ -14,7 +14,7 @@ program
   // .option('-D, --dictionaryapi', 'Just output dictionaryapi.com\'s translate result.')
   .version(pkg.version);
 
-program.on('--help', function(){
+program.on('--help', function () {
   console.log('');
   console.log(chalk.gray('Examples:'));
   console.log(chalk.cyan('  $ ') + 'fanyi word');
@@ -32,7 +32,7 @@ if (!process.argv.slice(2).length) {
 const fanyi = require('..');
 const nocolor = program.nocolor;
 if (nocolor) {
-  chalk = new chalk.constructor({enabled: false});
+  chalk = new chalk.constructor({ enabled: false });
 }
 
 fanyi(program.args.join(' '), {

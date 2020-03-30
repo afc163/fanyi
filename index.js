@@ -7,7 +7,7 @@ const parseString = require('xml2js').parseString;
 const isChinese = require('is-chinese');
 const ora = require('ora');
 
-module.exports = function(word, options, callback) {
+module.exports = function (word, options, callback) {
   console.log('');
   const spinner = ora().start();
   // say it
@@ -31,9 +31,9 @@ module.exports = function(word, options, callback) {
   word = encodeURIComponent(word);
 
   // iciba
-  request.get(SOURCE.iciba.replace('${word}', word), function(error, response, body) {
+  request.get(SOURCE.iciba.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      parseString(body, function(err, result) {
+      parseString(body, function (err, result) {
         if (err) {
           return;
         }
@@ -44,7 +44,7 @@ module.exports = function(word, options, callback) {
   });
 
   // youdao
-  request.get(SOURCE.youdao.replace('${word}', word), function(error, response, body) {
+  request.get(SOURCE.youdao.replace('${word}', word), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       try {
         const data = JSON.parse(entities.decode(body));
@@ -57,7 +57,7 @@ module.exports = function(word, options, callback) {
   });
 
   // dictionaryapi
-  request.get(SOURCE.dictionaryapi.replace('${word}', word), { timeout: 6000 }, function(
+  request.get(SOURCE.dictionaryapi.replace('${word}', word), { timeout: 6000 }, function (
     error,
     response,
     body,
@@ -66,7 +66,7 @@ module.exports = function(word, options, callback) {
       return callbackAll();
     }
     if (response.statusCode == 200) {
-      parseString(body, function(err, result) {
+      parseString(body, function (err, result) {
         if (!err) {
           print.dictionaryapi(result.entry_list.entry, word, options);
         }

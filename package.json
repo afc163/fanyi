@@ -35,12 +35,12 @@
   ],
   "dependencies": {
     "chalk": "^3.0.0",
-    "commander": "^4.0.0",
+    "commander": "^5.0.0",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "ora": "^4.0.2",
     "request": "^2.81.0",
-    "update-notifier": "^3.0.1",
+    "update-notifier": "^4.1.0",
     "xml2js": "^0.4.8"
   },
   "optionalDependencies": {
@@ -48,15 +48,15 @@
   },
   "devDependencies": {
     "coffee": "^5.1.0",
-    "husky": "^3.0.9",
-    "mocha": "^6.2.2",
-    "nock": "^11.5.0",
-    "prettier": "^1.18.2",
+    "husky": "^4.2.3",
+    "mocha": "^7.1.1",
+    "nock": "^12.0.3",
+    "prettier": "^2.0.2",
     "pretty-quick": "^2.0.0",
-    "sinon": "^7.1.1"
+    "sinon": "^9.0.1"
   },
   "scripts": {
-    "format": "prettier --write '**/*.{json,js}'",
+    "format": "prettier --write '**/*.{json,js,md,yml}'",
     "pretty-quick": "pretty-quick",
     "test": "mocha tests/index.js --timeout 0"
   },
