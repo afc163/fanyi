@@ -4,15 +4,44 @@ const program = require('commander');
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
+const config = require('../lib/config');
 
 updateNotifier({ pkg }).notify();
 
 program
-  .option('-C, --nocolor', 'Output without color.')
-  // .option('-I, --iciba', 'Just output iciba.com\'s translate result.')
-  // .option('-Y, --youdao', 'Just output fanyi.youdao.com\'s translate result.')
-  // .option('-D, --dictionaryapi', 'Just output dictionaryapi.com\'s translate result.')
-  .version(pkg.version);
+  .version(pkg.version)
+  .option('-s, --say', 'Turn on the pronunciation')
+  .option('-S, --no-say', 'Turn off the pronunciation')
+  .action(args => {
+    const {say} = args;
+    const options = resolveOptions({ say });
+    return runFY(options);
+  })
+
+
+program
+  .command('config')
+  .description('Set the global options')
+  .option('-c, --color', 'Output with color')
+  .option('-C, --no-color', 'Output without color')
+  .option('-i, --iciba', 'Enable the iciba translation engine')
+  .option('-I, --no-iciba', 'Disable the iciba translation engine')
+  .option('-y, --youdao', 'Enable the youdao translation engine')
+  .option('-Y, --no-youdao', 'Disable the youdao translation engine')
+  .option('-d, --dictionaryapi', 'Enable the dictionary translation engine')
+  .option('-D, --no-dictionaryapi', 'Disable the dictionary translation engine')
+  .option('-s, --say', 'Turn on the pronunciation')
+  .option('-S, --no-say', 'Turn off the pronunciation')
+  .action(args => {
+    // hack
+    // If the input is "fanyi config", then translate the word config.
+    if (process.argv.length === 3) {
+      return runFY();
+    }
+    const {color, iciba, youdao, dictionaryapi, say} = args
+    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say });
+    return config.write(options);
+  });
 
 program.on('--help', function () {
   console.log('');
@@ -29,12 +58,22 @@ if (!process.argv.slice(2).length) {
   program.outputHelp();
 }
 
-const fanyi = require('..');
-const nocolor = program.nocolor;
-if (nocolor) {
-  chalk = new chalk.constructor({ enabled: false });
+async function runFY(options = {}) {
+  const defaultOptions = await config.load();
+  const mergedOptions = {...defaultOptions, ...options}
+  const fanyi = require('..');
+  fanyi(program.args.join(' '), mergedOptions)
 }
 
-fanyi(program.args.join(' '), {
-  nocolor,
-});
+function resolveOptions(options) {
+  const opts = {}
+  Object.keys(options)
+    .filter(key => isBoolean(options[key]))
+    .map(key => opts[key] = options[key]);
+  
+  return opts;
+}
+
+function isBoolean(val) {
+  return typeof val === 'boolean';
+}
