@@ -88,6 +88,38 @@ $ fanyi 和谐
 $ fanyi 子非鱼焉知鱼之乐
 ```
 
+## Configuration
+
+A configuration file can be put into ~/.fanyirc, in the user's home directory
+
+Use subcommand `fanyi config [options]`
+
+Example:
+
+```bash
+# Turn off the pronunciation
+$ fanyi config --no-say
+# or
+$ fanyi config -S
+
+# Disable the dictionaryapi
+$ fanyi config --no-dictionaryapi
+# or
+$ fanyi config -D
+```
+
+A sample ~/.fanyirc file:
+
+```json
+{
+  "iciba": true,
+  "youdao": true,
+  "dictionaryapi": false,
+  "say": false,
+  "color": true
+}
+```
+
 ## Error: spawn festival ENOENT
 
 Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
