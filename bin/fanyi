@@ -8,6 +8,19 @@ const config = require('../lib/config');
 
 updateNotifier({ pkg }).notify();
 
+program.on('--help', function () {
+  console.log('');
+  console.log(chalk.gray('Examples:'));
+  console.log(chalk.cyan('  $ ') + 'fanyi word');
+  console.log(chalk.cyan('  $ ') + 'fanyi world peace');
+  console.log(chalk.cyan('  $ ') + 'fanyi chinglish');
+  console.log('');
+});
+
+if (!process.argv.slice(2).length) {
+  return program.outputHelp();
+}
+
 program
   .version(pkg.version)
   .option('-s, --say', 'Turn on the pronunciation')
@@ -43,20 +56,7 @@ program
     return config.write(options);
   });
 
-program.on('--help', function () {
-  console.log('');
-  console.log(chalk.gray('Examples:'));
-  console.log(chalk.cyan('  $ ') + 'fanyi word');
-  console.log(chalk.cyan('  $ ') + 'fanyi world peace');
-  console.log(chalk.cyan('  $ ') + 'fanyi chinglish');
-  console.log('');
-});
-
 program.parse(process.argv);
-
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}
 
 async function runFY(options = {}) {
   const defaultOptions = await config.load();
