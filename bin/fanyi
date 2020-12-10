@@ -51,7 +51,12 @@ program
     if (process.argv.length === 3) {
       return runFY();
     }
-    const {color, iciba, youdao, dictionaryapi, say} = args
+    let {color, iciba, youdao, dictionaryapi, say} = args;
+
+    // issue https://github.com/tj/commander.js/issues/1033
+    // collect https://github.com/tj/commander.js/issues/1229
+    say = args.say === undefined ? program.say : args.say;
+
     const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say });
     return config.write(options);
   });
