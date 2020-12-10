@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "4.2.0",
+  "version": "5.0.1",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -10,8 +10,8 @@
   "author": "afc163 <afc163@gmail.com>",
   "license": "MIT",
   "bin": {
-    "fy": "./bin/fanyi",
-    "fanyi": "./bin/fanyi"
+    "fy": "bin/fanyi",
+    "fanyi": "bin/fanyi"
   },
   "keywords": [
     "translate",
@@ -41,7 +41,8 @@
     "ora": "^4.0.2",
     "request": "^2.81.0",
     "update-notifier": "^4.1.0",
-    "xml2js": "^0.4.8"
+    "xml2js": "^0.4.8",
+    "say": "^0.16.0"
   },
   "optionalDependencies": {
     "say": "^0.16.0"
