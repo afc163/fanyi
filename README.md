@@ -29,6 +29,10 @@ For short:
 ```bash
 $ fy word
 ```
+Or
+```
+$ t word
+```
 
 Translation data is fetched from [iciba.com](http://iciba.com) and [fanyi.youdao.com](http://fanyi.youdao.com), and only support translation between Chinese and English.
 

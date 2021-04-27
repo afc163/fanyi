@@ -11,7 +11,8 @@
   "license": "MIT",
   "bin": {
     "fy": "bin/fanyi",
-    "fanyi": "bin/fanyi"
+    "fanyi": "bin/fanyi",
+    "t": "bin/fanyi"
   },
   "keywords": [
     "translate",
