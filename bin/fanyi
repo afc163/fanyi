@@ -13,11 +13,13 @@ program
   .option('-s, --say', 'Turn on the pronunciation')
   .option('-S, --no-say', 'Turn off the pronunciation')
   .action(args => {
-    const {say} = args;
-    const options = resolveOptions({ say });
-    return runFY(options);
-  })
-
+    // If the input is "fanyi", no parameters, ignore.
+    if (process.argv.length > 2) {
+      const { say } = args;
+      const options = resolveOptions({ say });
+      return runFY(options);
+    }
+  });
 
 program
   .command('config')
