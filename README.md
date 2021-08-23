@@ -90,7 +90,7 @@ $ fanyi 子非鱼焉知鱼之乐
 
 ## Configuration
 
-A configuration file can be put into ~/.fanyirc, in the user's home directory
+A configuration file can be put into ~/.config/fanyi/.fanyirc, in the user's home directory
 
 Use subcommand `fanyi config [options]`
 
@@ -108,7 +108,7 @@ $ fanyi config --no-dictionaryapi
 $ fanyi config -D
 ```
 
-A sample ~/.fanyirc file:
+A sample ~/.config/fanyi/.fanyirc file:
 
 ```json
 {
