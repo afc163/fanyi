@@ -40,8 +40,8 @@ program
     if (process.argv.length === 3) {
       return runFY();
     }
-    const {color, iciba, youdao, dictionaryapi} = args
-    const {say} = program.opts()
+    const { color, iciba, youdao, dictionaryapi } = args;
+    const { say } = program.opts();
     const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say });
     return config.write(options);
   });
