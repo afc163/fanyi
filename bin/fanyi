@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 const config = require('../lib/config');
+const { searchList } = require('../lib/searchHistory');
 
 updateNotifier({ pkg }).notify();
 
@@ -44,6 +45,15 @@ program
     const { say } = program.opts();
     const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say });
     return config.write(options);
+  });
+
+program
+  .command('list')
+  .option('-d, --someDay <char>', '查看指定某天的查询记录')
+  .option('-r, --recentDays [number]', '查看最近几天内的数据', 0)
+  .option('-all --show-file [boolean]', '查看全部数据，即单词存放的位置', false)
+  .action(args => {
+    searchList(args);
   });
 
 program.on('--help', function () {
