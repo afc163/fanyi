@@ -39,7 +39,7 @@
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "ora": "^4.0.2",
-    "request": "^2.81.0",
+    "needle": "^3.1.0",
     "update-notifier": "^4.1.0",
     "xml2js": "^0.4.8",
     "say": "^0.16.0"

@@ -1,4 +1,4 @@
-const request = require('request');
+const needle = require('needle');
 const SOURCE = require('./lib/source');
 const print = require('./lib/print');
 const Entities = require('html-entities').AllHtmlEntities;
@@ -35,8 +35,9 @@ module.exports = function (word, options, callback) {
 
   // iciba
   isTrueOrUndefined(iciba) &&
-    request.get(SOURCE.iciba.replace('${word}', word), function (error, response, body) {
+    needle.get(SOURCE.iciba.replace('${word}', word), { parse: false }, function (error, response) {
       if (!error && response.statusCode == 200) {
+        const body = response.body;
         parseString(body, function (err, result) {
           if (err) {
             return;
@@ -49,28 +50,34 @@ module.exports = function (word, options, callback) {
 
   // youdao
   isTrueOrUndefined(youdao) &&
-    request.get(SOURCE.youdao.replace('${word}', word), function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        try {
-          const data = JSON.parse(entities.decode(body));
-          print.youdao(data, options);
-        } catch (e) {
-          // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
+    needle.get(
+      SOURCE.youdao.replace('${word}', word),
+      { parse: false },
+      function (error, response) {
+        if (!error && response.statusCode == 200) {
+          const body = response.body;
+          try {
+            const data = JSON.parse(entities.decode(body));
+            print.youdao(data, options);
+          } catch (e) {
+            // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
+          }
         }
-      }
-      callbackAll();
-    });
+        callbackAll();
+      },
+    );
 
   // dictionaryapi
   isTrueOrUndefined(dictionaryapi) &&
-    request.get(
+    needle.get(
       SOURCE.dictionaryapi.replace('${word}', word),
       { timeout: 6000 },
-      function (error, response, body) {
+      function (error, response) {
         if (error) {
           return callbackAll();
         }
         if (response.statusCode == 200) {
+          const body = response.body;
           parseString(body, function (err, result) {
             if (!err) {
               print.dictionaryapi(result.entry_list.entry, word, options);
