@@ -36,13 +36,14 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "commander": "^5.0.0",
+    "dayjs": "^1.11.5",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
-    "ora": "^4.0.2",
     "needle": "^3.1.0",
+    "ora": "^4.0.2",
+    "say": "^0.16.0",
     "update-notifier": "^4.1.0",
-    "xml2js": "^0.4.8",
-    "say": "^0.16.0"
+    "xml2js": "^0.4.8"
   },
   "optionalDependencies": {
     "say": "^0.16.0"
