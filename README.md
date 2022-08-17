@@ -86,6 +86,20 @@ $ fanyi 和谐
 $ fanyi 子非鱼焉知鱼之乐
 ```
 
+```bash
+$ fanyi list
+```
+
+可以查看历史查询结果
+
+```
+2022-08-17
+   test
+     n. 试验；考验；测验；化验；
+     vt. 测验；考查；考验；勘探；
+     vi. 受试验；受测验；受考验；测得结果；
+```
+
 ## Configuration
 
 A configuration file can be put into ~/.config/fanyi/.fanyirc, in the user's home directory
