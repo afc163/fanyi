@@ -37,6 +37,7 @@
     "chalk": "^4.0.0",
     "commander": "^5.0.0",
     "dayjs": "^1.11.5",
+    "fs-extra": "^10.1.0",
     "html-entities": "^1.1.2",
     "is-chinese": "^1.2.5",
     "needle": "^3.1.0",
