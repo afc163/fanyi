@@ -90,7 +90,7 @@ $ fanyi 子非鱼焉知鱼之乐
 $ fanyi list
 ```
 
-可以查看历史查询结果
+Also, you can use `list` command to see the history of your search.
 
 ```js
 2022-08-17
