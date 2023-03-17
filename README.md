@@ -141,8 +141,10 @@ Set an [OpenAI API key](https://platform.openai.com/overview) to enable ChatGPT 
 $ fanyi config --openai-api-key sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
+Turn off ChatGPT translation.
+
 ```bash
-$ fanyi config --openai-api-key
+$ fanyi config --openai-api-key false
 ```
 
 ## Error: spawn festival ENOENT
