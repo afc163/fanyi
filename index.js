@@ -67,26 +67,7 @@ module.exports = function (word, options, callback) {
       },
     );
 
-  // dictionaryapi
-  isTrueOrUndefined(dictionaryapi) &&
-    needle.get(
-      SOURCE.dictionaryapi.replace('${word}', word),
-      { timeout: 6000 },
-      function (error, response) {
-        if (error) {
-          return callbackAll();
-        }
-        if (response.statusCode == 200) {
-          const body = response.body;
-          parseString(body, function (err, result) {
-            if (!err) {
-              print.dictionaryapi(result.entry_list.entry, word, options);
-            }
-          });
-        }
-        callbackAll();
-      },
-    );
+  print.chatgpt('', word, options);
 };
 
 function isTrueOrUndefined(val) {
