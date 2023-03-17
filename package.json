@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "6.0.1",
+  "version": "7.0.0",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -19,9 +19,12 @@
     "youdao",
     "terminal",
     "chinese",
+    "chatgpt",
+    "openai",
     "command line",
     "cli",
     "translation",
+    "translator",
     "fanyi"
   ],
   "engines": {
@@ -45,7 +48,6 @@
     "needle": "^3.1.0",
     "ora": "^4.0.2",
     "say": "^0.16.0",
-    "unfetch": "^5.0.0",
     "update-notifier": "^4.1.0",
     "xml2js": "^0.4.8"
   },

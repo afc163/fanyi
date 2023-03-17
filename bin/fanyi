@@ -35,15 +35,16 @@ program
   .option('-D, --no-dictionaryapi', 'Disable the dictionary translation engine')
   .option('-s, --say', 'Turn on the pronunciation')
   .option('-S, --no-say', 'Turn off the pronunciation')
+  .option('-o, --openai-api-key <apikey>', 'set openai api key')
   .action(args => {
     // hack
     // If the input is "fanyi config", then translate the word config.
     if (process.argv.length === 3) {
       return runFY();
     }
-    const { color, iciba, youdao, dictionaryapi } = args;
+    const { color, iciba, youdao, dictionaryapi, openaiApiKey } = args;
     const { say } = program.opts();
-    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say });
+    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say, openaiApiKey });
     return config.write(options);
   });
 
@@ -81,9 +82,8 @@ async function runFY(options = {}) {
 function resolveOptions(options) {
   const opts = {}
   Object.keys(options)
-    .filter(key => isBoolean(options[key]))
+    .filter(key => isBoolean(options[key]) || typeof options[key] === 'string')
     .map(key => opts[key] = options[key]);
-  
   return opts;
 }
 

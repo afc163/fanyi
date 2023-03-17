@@ -2,7 +2,7 @@
 
 # Fanyi
 
-A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line.
+A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by youdao/iciba/ChatGPT.
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
@@ -128,8 +128,21 @@ A sample ~/.config/fanyi/.fanyirc file:
   "youdao": true,
   "dictionaryapi": false,
   "say": false,
-  "color": true
+  "color": true,
+  "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
 }
+```
+
+## Enable ChatGPT 🚀
+
+Set an [OpenAI API key](https://platform.openai.com/overview) to enable ChatGPT translation.
+
+```bash
+$ fanyi config --openai-api-key sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+```bash
+$ fanyi config --openai-api-key
 ```
 
 ## Error: spawn festival ENOENT
