@@ -141,7 +141,7 @@ Set an [OpenAI API key](https://platform.openai.com/overview) to enable ChatGPT 
 $ fanyi config --openai-api-key sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-![](https://user-images.githubusercontent.com/507615/225944556-49527bef-f720-4091-b561-6d5bfbd5107b.png)
+<img width="1000" src="https://user-images.githubusercontent.com/507615/225946548-8d912643-9f81-401e-abdd-ba5b54912ea4.png">
 
 Turn off ChatGPT translation.
 
