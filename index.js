@@ -9,7 +9,7 @@ const ora = require('ora');
 
 module.exports = function (word, options, callback) {
   console.log('');
-  const { say, iciba, youdao, dictionaryapi } = options;
+  const { say, iciba, youdao, dictionaryapi = false } = options;
   const requestCounts = [iciba, youdao, dictionaryapi].filter(isTrueOrUndefined).length;
   const spinner = ora().start();
 
@@ -31,11 +31,11 @@ module.exports = function (word, options, callback) {
     }
   };
 
-  word = encodeURIComponent(word);
+  const endcodedWord = encodeURIComponent(word);
 
   // iciba
   isTrueOrUndefined(iciba) &&
-    needle.get(SOURCE.iciba.replace('${word}', word), { parse: false }, function (error, response) {
+    needle.get(SOURCE.iciba.replace('${word}', endcodedWord), { parse: false }, function (error, response) {
       if (!error && response.statusCode == 200) {
         const body = response.body;
         parseString(body, function (err, result) {
@@ -51,7 +51,7 @@ module.exports = function (word, options, callback) {
   // youdao
   isTrueOrUndefined(youdao) &&
     needle.get(
-      SOURCE.youdao.replace('${word}', word),
+      SOURCE.youdao.replace('${word}', endcodedWord),
       { parse: false },
       function (error, response) {
         if (!error && response.statusCode == 200) {
@@ -67,26 +67,7 @@ module.exports = function (word, options, callback) {
       },
     );
 
-  // dictionaryapi
-  isTrueOrUndefined(dictionaryapi) &&
-    needle.get(
-      SOURCE.dictionaryapi.replace('${word}', word),
-      { timeout: 6000 },
-      function (error, response) {
-        if (error) {
-          return callbackAll();
-        }
-        if (response.statusCode == 200) {
-          const body = response.body;
-          parseString(body, function (err, result) {
-            if (!err) {
-              print.dictionaryapi(result.entry_list.entry, word, options);
-            }
-          });
-        }
-        callbackAll();
-      },
-    );
+  print.chatgpt(word, options);
 };
 
 function isTrueOrUndefined(val) {
