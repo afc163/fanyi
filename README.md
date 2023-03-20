@@ -28,7 +28,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](http://iciba.com) and [fanyi.youdao.com](http://fanyi.youdao.com), and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com) and [fanyi.youdao.com](https://fanyi.youdao.com), and only support translation between Chinese and English.
 
 In Mac/Linux bash, words will be pronounced by `say` command.
 
@@ -120,7 +120,7 @@ $ fanyi config --no-dictionaryapi
 $ fanyi config -D
 ```
 
-A sample ~/.config/fanyi/.fanyirc file:
+A sample `~/.config/fanyi/.fanyirc` file:
 
 ```json
 {
@@ -141,7 +141,7 @@ Set an [OpenAI API key](https://platform.openai.com/overview) to enable ChatGPT 
 $ fanyi config --openai-api-key sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-<img width="1000" src="https://user-images.githubusercontent.com/507615/225946548-8d912643-9f81-401e-abdd-ba5b54912ea4.png">
+![image](https://user-images.githubusercontent.com/507615/225946548-8d912643-9f81-401e-abdd-ba5b54912ea4.png)
 
 Turn off ChatGPT translation.
 
