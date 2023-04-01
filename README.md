@@ -5,7 +5,6 @@
 A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by youdao/iciba/ChatGPT.
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
-[![Build Status](https://img.shields.io/travis/afc163/fanyi.svg?style=flat-square)](https://travis-ci.org/afc163/fanyi)
 [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
