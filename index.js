@@ -1,4 +1,5 @@
 const needle = require('needle');
+const chalk = require('chalk');
 const SOURCE = require('./lib/source');
 const print = require('./lib/print');
 const Entities = require('html-entities').AllHtmlEntities;
@@ -27,6 +28,7 @@ module.exports = function (word, options, callback) {
     count += 1;
     if (count >= requestCounts) {
       spinner.stop();
+      spinner.clear();
       callback && callback();
     }
   };
@@ -36,9 +38,10 @@ module.exports = function (word, options, callback) {
   // iciba
   isTrueOrUndefined(iciba) &&
     needle.get(SOURCE.iciba.replace('${word}', endcodedWord), { parse: false }, function (error, response) {
-      if (!error && response.statusCode == 200) {
-        const body = response.body;
-        parseString(body, function (err, result) {
+      if (error) {
+        console.log(chalk.yellow(`访问 iciba 失败，请检查网络`));
+      } else if (response.statusCode == 200) {
+        parseString(response.body, function (err, result) {
           if (err) {
             return;
           }
@@ -54,10 +57,11 @@ module.exports = function (word, options, callback) {
       SOURCE.youdao.replace('${word}', endcodedWord),
       { parse: false },
       function (error, response) {
-        if (!error && response.statusCode == 200) {
-          const body = response.body;
+        if (error) {
+          console.log(chalk.yellow(`访问 youdao 失败，请检查网络`));
+        } else if (response.statusCode == 200) {
           try {
-            const data = JSON.parse(entities.decode(body));
+            const data = JSON.parse(entities.decode(response.body));
             print.youdao(data, options);
           } catch (e) {
             // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
