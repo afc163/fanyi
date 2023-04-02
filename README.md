@@ -4,8 +4,7 @@
 
 A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by youdao/iciba/ChatGPT.
 
-[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
-[![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
+[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
 
@@ -148,6 +147,18 @@ Turn off ChatGPT translation.
 
 ```bash
 $ fanyi config --openai-api-key false
+```
+
+If we get this error:
+
+> Cannot reach OpenAI api, please check network
+
+We need to ensure that the proxy and $http_proxy is correctly set.
+
+For example(for clash X):
+
+```bash
+$ export http_proxy=http://127.0.0.1:7890
 ```
 
 ## Error: spawn festival ENOENT

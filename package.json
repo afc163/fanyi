@@ -44,6 +44,7 @@
     "fs-extra": "^10.1.0",
     "gradient-string": "^2.0.2",
     "html-entities": "^1.1.2",
+    "https-proxy-agent": "^5.0.1",
     "is-chinese": "^1.2.5",
     "isomorphic-unfetch": "^4.0.2",
     "needle": "^3.1.0",
