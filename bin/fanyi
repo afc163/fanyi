@@ -36,15 +36,16 @@ program
   .option('-s, --say', 'Turn on the pronunciation')
   .option('-S, --no-say', 'Turn off the pronunciation')
   .option('-o, --openai-api-key <apikey>', 'set openai api key')
+  .option('-host, --openai-api-host <apiHost>', 'set openai api host')
   .action(args => {
     // hack
     // If the input is "fanyi config", then translate the word config.
     if (process.argv.length === 3) {
       return runFY();
     }
-    const { color, iciba, youdao, dictionaryapi, openaiApiKey } = args;
+    const { color, iciba, youdao, dictionaryapi, openaiApiKey, openaiApiHost } = args;
     const { say } = program.opts();
-    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say, openaiApiKey });
+    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say, openaiApiKey, openaiApiHost });
     return config.write(options);
   });
 

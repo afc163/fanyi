@@ -161,6 +161,12 @@ For example(for clash X):
 $ export http_proxy=http://127.0.0.1:7890
 ```
 
+You can also set up other openai api hosts，such as [api.chatanywhere.com.cn](https://github.com/chatanywhere/GPT_API_free):
+
+```bash
+$ fanyi config --openai-api-host api.chatanywhere.com.cn
+```
+
 ## Error: spawn festival ENOENT
 
 Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
