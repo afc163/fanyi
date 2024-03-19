@@ -21,6 +21,7 @@ module.exports = function (word, options, callback) {
     }
   } catch (e) {
     // do nothing
+    console.log(e);
   }
 
   let count = 0;
