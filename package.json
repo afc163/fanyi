@@ -16,11 +16,8 @@
   "keywords": [
     "translate",
     "iciba",
-    "youdao",
     "terminal",
     "chinese",
-    "chatgpt",
-    "openai",
     "command line",
     "cli",
     "translation",
@@ -38,7 +35,6 @@
   ],
   "dependencies": {
     "chalk": "^4.0.0",
-    "chatgpt": "^5.1.1",
     "commander": "^5.0.0",
     "dayjs": "^1.11.5",
     "fs-extra": "^10.1.0",

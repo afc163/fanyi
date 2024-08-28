@@ -29,23 +29,17 @@ program
   .option('-C, --no-color', 'Output without color')
   .option('-i, --iciba', 'Enable the iciba translation engine')
   .option('-I, --no-iciba', 'Disable the iciba translation engine')
-  .option('-y, --youdao', 'Enable the youdao translation engine')
-  .option('-Y, --no-youdao', 'Disable the youdao translation engine')
-  .option('-d, --dictionaryapi', 'Enable the dictionary translation engine')
-  .option('-D, --no-dictionaryapi', 'Disable the dictionary translation engine')
   .option('-s, --say', 'Turn on the pronunciation')
   .option('-S, --no-say', 'Turn off the pronunciation')
-  .option('-o, --openai-api-key <apikey>', 'set openai api key')
-  .option('-host, --openai-api-host <apiHost>', 'set openai api host')
   .action(args => {
     // hack
     // If the input is "fanyi config", then translate the word config.
     if (process.argv.length === 3) {
       return runFY();
     }
-    const { color, iciba, youdao, dictionaryapi, openaiApiKey, openaiApiHost } = args;
+    const { color, iciba } = args;
     const { say } = program.opts();
-    const options = resolveOptions({ color, iciba, youdao, dictionaryapi, say, openaiApiKey, openaiApiHost });
+    const options = resolveOptions({ color, iciba, say });
     return config.write(options);
   });
 

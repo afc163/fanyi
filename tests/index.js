@@ -23,14 +23,8 @@ describe('fanyi', () => {
   it('should translate word', (done) => {
     sinon.spy(console, 'log');
     nock('http://dict-co.iciba.com').get(/api/).reply(200, data['word'].iciba);
-    nock('http://fanyi.youdao.com')
-      .get(/openapi\.do/)
-      .reply(200, data['word'].youdao);
-    nock('http://www.dictionaryapi.com').get(/api/).reply(200, data['word'].dictionaryapi);
     fanyi('word', () => {
       sinon.assert.calledWithMatch(console.log, '', 'n. 单词；话语；诺言；消息；'); // iciba
-      sinon.assert.calledWithMatch(console.log, '', 'n. [语] 单词；话语；消息；诺言；命令'); // youdao
-      sinon.assert.calledWithMatch(console.log, '', 'something that is said'); // dictionaryapi
       done();
     });
   });

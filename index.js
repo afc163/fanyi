@@ -10,8 +10,8 @@ const ora = require('ora');
 
 module.exports = function (word, options, callback) {
   console.log('');
-  const { say, iciba, youdao, dictionaryapi = false } = options;
-  const requestCounts = [iciba, youdao, dictionaryapi].filter(isTrueOrUndefined).length;
+  const { say, iciba } = options;
+  const requestCounts = [iciba].filter(isTrueOrUndefined).length;
   const spinner = ora().start();
 
   // say it
@@ -51,27 +51,6 @@ module.exports = function (word, options, callback) {
       callbackAll();
     });
 
-  // youdao
-  isTrueOrUndefined(youdao) &&
-    needle.get(
-      SOURCE.youdao.replace('${word}', endcodedWord),
-      { parse: false },
-      function (error, response) {
-        if (error) {
-          console.log(chalk.yellow(`访问 youdao 失败，请检查网络`));
-        } else if (response.statusCode == 200) {
-          try {
-            const data = JSON.parse(entities.decode(response.body));
-            print.youdao(data, options);
-          } catch (e) {
-            // 来自您key的翻译API请求异常频繁，为保护其他用户的正常访问，只能暂时禁止您目前key的访问
-          }
-        }
-        callbackAll();
-      },
-    );
-
-  print.chatgpt(word, options);
 };
 
 function isTrueOrUndefined(val) {
