@@ -2,7 +2,7 @@
 
 # Fanyi
 
-A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by youdao/iciba/ChatGPT.
+A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba.
 
 [![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
 
@@ -29,8 +29,6 @@ $ fy word
 ```
 
 Translation data is fetched from [iciba.com](https://iciba.com) and [fanyi.youdao.com](https://fanyi.youdao.com), and only support translation between Chinese and English.
-
-In Mac/Linux bash, words will be pronounced by `say` command.
 
 Translate one word.
 
@@ -109,13 +107,6 @@ Use subcommand `fanyi config [options]`
 Example:
 
 ```bash
-# Turn off the pronunciation
-$ fanyi config --no-say
-# or
-$ fanyi config -S
-
-# Disable the dictionaryapi
-$ fanyi config --no-dictionaryapi
 # or
 $ fanyi config -D
 ```
@@ -125,52 +116,6 @@ A sample `~/.config/fanyi/.fanyirc` file:
 ```json
 {
   "iciba": true,
-  "youdao": true,
-  "dictionaryapi": false,
-  "say": false,
   "color": true,
-  "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
 }
-```
-
-## Enable ChatGPT 🚀
-
-Set an [OpenAI API key](https://platform.openai.com/overview) to enable ChatGPT translation.
-
-```bash
-$ fanyi config --openai-api-key sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-![image](https://user-images.githubusercontent.com/507615/225946548-8d912643-9f81-401e-abdd-ba5b54912ea4.png)
-
-Turn off ChatGPT translation.
-
-```bash
-$ fanyi config --openai-api-key false
-```
-
-If we get this error:
-
-> Cannot reach OpenAI api, please check network
-
-We need to ensure that the proxy and $http_proxy is correctly set.
-
-For example(for clash X):
-
-```bash
-$ export http_proxy=http://127.0.0.1:7890
-```
-
-You can also set up other openai api hosts，such as [api.chatanywhere.com.cn](https://github.com/chatanywhere/GPT_API_free):
-
-```bash
-$ fanyi config --openai-api-host api.chatanywhere.com.cn
-```
-
-## Error: spawn festival ENOENT
-
-Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
-
-```
-sudo apt-get install festival festvox-kallpc16k
 ```
