@@ -50,14 +50,13 @@
     "coffee": "^5.1.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
-    "mocha": "^7.1.1",
-    "nock": "^12.0.3",
     "np": "^6.2.0",
     "ora": "^4.0.2",
-    "sinon": "^9.0.1"
+    "sinon": "^9.0.1",
+    "vitest": "^2.0.5"
   },
   "scripts": {
-    "test": "mocha tests/index.js --timeout 0",
+    "test": "vitest",
     "lint": "biome check .",
     "format": "biome check . --write",
     "prepublishOnly": "np --no-cleanup --no-publish",

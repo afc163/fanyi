@@ -13,7 +13,7 @@ program
   .name(pkg.name)
   .description(pkg.description)
   .version(pkg.version)
-  .action((args) => {
+  .action(() => {
     // If the input is "fanyi", no parameters, ignore.
     if (process.argv.length > 2) {
       return runFY();
@@ -57,6 +57,10 @@ program.on('--help', () => {
 });
 
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.help();
+}
 
 async function runFY(options = {}) {
   const defaultOptions = await config.load();
