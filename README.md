@@ -4,7 +4,19 @@
 
 A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba.
 
-[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+[![build status][github-actions-image]][github-actions-url]
+[![Codecov][codecov-image]][codecov-url]
+
+[npm-image]: http://img.shields.io/npm/v/fanyi.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/fanyi
+[github-actions-image]: https://github.com/afc163/fanyi/actions/workflows/test.yml/badge.svg
+[github-actions-url]: https://github.com/afc163/fanyi/actions/workflows/test.yml
+[codecov-image]: https://img.shields.io/codecov/c/github/afc163/fanyi/main.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/gh/afc163/fanyi
+[download-image]: https://img.shields.io/npm/dm/fanyi.svg?style=flat-square
+[download-url]: https://npmjs.org/package/fanyi
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
 
