@@ -1,76 +1,83 @@
 {
-  "name": "fanyi",
-  "version": "8.0.3",
-  "description": "A translate tool in your command line",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:afc163/fanyi.git"
-  },
-  "author": "afc163 <afc163@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "fy": "bin/fanyi",
-    "fanyi": "bin/fanyi"
-  },
-  "keywords": [
-    "translate",
-    "iciba",
-    "terminal",
-    "chinese",
-    "command line",
-    "cli",
-    "translation",
-    "translator",
-    "fanyi"
-  ],
-  "engines": {
-    "node": ">=6.0.0"
-  },
-  "readmeFilename": "README.md",
-  "files": [
-    "index.js",
-    "bin",
-    "lib"
-  ],
-  "dependencies": {
-    "chalk": "^4.0.0",
-    "commander": "^5.0.0",
-    "dayjs": "^1.11.5",
-    "fs-extra": "^10.1.0",
-    "gradient-string": "^2.0.2",
-    "html-entities": "^1.1.2",
-    "https-proxy-agent": "^5.0.1",
-    "is-chinese": "^1.2.5",
-    "isomorphic-unfetch": "^4.0.2",
-    "needle": "^3.1.0",
-    "ora": "^4.0.2",
-    "say": "^0.16.0",
-    "update-notifier": "^4.1.0",
-    "xml2js": "^0.4.8"
-  },
-  "optionalDependencies": {
-    "say": "^0.16.0"
-  },
-  "devDependencies": {
-    "coffee": "^5.1.0",
-    "husky": "^4.2.3",
-    "mocha": "^7.1.1",
-    "nock": "^12.0.3",
-    "np": "^6.2.0",
-    "prettier": "^2.0.2",
-    "pretty-quick": "^2.0.0",
-    "sinon": "^9.0.1"
-  },
-  "scripts": {
-    "format": "prettier --write '**/*.{json,js,md,yml}'",
-    "pretty-quick": "pretty-quick",
-    "test": "mocha tests/index.js --timeout 0",
-    "prepublishOnly": "np --no-cleanup --no-publish"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+	"name": "fanyi",
+	"version": "8.0.3",
+	"description": "A translate tool in your command line",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:afc163/fanyi.git"
+	},
+	"author": "afc163 <afc163@gmail.com>",
+	"license": "MIT",
+	"bin": {
+		"fy": "bin/fanyi.js",
+		"fanyi": "bin/fanyi.js"
+	},
+	"keywords": [
+		"translate",
+		"iciba",
+		"terminal",
+		"chinese",
+		"command line",
+		"cli",
+		"translation",
+		"translator",
+		"fanyi"
+	],
+	"engines": {
+		"node": ">=6.0.0"
+	},
+	"readmeFilename": "README.md",
+	"files": ["index.js", "bin", "lib"],
+	"dependencies": {
+		"chalk": "^4.0.0",
+		"commander": "^5.0.0",
+		"dayjs": "^1.11.5",
+		"fs-extra": "^10.1.0",
+		"gradient-string": "^2.0.2",
+		"html-entities": "^1.1.2",
+		"https-proxy-agent": "^5.0.1",
+		"is-chinese": "^1.2.5",
+		"isomorphic-unfetch": "^4.0.2",
+		"needle": "^3.1.0",
+		"ora": "^4.0.2",
+		"say": "^0.16.0",
+		"update-notifier": "^4.1.0",
+		"xml2js": "^0.4.8"
+	},
+	"optionalDependencies": {
+		"say": "^0.16.0"
+	},
+	"lint-staged": {
+		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+			"biome check --write --files-ignore-unknown=true",
+			"biome format --write --files-ignore-unknown=true",
+			"biome lint --write --files-ignore-unknown=true"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"coffee": "^5.1.0",
+		"husky": "^9.1.5",
+		"lint-staged": "^15.2.10",
+		"mocha": "^7.1.1",
+		"nock": "^12.0.3",
+		"np": "^6.2.0",
+		"prettier": "^2.0.2",
+		"pretty-quick": "^2.0.0",
+		"sinon": "^9.0.1"
+	},
+	"scripts": {
+		"format": "prettier --write '**/*.{json,js,md,yml}'",
+		"pretty-quick": "pretty-quick",
+		"test": "mocha tests/index.js --timeout 0",
+		"prepublishOnly": "np --no-cleanup --no-publish",
+		"lint-staged": "lint-staged",
+		"prepare": "husky"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	}
 }
