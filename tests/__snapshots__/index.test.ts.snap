@@ -1,50 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`fanyi CLI > should be able to config global options 1`] = `
-"
- config --no-color  ~  iciba.com
- 
- -----
- 
-"
-`;
-
-exports[`fanyi CLI > should be able to config global options 2`] = `
-"
- config --color  ~  iciba.com
- 
- -----
- 
-"
-`;
-
-exports[`fanyi CLI > should be able to config global options 3`] = `
-"
- config --no-iciba  ~  iciba.com
- 
- -----
- 
-"
-`;
-
-exports[`fanyi CLI > should be able to config global options 4`] = `
-"
- config --iciba  ~  iciba.com
- 
- -----
- 
-"
-`;
-
-exports[`fanyi CLI > should print config list if config list is given 1`] = `
-"
- config list  ~  iciba.com
- 
- -----
- 
-"
-`;
-
 exports[`fanyi CLI > should print help if -h is given 1`] = `
 "Usage: fanyi [options] [command]
 
@@ -63,37 +18,6 @@ Examples:
   $ fanyi world peace
   $ fanyi chinglish
 
-"
-`;
-
-exports[`fanyi CLI > should print search history 1`] = `
-"2024-09-11
-   xx
-     abbr. without securities or warrants 无权或无保障（代号）；
-   
-   love
-     vt.& vi. 爱，热爱；爱戴；喜欢；赞美，称赞；
-     vt. 喜爱；喜好；喜欢；爱慕；
-     n. 爱情，爱意；疼爱；热爱；爱人，所爱之物；
-   word
-     n. 单词；话语；诺言；消息；
-     vt. 措辞，用词；用言语表达；
-     vi. 讲话；
-   config
-     
-   hello
-     int. 哈喽，喂；你好，您好；表示问候；打招呼；
-     n. “喂”的招呼声或问候声；
-     vi. 喊“喂”；
-   helxlo
-     
-   config list
-     
-   config --no-color
-     
-   config --color
-     
-   
 "
 `;
 
