@@ -16,7 +16,7 @@ jobs:
         node-version: 20
     - run: npm ci
     - run: npm run lint
-    - run: npm test
+    - run: npm run coverage
     - uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
