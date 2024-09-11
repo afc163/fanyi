@@ -20,3 +20,4 @@ node_modules/
 .settings
 .yml
 package-lock.json
+coverage
