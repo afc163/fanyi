@@ -2,10 +2,7 @@ const needle = require("needle");
 const chalk = require("chalk");
 const SOURCE = require("./lib/source");
 const print = require("./lib/print");
-const Entities = require("html-entities").AllHtmlEntities;
-const entities = new Entities();
 const parseString = require("xml2js").parseString;
-const isChinese = require("is-chinese");
 const ora = require("ora");
 
 module.exports = (word, options, callback) => {

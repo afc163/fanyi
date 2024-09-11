@@ -35,18 +35,12 @@
 		"dayjs": "^1.11.5",
 		"fs-extra": "^10.1.0",
 		"gradient-string": "^2.0.2",
-		"html-entities": "^1.1.2",
 		"https-proxy-agent": "^5.0.1",
-		"is-chinese": "^1.2.5",
 		"isomorphic-unfetch": "^4.0.2",
 		"needle": "^3.1.0",
 		"ora": "^4.0.2",
-		"say": "^0.16.0",
 		"update-notifier": "^4.1.0",
 		"xml2js": "^0.4.8"
-	},
-	"optionalDependencies": {
-		"say": "^0.16.0"
 	},
 	"lint-staged": {
 		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [

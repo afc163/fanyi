@@ -9,18 +9,7 @@ const { searchList } = require("../lib/searchHistory");
 
 updateNotifier({ pkg }).notify();
 
-program
-	.version(pkg.version)
-	.option("-s, --say", "Turn on the pronunciation")
-	.option("-S, --no-say", "Turn off the pronunciation")
-	.action((args) => {
-		// If the input is "fanyi", no parameters, ignore.
-		if (process.argv.length > 2) {
-			const { say } = args;
-			const options = resolveOptions({ say });
-			return runFY(options);
-		}
-	});
+program.version(pkg.version);
 
 program
 	.command("config")
@@ -29,8 +18,6 @@ program
 	.option("-C, --no-color", "Output without color")
 	.option("-i, --iciba", "Enable the iciba translation engine")
 	.option("-I, --no-iciba", "Disable the iciba translation engine")
-	.option("-s, --say", "Turn on the pronunciation")
-	.option("-S, --no-say", "Turn off the pronunciation")
 	.action((args) => {
 		// hack
 		// If the input is "fanyi config", then translate the word config.
@@ -38,8 +25,7 @@ program
 			return runFY();
 		}
 		const { color, iciba } = args;
-		const { say } = program.opts();
-		const options = resolveOptions({ color, iciba, say });
+		const options = resolveOptions({ color, iciba });
 		return config.write(options);
 	});
 

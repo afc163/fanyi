@@ -30,8 +30,6 @@ $ fy word
 
 Translation data is fetched from [iciba.com](https://iciba.com) and [fanyi.youdao.com](https://fanyi.youdao.com), and only support translation between Chinese and English.
 
-In Mac/Linux bash, words will be pronounced by `say` command.
-
 Translate one word.
 
 ```bash
@@ -109,10 +107,6 @@ Use subcommand `fanyi config [options]`
 Example:
 
 ```bash
-# Turn off the pronunciation
-$ fanyi config --no-say
-# or
-$ fanyi config -S
 # or
 $ fanyi config -D
 ```
@@ -122,15 +116,6 @@ A sample `~/.config/fanyi/.fanyirc` file:
 ```json
 {
   "iciba": true,
-  "say": false,
   "color": true,
 }
-```
-
-## Error: spawn festival ENOENT
-
-Try this workaround from [say.js](https://github.com/Marak/say.js#linux-notes) in Linux.
-
-```
-sudo apt-get install festival festvox-kallpc16k
 ```
