@@ -120,7 +120,10 @@ Example:
 
 ```bash
 # or
-$ fanyi config -D
+$ fanyi config --no-color // disable color globally
+$ fanyi config --color    // enable color globally
+$ fanyi config --no-iciba // disable iciba globally
+$ fanyi config --iciba // enable iciba globally
 ```
 
 A sample `~/.config/fanyi/.fanyirc` file:

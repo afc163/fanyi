@@ -39,4 +39,25 @@ describe('fanyi CLI', () => {
     const { stdout } = await runScript();
     expect(stdout).toMatchSnapshot();
   });
+
+  it('should print help if -h is given', async () => {
+    const { stdout } = await runScript(['-h']);
+    expect(stdout).toMatchSnapshot();
+  });
+
+  it('should be able to config global options', async () => {
+    const { stdout } = await runScript(['config --no-color']);
+    expect(stdout).toMatchSnapshot();
+    const { stdout: stdout2 } = await runScript(['config --color']);
+    expect(stdout2).toMatchSnapshot();
+    const { stdout: stdout3 } = await runScript(['config --no-iciba']);
+    expect(stdout3).toMatchSnapshot();
+    const { stdout: stdout4 } = await runScript(['config --iciba']);
+    expect(stdout4).toMatchSnapshot();
+  });
+
+  it('should print search history', async () => {
+    const { stdout } = await runScript(['list']);
+    expect(stdout).toMatchSnapshot();
+  });
 });
