@@ -52,12 +52,12 @@ program
     searchList(args);
   });
 
-program.on('--help', function () {
+program.on('--help', () => {
   console.log('');
   console.log(chalk.gray('Examples:'));
-  console.log(chalk.cyan('  $ ') + 'fanyi word');
-  console.log(chalk.cyan('  $ ') + 'fanyi world peace');
-  console.log(chalk.cyan('  $ ') + 'fanyi chinglish');
+  console.log(`${chalk.cyan('  $ ')}fanyi word`);
+  console.log(`${chalk.cyan('  $ ')}fanyi world peace`);
+  console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
   console.log('');
 });
 
@@ -76,9 +76,10 @@ async function runFY(options = {}) {
 
 function resolveOptions(options) {
   const opts = {}
-  Object.keys(options)
-    .filter(key => isBoolean(options[key]) || typeof options[key] === 'string')
-    .map(key => opts[key] = options[key]);
+  const filteredKeys = Object.keys(options).filter(key => isBoolean(options[key]) || typeof options[key] === 'string');
+  for (const key of filteredKeys) {
+    opts[key] = options[key];
+  }
   return opts;
 }
 

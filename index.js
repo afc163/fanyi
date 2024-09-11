@@ -8,7 +8,7 @@ const parseString = require('xml2js').parseString;
 const isChinese = require('is-chinese');
 const ora = require('ora');
 
-module.exports = function (word, options, callback) {
+module.exports = (word, options, callback) => {
   console.log('');
   const { say, iciba } = options;
   const requestCounts = [iciba].filter(isTrueOrUndefined).length;
@@ -29,7 +29,7 @@ module.exports = function (word, options, callback) {
     if (count >= requestCounts) {
       spinner.stop();
       spinner.clear();
-      callback && callback();
+      callback?.();
     }
   };
 
@@ -37,11 +37,11 @@ module.exports = function (word, options, callback) {
 
   // iciba
   isTrueOrUndefined(iciba) &&
-    needle.get(SOURCE.iciba.replace('${word}', endcodedWord), { parse: false }, function (error, response) {
+    needle.get(SOURCE.iciba.replace('${word}', endcodedWord), { parse: false }, (error, response) => {
       if (error) {
-        console.log(chalk.yellow(`访问 iciba 失败，请检查网络`));
-      } else if (response.statusCode == 200) {
-        parseString(response.body, function (err, result) {
+        console.log(chalk.yellow('访问 iciba 失败，请检查网络'));
+      } else if (response.statusCode === 200) {
+        parseString(response.body, (err, result) => {
           if (err) {
             return;
           }
