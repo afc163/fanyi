@@ -31,14 +31,10 @@
   "files": ["index.js", "bin", "lib"],
   "dependencies": {
     "chalk": "^4.0.0",
-    "commander": "^5.0.0",
+    "commander": "^12.1.0",
     "dayjs": "^1.11.5",
     "fs-extra": "^10.1.0",
-    "gradient-string": "^2.0.2",
-    "https-proxy-agent": "^5.0.1",
-    "isomorphic-unfetch": "^4.0.2",
     "needle": "^3.1.0",
-    "ora": "^4.0.2",
     "update-notifier": "^4.1.0",
     "xml2js": "^0.4.8"
   },
