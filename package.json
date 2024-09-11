@@ -39,7 +39,7 @@
     "xml2js": "^0.4.8"
   },
   "lint-staged": {
-    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+    "*": [
       "biome check --write --files-ignore-unknown=true",
       "biome format --write --files-ignore-unknown=true",
       "biome lint --write --files-ignore-unknown=true"
