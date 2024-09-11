@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "@vitest/coverage-v8": "^2.0.5",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
     "np": "^6.2.0",
@@ -54,7 +55,7 @@
     "vitest": "^2.0.5"
   },
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run --coverage",
     "lint": "biome check .",
     "format": "biome check . --write",
     "prepublishOnly": "np --no-cleanup --no-publish",
