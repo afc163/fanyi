@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
+const { Command } = require('commander');
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
@@ -8,6 +8,7 @@ const config = require('../lib/config');
 const { searchList } = require('../lib/searchHistory');
 
 updateNotifier({ pkg }).notify();
+const program = new Command();
 
 program
   .name(pkg.name)
@@ -23,28 +24,31 @@ program
 program
   .command('config')
   .description('设置全局选项')
-  .command('list')
-  .description('查看配置项')
-  .action(async () => {
-    const options = await config.load();
-    console.log(`${chalk.gray(config.getConfigPath())}`);
-    console.log();
-    for (const [key, value] of Object.entries(options)) {
-      console.log(`${chalk.cyan(key)}: ${chalk.yellow(value)}`);
-    }
-  })
-  .command('set <key> <value>')
-  .description('设置配置项')
-  .action(async (key, value) => {
-    const options = {};
-    if (key === 'GROQ_API_KEY') {
-      options[key] = value;
-    } else {
-      options[key] = value === 'true' ? true : value === 'false' ? false : value;
-    }
-    await config.write(options);
-    console.log(`已设置 ${key} 为 ${value}`);
-  });
+  .addCommand(
+    new Command('list').description('查看配置项').action(async () => {
+      const options = await config.load();
+      console.log(`${chalk.gray(config.getConfigPath())}`);
+      console.log();
+      for (const [key, value] of Object.entries(options)) {
+        console.log(`${chalk.cyan(key)}: ${chalk.yellow(value)}`);
+      }
+    }),
+  )
+  .addCommand(
+    new Command('set')
+      .description('设置配置项')
+      .argument('<key>', '配置项键名')
+      .argument('<value>', '配置项值')
+      .action(async (key, value) => {
+        const options = {};
+        if (key === 'GROQ_API_KEY') {
+          options[key] = value;
+        } else {
+          options[key] = value === 'true' ? true : value === 'false' ? false : value;
+        }
+        await config.write(options);
+      }),
+  );
 
 program
   .command('list')
