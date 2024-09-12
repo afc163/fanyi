@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
+const { Command } = require('commander');
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
@@ -8,13 +8,14 @@ const config = require('../lib/config');
 const { searchList } = require('../lib/searchHistory');
 
 updateNotifier({ pkg }).notify();
+const program = new Command();
 
 program
   .name(pkg.name)
   .description(pkg.description)
   .version(pkg.version)
   .action(() => {
-    // If the input is "fanyi", no parameters, ignore.
+    // 如果输入是 "fanyi"，没有参数，则忽略
     if (process.argv.length > 2) {
       return runFY();
     }
@@ -22,21 +23,32 @@ program
 
 program
   .command('config')
-  .description('Set the global options')
-  .option('-c, --color', 'Output with color')
-  .option('-C, --no-color', 'Output without color')
-  .option('-i, --iciba', 'Enable the iciba translation engine')
-  .option('-I, --no-iciba', 'Disable the iciba translation engine')
-  .action((args) => {
-    // hack
-    // If the input is "fanyi config", then translate the word config.
-    if (process.argv.length === 3) {
-      return runFY();
-    }
-    const { color, iciba } = args;
-    const options = resolveOptions({ color, iciba });
-    return config.write(options);
-  });
+  .description('设置全局选项')
+  .addCommand(
+    new Command('list').description('查看配置项').action(async () => {
+      const options = await config.load();
+      console.log(`${chalk.gray(config.getConfigPath())}`);
+      console.log();
+      for (const [key, value] of Object.entries(options)) {
+        console.log(`${chalk.cyan(key)}: ${chalk.yellow(value)}`);
+      }
+    }),
+  )
+  .addCommand(
+    new Command('set')
+      .description('设置配置项')
+      .argument('<key>', '配置项键名')
+      .argument('<value>', '配置项值')
+      .action(async (key, value) => {
+        const options = {};
+        if (key === 'GROQ_API_KEY') {
+          options[key] = value;
+        } else {
+          options[key] = value === 'true' ? true : value === 'false' ? false : value;
+        }
+        await config.write(options);
+      }),
+  );
 
 program
   .command('list')
@@ -49,10 +61,15 @@ program
 
 program.on('--help', () => {
   console.log('');
-  console.log(chalk.gray('Examples:'));
+  console.log(chalk.gray('示例:'));
   console.log(`${chalk.cyan('  $ ')}fanyi word`);
   console.log(`${chalk.cyan('  $ ')}fanyi world peace`);
   console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set groq true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set GROQ_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
 

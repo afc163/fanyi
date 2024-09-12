@@ -34,12 +34,13 @@
     "commander": "^12.1.0",
     "dayjs": "^1.11.5",
     "fs-extra": "^10.1.0",
+    "groq-sdk": "^0.7.0",
     "needle": "^3.1.0",
     "update-notifier": "^4.1.0",
     "xml2js": "^0.4.8"
   },
   "lint-staged": {
-    "*": [
+    "*.{js,ts,json,yml}": [
       "biome check --write --files-ignore-unknown=true",
       "biome format --write --files-ignore-unknown=true",
       "biome lint --write --files-ignore-unknown=true"
