@@ -23,6 +23,16 @@ program
 program
   .command('config')
   .description('设置全局选项')
+  .command('list')
+  .description('查看配置项')
+  .action(async () => {
+    const options = await config.load();
+    console.log(`${chalk.gray(config.getConfigPath())}`);
+    console.log();
+    for (const [key, value] of Object.entries(options)) {
+      console.log(`${chalk.cyan(key)}: ${chalk.yellow(value)}`);
+    }
+  })
   .command('set <key> <value>')
   .description('设置配置项')
   .action(async (key, value) => {
@@ -55,6 +65,7 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set groq true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set GROQ_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
 
