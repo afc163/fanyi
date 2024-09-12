@@ -13,17 +13,7 @@
     "fy": "bin/fanyi.js",
     "fanyi": "bin/fanyi.js"
   },
-  "keywords": [
-    "translate",
-    "iciba",
-    "terminal",
-    "chinese",
-    "command line",
-    "cli",
-    "translation",
-    "translator",
-    "fanyi"
-  ],
+  "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
   "engines": {
     "node": ">=16.0.0"
   },
