@@ -34,7 +34,7 @@ module.exports = async (word, options) => {
   // groq ai
   if (isTrueOrUndefined(groq)) {
     const groqClient = new Groq({
-      apiKey: GROQ_API_KEY,
+      apiKey: GROQ_API_KEY || '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',
     });
     const model = 'llama3-groq-70b-8192-tool-use-preview';
 
