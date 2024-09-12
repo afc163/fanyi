@@ -14,7 +14,7 @@ program
   .description(pkg.description)
   .version(pkg.version)
   .action(() => {
-    // If the input is "fanyi", no parameters, ignore.
+    // 如果输入是 "fanyi"，没有参数，则忽略
     if (process.argv.length > 2) {
       return runFY();
     }
@@ -22,20 +22,18 @@ program
 
 program
   .command('config')
-  .description('Set the global options')
-  .option('-c, --color', 'Output with color')
-  .option('-C, --no-color', 'Output without color')
-  .option('-i, --iciba', 'Enable the iciba translation engine')
-  .option('-I, --no-iciba', 'Disable the iciba translation engine')
-  .action((args) => {
-    // hack
-    // If the input is "fanyi config", then translate the word config.
-    if (process.argv.length === 3) {
-      return runFY();
+  .description('设置全局选项')
+  .command('set <key> <value>')
+  .description('设置配置项')
+  .action(async (key, value) => {
+    const options = {};
+    if (key === 'GROQ_API_KEY') {
+      options[key] = value;
+    } else {
+      options[key] = value === 'true' ? true : value === 'false' ? false : value;
     }
-    const { color, iciba } = args;
-    const options = resolveOptions({ color, iciba });
-    return config.write(options);
+    await config.write(options);
+    console.log(`已设置 ${key} 为 ${value}`);
   });
 
 program
@@ -49,10 +47,14 @@ program
 
 program.on('--help', () => {
   console.log('');
-  console.log(chalk.gray('Examples:'));
+  console.log(chalk.gray('示例:'));
   console.log(`${chalk.cyan('  $ ')}fanyi word`);
   console.log(`${chalk.cyan('  $ ')}fanyi world peace`);
   console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set groq true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set GROQ_API_KEY your_api_key_here`);
   console.log('');
 });
 

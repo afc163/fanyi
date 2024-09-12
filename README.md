@@ -114,23 +114,14 @@ Also, you can use `list` command to see the history of your search.
 
 A configuration file can be put into ~/.config/fanyi/.fanyirc, in the user's home directory
 
-Use subcommand `fanyi config [options]`
+Use subcommand `fanyi config set <key> <value>` to set configuration options
 
 Example:
 
 ```bash
-# or
-$ fanyi config --no-color // disable color globally
-$ fanyi config --color    // enable color globally
-$ fanyi config --no-iciba // disable iciba globally
-$ fanyi config --iciba // enable iciba globally
-```
-
-A sample `~/.config/fanyi/.fanyirc` file:
-
-```json
-{
-  "iciba": true,
-  "color": true,
-}
-```
+$ fanyi config list                       // list all configuration options
+$ fanyi config set iciba false            // disable iciba globally
+$ fanyi config set groq false             // disable groq globally
+$ fanyi config set color false            // disable color globally
+$ fanyi config set GROQ_API_KEY your-api-key // set GROQ_API_KEY
+   ```
