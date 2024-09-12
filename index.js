@@ -3,6 +3,23 @@ const { Groq } = require('groq-sdk');
 const print = require('./lib/print');
 const parseString = require('xml2js').parseString;
 const ora = require('ora');
+const gradient = require('gradient-string');
+
+const gradients = [
+  'cristal',
+  'teen',
+  'mind',
+  'morning',
+  'vice',
+  'passion',
+  'fruit',
+  'instagram',
+  'atlas',
+  'retro',
+  'summer',
+  'pastel',
+  'rainbow',
+];
 
 module.exports = async (word, options) => {
   console.log('');
@@ -13,7 +30,7 @@ module.exports = async (word, options) => {
   if (isTrueOrUndefined(iciba)) {
     const ICIBA_URL =
       'http://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&w=';
-    const spinner = ora('正在查询 iciba...').start();
+    const spinner = ora('正在请教 iciba...').start();
     try {
       const response = await needle('get', `${ICIBA_URL}${endcodedWord}`, { parse: false });
       if (response.statusCode === 200) {
@@ -37,8 +54,7 @@ module.exports = async (word, options) => {
       apiKey: GROQ_API_KEY || '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',
     });
     const model = 'llama3-groq-70b-8192-tool-use-preview';
-
-    const spinner = ora('正在查询 Groq AI...').start();
+    const spinner = ora(`正在请教 ${model}...`).start();
     try {
       const chatCompletion = await groqClient.chat.completions.create({
         messages: [
@@ -48,7 +64,7 @@ module.exports = async (word, options) => {
 你是一本专业的中英文双语词典。请按照以下要求提供翻译和解释：
 
 1. 格式要求：
-   [原词] [音标] ~ [翻译] [拼音]
+   [原词] [音标] ~ [翻译] [拼音] ~ [emoji]
    
    - [词性] [释义1]
    - [词性] [释义2]
@@ -61,8 +77,7 @@ module.exports = async (word, options) => {
       [翻译]
    ...
 
-   ❤️
-   [座右铭]
+   [emoji]: [座右铭]
    -----
 
 2. 翻译规则：
@@ -98,15 +113,12 @@ module.exports = async (word, options) => {
         temperature: 0.3,
         max_tokens: 1024,
         top_p: 0.8,
-        stream: true,
-        stop: null,
       });
       spinner.stop();
-      for await (const chunk of chatCompletion) {
-        process.stdout.write(chunk.choices[0]?.delta?.content || '');
-      }
+      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+      console.log(gradient[randomGradient](chatCompletion.choices[0].message.content));
     } catch (error) {
-      spinner.fail('访问 Groq AI 失败，请检查网络或 API 密钥');
+      spinner.fail(`访问 ${model} 失败，请检查网络或 API 密钥`);
     }
   }
 };
