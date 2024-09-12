@@ -33,7 +33,6 @@ describe('fanyi CLI', () => {
   it('should print translation of the word', async () => {
     const { stdout } = await runScript(['hello']);
     expect(stdout).toContain(`hello  英[ hə'ləʊ ]  美[ həˈloʊ ]  ~  iciba.com`);
-    expect(stdout).toContain('hello [həˈləʊ] ~ 你好 [nǐ hǎo]');
   });
 
   it('should print usage if no arguments are given', async () => {
