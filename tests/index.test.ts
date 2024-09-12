@@ -56,6 +56,11 @@ describe('fanyi CLI', () => {
     expect(stdout4).toContain('{"iciba":true}');
   });
 
+  it('should print config', async () => {
+    const { stdout } = await runScript(['config', 'list']);
+    expect(stdout).toContain('.config/fanyi/.fanyirc');
+  });
+
   it('should print search history', async () => {
     const { stdout } = await runScript(['list']);
     expect(stdout).toContain('fanyi history:');
