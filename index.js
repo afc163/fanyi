@@ -1,5 +1,4 @@
 const needle = require('needle');
-const chalk = require('chalk');
 const { Groq } = require('groq-sdk');
 const print = require('./lib/print');
 const parseString = require('xml2js').parseString;
@@ -14,6 +13,7 @@ module.exports = async (word, options) => {
   if (isTrueOrUndefined(iciba)) {
     const ICIBA_URL =
       'http://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&w=';
+    const spinner = ora('正在查询 iciba...').start();
     try {
       const response = await needle('get', `${ICIBA_URL}${endcodedWord}`, { parse: false });
       if (response.statusCode === 200) {
@@ -23,10 +23,11 @@ module.exports = async (word, options) => {
             else resolve(res);
           });
         });
+        spinner.stop();
         print.iciba(result.dict, options);
       }
     } catch (error) {
-      console.log(chalk.yellow('访问 iciba 失败，请检查网络'));
+      spinner.fail('访问 iciba 失败，请检查网络');
     }
   }
 
@@ -37,6 +38,7 @@ module.exports = async (word, options) => {
     });
     const model = 'llama3-groq-70b-8192-tool-use-preview';
 
+    const spinner = ora('正在查询 Groq AI...').start();
     try {
       const chatCompletion = await groqClient.chat.completions.create({
         messages: [
@@ -115,11 +117,12 @@ word  英[ wɜ:d ]  美[ wɜrd ]  ~  llama3
         stream: true,
         stop: null,
       });
+      spinner.stop();
       for await (const chunk of chatCompletion) {
         process.stdout.write(chunk.choices[0]?.delta?.content || '');
       }
     } catch (error) {
-      console.log(chalk.yellow('访问 Groq AI 失败，请检查网络或 API 密钥'));
+      spinner.fail('访问 Groq AI 失败，请检查网络或 API 密钥');
     }
   }
 };
