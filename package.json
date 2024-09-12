@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "8.0.3",
+  "version": "9.0.0",
   "description": "A translate tool in your command line",
   "main": "index.js",
   "repository": {
@@ -13,17 +13,7 @@
     "fy": "bin/fanyi.js",
     "fanyi": "bin/fanyi.js"
   },
-  "keywords": [
-    "translate",
-    "iciba",
-    "terminal",
-    "chinese",
-    "command line",
-    "cli",
-    "translation",
-    "translator",
-    "fanyi"
-  ],
+  "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
   "engines": {
     "node": ">=16.0.0"
   },
@@ -34,12 +24,13 @@
     "commander": "^12.1.0",
     "dayjs": "^1.11.5",
     "fs-extra": "^10.1.0",
+    "groq-sdk": "^0.7.0",
     "needle": "^3.1.0",
     "update-notifier": "^4.1.0",
-    "xml2js": "^0.4.8"
+    "xml2js": "^0.6.2"
   },
   "lint-staged": {
-    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+    "*.{js,ts,json,yml}": [
       "biome check --write --files-ignore-unknown=true",
       "biome format --write --files-ignore-unknown=true",
       "biome lint --write --files-ignore-unknown=true"
@@ -50,7 +41,7 @@
     "c8": "^10.1.2",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
-    "np": "^6.2.0",
+    "np": "^10.0.7",
     "ora": "^4.0.2",
     "vitest": "^2.0.5"
   },

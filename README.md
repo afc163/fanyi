@@ -2,18 +2,47 @@
 
 # Fanyi
 
-A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba.
+A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba and groq.
 
-[![NPM version](https://img.shields.io/npm/v/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi) [![NPM downloads](http://img.shields.io/npm/dm/fanyi.svg?style=flat-square)](https://npmjs.org/package/fanyi)
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+[![build status][github-actions-image]][github-actions-url]
+[![Codecov][codecov-image]][codecov-url]
 
-![](https://gw.alipayobjects.com/zos/rmsportal/EAuwmtfxDGueGOdUgVKc.png)
+[npm-image]: http://img.shields.io/npm/v/fanyi.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/fanyi
+[github-actions-image]: https://github.com/afc163/fanyi/actions/workflows/test.yml/badge.svg
+[github-actions-url]: https://github.com/afc163/fanyi/actions/workflows/test.yml
+[codecov-image]: https://img.shields.io/codecov/c/github/afc163/fanyi/main.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/gh/afc163/fanyi
+[download-image]: https://img.shields.io/npm/dm/fanyi.svg?style=flat-square
+[download-url]: https://npmjs.org/package/fanyi
+
+![](https://github.com/user-attachments/assets/2bd2d052-981b-469e-baa5-b2ab7c64cffd)
 
 </div>
+
+[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原来复杂的功能进行了大幅裁剪，移除了速度慢和失效的翻译源，并引入 Groq 加持的 llama3 进行翻译，翻译速度一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
+
+- 🐑 增加 llama3 翻译结果。
+- 🗑️ 移除 openai 翻译。
+- 🗑️ 移除 youdao 翻译。
+- 🗑️ 移除 dictionary 翻译。
+- 🗑️ 移除单词发音功能，从而解决 Linux 安装兼容问题。
+- 🚀 全局配置方式修改为 `fanyi config set color false` `fanyi config set iciba false`。
+- 💄 重构和简化代码，并增加了 lint 和覆盖率的 GitHub Action。
+
 
 ## Install
 
 ```bash
-$ npm install fanyi -g
+$ npm i fanyi -g
+```
+
+or
+
+```bash
+$ bun i fanyi -g
 ```
 
 ## Usage
@@ -100,22 +129,16 @@ Also, you can use `list` command to see the history of your search.
 
 ## Configuration
 
-A configuration file can be put into ~/.config/fanyi/.fanyirc, in the user's home directory
+A configuration file can be put into `~/.config/fanyi/.fanyirc`, in the user's home directory.
 
-Use subcommand `fanyi config [options]`
+Use subcommand `fanyi config set <key> <value>` to set configuration options.
 
 Example:
 
 ```bash
-# or
-$ fanyi config -D
-```
-
-A sample `~/.config/fanyi/.fanyirc` file:
-
-```json
-{
-  "iciba": true,
-  "color": true,
-}
+$ fanyi config list                       // list all configuration options
+$ fanyi config set iciba false            // disable iciba globally
+$ fanyi config set groq false             // disable groq globally
+$ fanyi config set color false            // disable color globally
+$ fanyi config set GROQ_API_KEY your-api-key // set GROQ_API_KEY
 ```

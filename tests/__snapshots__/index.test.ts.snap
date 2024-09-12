@@ -1,25 +1,28 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`fanyi CLI > should print translation of the word 1`] = `
-"
- hello  英[ hə'ləʊ ]  美[ həˈloʊ ]  ~  iciba.com
- - int. 哈喽，喂；你好，您好；表示问候；打招呼；
- - n. “喂”的招呼声或问候声；
- - vi. 喊“喂”；
- 
- 1. This document contains Hello application components of each document summary of the contents.
-    此文件包含组成Hello应用程序的每个文件的内容摘要.
- 2. Hello! Hello! Hello! Hello! Hel - lo!
-    你好! 你好! 你好! 你好! 你好!
- 3. Hello! Hello! Hello! Hello ! I'm glad to meet you.
-    你好! 你好! 你好! 你好! 见到你很高兴.
- 4. Hello Marie. Hello Berlioz. Hello Toulouse.
-    你好玛丽, 你好柏里欧, 你好图鲁兹.
- 5. Hello. Yes, hello, hello. I can not hear a word clearly.
-    喂, 咦, 喂, 喂. 我一点也听不清.
- 
- -----
- 
+exports[`fanyi CLI > should print help if -h is given 1`] = `
+"Usage: fanyi [options] [command]
+
+A translate tool in your command line
+
+Options:
+  -V, --version   output the version number
+  -h, --help      display help for command
+
+Commands:
+  config          设置全局选项
+  list [options]
+
+示例:
+  $ fanyi word
+  $ fanyi world peace
+  $ fanyi chinglish
+  $ fanyi config set color true
+  $ fanyi config set iciba true
+  $ fanyi config set groq true
+  $ fanyi config set GROQ_API_KEY your_api_key_here
+  $ fanyi config list
+
 "
 `;
 
@@ -29,17 +32,22 @@ exports[`fanyi CLI > should print usage if no arguments are given 1`] = `
 A translate tool in your command line
 
 Options:
-  -V, --version     output the version number
-  -h, --help        display help for command
+  -V, --version   output the version number
+  -h, --help      display help for command
 
 Commands:
-  config [options]  Set the global options
+  config          设置全局选项
   list [options]
 
-Examples:
+示例:
   $ fanyi word
   $ fanyi world peace
   $ fanyi chinglish
+  $ fanyi config set color true
+  $ fanyi config set iciba true
+  $ fanyi config set groq true
+  $ fanyi config set GROQ_API_KEY your_api_key_here
+  $ fanyi config list
 
 "
 `;
