@@ -36,7 +36,13 @@ A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by 
 ## Install
 
 ```bash
-$ npm install fanyi -g
+$ npm i fanyi -g
+```
+
+or
+
+```bash
+$ bun i fanyi -g
 ```
 
 ## Usage
