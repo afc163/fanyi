@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba and groq.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -32,7 +32,6 @@ A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by 
 - 🗑️ 移除单词发音功能，从而解决 Linux 安装兼容问题。
 - 🚀 全局配置方式修改为 `fanyi config set color false` `fanyi config set iciba false`。
 - 💄 重构和简化代码，并增加了 lint 和覆盖率的 GitHub Action。
-
 
 ## Install
 
