@@ -1,6 +1,6 @@
 <div align="center">
 
-# Fanyi
+# Fānyì (翻译)
 
 A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba and groq.
 
