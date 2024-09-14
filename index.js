@@ -1,7 +1,7 @@
-const needle = require('needle');
 const { Groq } = require('groq-sdk');
 const print = require('./lib/print');
-const parseString = require('xml2js').parseString;
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const { XMLParser } = require('fast-xml-parser');
 const ora = require('ora');
 const gradient = require('gradient-string');
 
@@ -32,17 +32,12 @@ module.exports = async (word, options) => {
       'http://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&w=';
     const spinner = ora('正在请教 iciba...').start();
     try {
-      const response = await needle('get', `${ICIBA_URL}${endcodedWord}`, { parse: false });
-      if (response.statusCode === 200) {
-        const result = await new Promise((resolve, reject) => {
-          parseString(response.body, (err, res) => {
-            if (err) reject(err);
-            else resolve(res);
-          });
-        });
-        spinner.stop();
-        print.iciba(result.dict, options);
-      }
+      const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
+      const xml = await response.text();
+      const parser = new XMLParser();
+      const result = parser.parse(xml);
+      spinner.stop();
+      print.iciba(result.dict, options);
     } catch (error) {
       spinner.fail('访问 iciba 失败，请检查网络');
     }
