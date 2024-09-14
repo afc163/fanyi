@@ -33,9 +33,7 @@
   },
   "lint-staged": {
     "*.{js,ts,json,yml}": [
-      "biome check --write --files-ignore-unknown=true",
-      "biome format --write --files-ignore-unknown=true",
-      "biome lint --write --files-ignore-unknown=true"
+      "biome check --write --files-ignore-unknown=true"
     ]
   },
   "devDependencies": {
