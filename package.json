@@ -32,9 +32,7 @@
     "update-notifier": "^5.1.0"
   },
   "lint-staged": {
-    "*.{js,ts,json,yml}": [
-      "biome check --write --files-ignore-unknown=true"
-    ]
+    "*.{js,ts,json,yml}": ["biome check --write --files-ignore-unknown=true"]
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",
