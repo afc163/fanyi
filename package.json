@@ -27,6 +27,7 @@
     "fs-extra": "^10.1.0",
     "gradient-string": "^2.0.2",
     "groq-sdk": "^0.7.0",
+    "node-fetch": "^3.3.2",
     "ora": "^5.4.1",
     "update-notifier": "^5.1.0"
   },

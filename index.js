@@ -1,5 +1,6 @@
 const { Groq } = require('groq-sdk');
 const print = require('./lib/print');
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const { XMLParser } = require('fast-xml-parser');
 const ora = require('ora');
 const gradient = require('gradient-string');
