@@ -33,13 +33,11 @@ module.exports = async (word, options) => {
     const spinner = ora('正在请教 iciba...').start();
     try {
       const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
-      if (response.ok) {
-        const xml = await response.text();
-        const parser = new XMLParser();
-        const result = parser.parse(xml);
-        spinner.stop();
-        print.iciba(result.dict, options);
-      }
+      const xml = await response.text();
+      const parser = new XMLParser();
+      const result = parser.parse(xml);
+      spinner.stop();
+      print.iciba(result.dict, options);
     } catch (error) {
       spinner.fail('访问 iciba 失败，请检查网络');
     }
