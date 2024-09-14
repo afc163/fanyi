@@ -48,7 +48,7 @@ module.exports = async (word, options) => {
     const groqClient = new Groq({
       apiKey: GROQ_API_KEY || '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',
     });
-    const model = 'llama3-groq-70b-8192-tool-use-preview';
+    const model = 'llama-3.1-70b-versatile';
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
       const chatCompletion = await groqClient.chat.completions.create({
