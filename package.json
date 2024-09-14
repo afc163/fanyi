@@ -23,13 +23,12 @@
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
     "dayjs": "^1.11.13",
+    "fast-xml-parser": "^4.5.0",
     "fs-extra": "^10.1.0",
     "gradient-string": "^2.0.2",
     "groq-sdk": "^0.7.0",
-    "needle": "^3.3.1",
     "ora": "^5.4.1",
-    "update-notifier": "^5.1.0",
-    "xml2js": "^0.6.2"
+    "update-notifier": "^5.1.0"
   },
   "lint-staged": {
     "*.{js,ts,json,yml}": [

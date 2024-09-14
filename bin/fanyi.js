@@ -85,18 +85,3 @@ async function runFY(options = {}) {
   const fanyi = require('..');
   fanyi(program.args.join(' '), mergedOptions);
 }
-
-function resolveOptions(options) {
-  const opts = {};
-  const filteredKeys = Object.keys(options).filter(
-    (key) => isBoolean(options[key]) || typeof options[key] === 'string',
-  );
-  for (const key of filteredKeys) {
-    opts[key] = options[key];
-  }
-  return opts;
-}
-
-function isBoolean(val) {
-  return typeof val === 'boolean';
-}
