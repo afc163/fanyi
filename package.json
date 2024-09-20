@@ -3,6 +3,7 @@
   "version": "9.0.5",
   "description": "A translate tool in your command line",
   "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:afc163/fanyi.git"
