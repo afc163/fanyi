@@ -71,4 +71,9 @@ describe('fanyi CLI', () => {
     const { stdout } = await runScript(['list']);
     expect(stdout).toContain('fanyi history:');
   });
+
+  it('should not print error when translate "ant love"', async () => {
+    const { stderr } = await runScript(['ant love']);
+    expect(stderr).not.toContain('访问 iciba 失败');
+  });
 });
