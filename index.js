@@ -1,6 +1,6 @@
 import { Groq } from 'groq-sdk';
 import print from './lib/print';
-import { fetch } from 'node-fetch';
+import fetch from 'node-fetch';
 import { XMLParser } from 'fast-xml-parser';
 import ora from 'ora';
 import gradient from 'gradient-string';
