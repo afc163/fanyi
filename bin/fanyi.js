@@ -1,11 +1,11 @@
 #!/usr/bin/env -S node --no-deprecation
 
-const { Command } = require('commander');
-const chalk = require('chalk');
-const updateNotifier = require('update-notifier');
-const pkg = require('../package.json');
-const config = require('../lib/config');
-const { searchList } = require('../lib/searchHistory');
+import chalk from 'chalk';
+import { Command } from 'commander';
+import updateNotifier from 'update-notifier';
+import config from '../lib/config';
+import { searchList } from '../lib/searchHistory';
+import pkg from '../package.json';
 
 updateNotifier({ pkg }).notify();
 const program = new Command();
@@ -52,7 +52,7 @@ program
 
 program
   .command('list')
-  .option('-d, --someDay <char>', '查看指定某天的查询记录')
+  .option('-d, --someDay <char>', '���看指定某天的查询记录')
   .option('-r, --recentDays [number]', '查看最近几天内的数据', 0)
   .option('-all --show-file [boolean]', '查看全部数据，即单词存放的位置', false)
   .action((args) => {
