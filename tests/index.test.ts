@@ -2,7 +2,7 @@ import { fork } from 'node:child_process';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const scriptPath = path.resolve(__dirname, '../bin/fanyi.js');
+const scriptPath = path.resolve(__dirname, '../bin/fanyi.mjs');
 
 const runScript = (args: string[] = []): Promise<{ stdout: string; stderr: string }> => {
   return new Promise((resolve, reject) => {

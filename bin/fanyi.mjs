@@ -1,9 +1,9 @@
-const { Groq } = require('groq-sdk');
-const print = require('./lib/print');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const { XMLParser } = require('fast-xml-parser');
-const ora = require('ora');
-const gradient = require('gradient-string');
+import { Groq } from 'groq-sdk';
+import print from '../lib/print.mjs';
+import fetch from 'node-fetch';
+import { XMLParser } from 'fast-xml-parser';
+import ora from 'ora';
+import gradient from 'gradient-string';
 
 const gradients = [
   'cristal',
@@ -21,7 +21,7 @@ const gradients = [
   'rainbow',
 ];
 
-module.exports = async (word, options) => {
+export default async (word, options) => {
   console.log('');
   const { iciba, groq, GROQ_API_KEY } = options;
   const endcodedWord = encodeURIComponent(word);

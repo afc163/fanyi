@@ -50,5 +50,6 @@
     "prepublishOnly": "np --no-cleanup --no-publish",
     "lint-staged": "lint-staged",
     "prepare": "husky"
-  }
+  },
+  "type": "module"
 }
