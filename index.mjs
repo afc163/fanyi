@@ -1,9 +1,9 @@
-import { Groq } from 'groq-sdk';
-import print from './lib/print.mjs';
 import { XMLParser } from 'fast-xml-parser';
-import ora from 'ora';
 import gradient from 'gradient-string';
+import { Groq } from 'groq-sdk';
 import fetch from 'node-fetch';
+import ora from 'ora';
+import print from './lib/print.mjs';
 
 const gradients = [
   'cristal',

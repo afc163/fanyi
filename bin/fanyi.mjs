@@ -1,11 +1,11 @@
 #!/usr/bin/env -S node --no-deprecation
 
-import { Command } from 'commander';
 import chalk from 'chalk';
+import { Command } from 'commander';
 import updateNotifier from 'update-notifier';
-import pkg from '../package.json';
 import config from '../lib/config.mjs';
 import { searchList } from '../lib/searchHistory.mjs';
+import pkg from '../package.json';
 
 updateNotifier({ pkg }).notify();
 const program = new Command();
