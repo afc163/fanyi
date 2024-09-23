@@ -10,8 +10,8 @@
   "author": "afc163 <afc163@gmail.com>",
   "license": "MIT",
   "bin": {
-    "fy": "bin/fanyi.js",
-    "fanyi": "bin/fanyi.js"
+    "fy": "bin/fanyi.mjs",
+    "fanyi": "bin/fanyi.mjs"
   },
   "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
   "engines": {
@@ -42,7 +42,7 @@
     "vitest": "^2.1.0"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "NODE_OPTIONS='--experimental-json-modules' vitest run",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "lint": "biome check .",
     "format": "biome check . --write",

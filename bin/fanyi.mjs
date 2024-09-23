@@ -2,10 +2,14 @@
 
 import chalk from 'chalk';
 import { Command } from 'commander';
+import { readFile } from 'node:fs/promises';
 import updateNotifier from 'update-notifier';
 import config from '../lib/config.mjs';
 import { searchList } from '../lib/searchHistory.mjs';
-import pkg from '../package.json';
+
+const pkg = JSON.parse(
+  await readFile(new URL('../package.json', import.meta.url))
+);
 
 updateNotifier({ pkg }).notify();
 const program = new Command();
@@ -82,6 +86,6 @@ if (!process.argv.slice(2).length) {
 async function runFY(options = {}) {
   const defaultOptions = await config.load();
   const mergedOptions = { ...defaultOptions, ...options };
-  const fanyi = await import('..');
+  const fanyi = await import('../index.mjs');
   fanyi.default(program.args.join(' '), mergedOptions);
 }
