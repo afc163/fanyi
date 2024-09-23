@@ -1,15 +1,13 @@
 #!/usr/bin/env -S node --no-deprecation
 
+import { readFile } from 'node:fs/promises';
 import chalk from 'chalk';
 import { Command } from 'commander';
-import { readFile } from 'node:fs/promises';
 import updateNotifier from 'update-notifier';
 import config from '../lib/config.mjs';
 import { searchList } from '../lib/searchHistory.mjs';
 
-const pkg = JSON.parse(
-  await readFile(new URL('../package.json', import.meta.url))
-);
+const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
 
 updateNotifier({ pkg }).notify();
 const program = new Command();

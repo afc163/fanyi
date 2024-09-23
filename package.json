@@ -31,7 +31,7 @@
     "update-notifier": "^5.1.0"
   },
   "lint-staged": {
-    "*.{js,ts,json,yml}": [
+    "*.{js,mjs,ts,json,yml}": [
       "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"
     ]
   },
