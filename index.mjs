@@ -1,9 +1,9 @@
-const { Groq } = require('groq-sdk');
-const print = require('./lib/print');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const { XMLParser } = require('fast-xml-parser');
-const ora = require('ora');
-const gradient = require('gradient-string');
+import { XMLParser } from 'fast-xml-parser';
+import gradient from 'gradient-string';
+import { Groq } from 'groq-sdk';
+import fetch from 'node-fetch';
+import ora from 'ora';
+import { printIciba } from './lib/iciba.mjs';
 
 const gradients = [
   'cristal',
@@ -21,7 +21,7 @@ const gradients = [
   'rainbow',
 ];
 
-module.exports = async (word, options) => {
+export default async (word, options) => {
   console.log('');
   const { iciba, groq, GROQ_API_KEY } = options;
   const endcodedWord = encodeURIComponent(word);
@@ -37,7 +37,7 @@ module.exports = async (word, options) => {
       const parser = new XMLParser();
       const result = parser.parse(xml);
       spinner.stop();
-      print.iciba(result.dict, options);
+      printIciba(result.dict, options);
     } catch (error) {
       spinner.fail('访问 iciba 失败，请检查网络');
     }

@@ -1,11 +1,13 @@
 #!/usr/bin/env -S node --no-deprecation
 
-const { Command } = require('commander');
-const chalk = require('chalk');
-const updateNotifier = require('update-notifier');
-const pkg = require('../package.json');
-const config = require('../lib/config');
-const { searchList } = require('../lib/searchHistory');
+import { readFile } from 'node:fs/promises';
+import chalk from 'chalk';
+import { Command } from 'commander';
+import updateNotifier from 'update-notifier';
+import config from '../lib/config.mjs';
+import { searchList } from '../lib/searchHistory.mjs';
+
+const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
 
 updateNotifier({ pkg }).notify();
 const program = new Command();
@@ -82,6 +84,6 @@ if (!process.argv.slice(2).length) {
 async function runFY(options = {}) {
   const defaultOptions = await config.load();
   const mergedOptions = { ...defaultOptions, ...options };
-  const fanyi = require('..');
-  fanyi(program.args.join(' '), mergedOptions);
+  const fanyi = await import('../index.mjs');
+  fanyi.default(program.args.join(' '), mergedOptions);
 }

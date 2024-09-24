@@ -1,8 +1,9 @@
 import { fork } from 'node:child_process';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
-const scriptPath = path.resolve(__dirname, '../bin/fanyi.js');
+const scriptPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../bin/fanyi.mjs');
 
 const runScript = (args: string[] = []): Promise<{ stdout: string; stderr: string }> => {
   return new Promise((resolve, reject) => {
@@ -31,8 +32,10 @@ const runScript = (args: string[] = []): Promise<{ stdout: string; stderr: strin
 
 describe('fanyi CLI', () => {
   it('should print translation of the word', async () => {
+    await runScript(['config', 'set', 'color', 'false']);
     const { stdout } = await runScript(['hello']);
     expect(stdout).toContain(`hello  英[ hə'ləʊ ]  美[ həˈloʊ ]  ~  iciba.com`);
+    await runScript(['config', 'set', 'color', 'true']);
   });
 
   it('should print usage if no arguments are given', async () => {
@@ -59,7 +62,10 @@ describe('fanyi CLI', () => {
   it('should print without color', async () => {
     await runScript(['config', 'set', 'color', 'false']);
     const { stdout } = await runScript(['hello']);
-    expect(stdout).toContain(`hello  英[ hə'ləʊ ]  美[ həˈloʊ ]  ~  iciba.com`);
+    expect(stdout).not.toContain('\u001b[35m');
+    await runScript(['config', 'set', 'color', 'true']);
+    const { stdout: stdout2 } = await runScript(['hello']);
+    expect(stdout2).toContain('\u001b[35m');
   });
 
   it('should print config', async () => {

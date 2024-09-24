@@ -10,8 +10,8 @@
   "author": "afc163 <afc163@gmail.com>",
   "license": "MIT",
   "bin": {
-    "fy": "bin/fanyi.js",
-    "fanyi": "bin/fanyi.js"
+    "fy": "bin/fanyi.mjs",
+    "fanyi": "bin/fanyi.mjs"
   },
   "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
   "engines": {
@@ -20,35 +20,37 @@
   "readmeFilename": "README.md",
   "files": ["index.js", "bin", "lib"],
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "dayjs": "^1.11.13",
     "fast-xml-parser": "^4.5.0",
-    "fs-extra": "^11.2.0",
     "gradient-string": "^2.0.2",
     "groq-sdk": "^0.7.0",
     "node-fetch": "^3.3.2",
-    "ora": "^5.4.1",
-    "update-notifier": "^5.1.0"
+    "ora": "^8.1.0",
+    "update-notifier": "^7.3.1"
   },
   "lint-staged": {
-    "*.{js,ts,json,yml}": ["biome check --write --files-ignore-unknown=true"]
+    "*.{js,mjs,ts,json,yml}": [
+      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"
+    ]
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
+    "@biomejs/biome": "^1.9.2",
     "c8": "^10.1.2",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "np": "^10.0.7",
-    "vitest": "^2.1.0"
+    "vitest": "^2.1.1"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --test-timeout=20000",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "lint": "biome check .",
     "format": "biome check . --write",
     "prepublishOnly": "np --no-cleanup --no-publish",
     "lint-staged": "lint-staged",
     "prepare": "husky"
-  }
+  },
+  "type": "module"
 }
