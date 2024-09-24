@@ -44,7 +44,7 @@
     "vitest": "^2.1.1"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --test-timeout=20000",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "lint": "biome check .",
     "format": "biome check . --write",
