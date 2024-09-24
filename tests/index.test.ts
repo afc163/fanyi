@@ -1,8 +1,9 @@
 import { fork } from 'node:child_process';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
-const scriptPath = path.resolve(__dirname, '../bin/fanyi.mjs');
+const scriptPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../bin/fanyi.mjs');
 
 const runScript = (args: string[] = []): Promise<{ stdout: string; stderr: string }> => {
   return new Promise((resolve, reject) => {
