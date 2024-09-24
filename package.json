@@ -44,7 +44,7 @@
     "vitest": "^2.1.1"
   },
   "scripts": {
-    "test": "NODE_OPTIONS='--experimental-json-modules' vitest run",
+    "test": "vitest run",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "lint": "biome check .",
     "format": "biome check . --write",
