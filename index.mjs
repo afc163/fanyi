@@ -3,7 +3,7 @@ import gradient from 'gradient-string';
 import { Groq } from 'groq-sdk';
 import fetch from 'node-fetch';
 import ora from 'ora';
-import print from './lib/print.mjs';
+import { printIciba } from './lib/iciba.mjs';
 
 const gradients = [
   'cristal',
@@ -37,8 +37,9 @@ export default async (word, options) => {
       const parser = new XMLParser();
       const result = parser.parse(xml);
       spinner.stop();
-      print.iciba(result.dict, options);
+      printIciba(result.dict, options);
     } catch (error) {
+      console.log(error);
       spinner.fail('访问 iciba 失败，请检查网络');
     }
   }
