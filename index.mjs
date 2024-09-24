@@ -39,7 +39,6 @@ export default async (word, options) => {
       spinner.stop();
       printIciba(result.dict, options);
     } catch (error) {
-      console.log(error);
       spinner.fail('访问 iciba 失败，请检查网络');
     }
   }
