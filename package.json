@@ -1,7 +1,7 @@
 {
   "name": "fanyi",
-  "version": "9.0.0",
-  "description": "A translate tool in your command line",
+  "version": "9.0.5",
+  "description": "A translator in your command line",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -10,8 +10,8 @@
   "author": "afc163 <afc163@gmail.com>",
   "license": "MIT",
   "bin": {
-    "fy": "bin/fanyi.js",
-    "fanyi": "bin/fanyi.js"
+    "fy": "bin/fanyi.mjs",
+    "fanyi": "bin/fanyi.mjs"
   },
   "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
   "engines": {
@@ -22,36 +22,35 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
-    "dayjs": "^1.11.5",
-    "fs-extra": "^10.1.0",
+    "dayjs": "^1.11.13",
+    "fast-xml-parser": "^4.5.0",
+    "gradient-string": "^2.0.2",
     "groq-sdk": "^0.7.0",
-    "needle": "^3.1.0",
-    "update-notifier": "^4.1.0",
-    "xml2js": "^0.6.2"
+    "node-fetch": "^3.3.2",
+    "ora": "^8.1.0",
+    "update-notifier": "^7.3.1"
   },
   "lint-staged": {
-    "*.{js,ts,json,yml}": [
-      "biome check --write --files-ignore-unknown=true",
-      "biome format --write --files-ignore-unknown=true",
-      "biome lint --write --files-ignore-unknown=true"
+    "*.{js,mjs,ts,json,yml}": [
+      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"
     ]
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
+    "@biomejs/biome": "^1.9.2",
     "c8": "^10.1.2",
-    "husky": "^9.1.5",
+    "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "np": "^10.0.7",
-    "ora": "^4.0.2",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.1"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --test-timeout=20000",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "lint": "biome check .",
     "format": "biome check . --write",
     "prepublishOnly": "np --no-cleanup --no-publish",
     "lint-staged": "lint-staged",
     "prepare": "husky"
-  }
+  },
+  "type": "module"
 }

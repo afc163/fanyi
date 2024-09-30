@@ -1,8 +1,8 @@
 <div align="center">
 
-# Fanyi
+# Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by iciba and groq.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -18,20 +18,20 @@ A 🇨🇳 and 🇺🇸🇬🇧 translate tool in your command line, powered by 
 [download-image]: https://img.shields.io/npm/dm/fanyi.svg?style=flat-square
 [download-url]: https://npmjs.org/package/fanyi
 
-![](https://github.com/user-attachments/assets/2bd2d052-981b-469e-baa5-b2ab7c64cffd)
+![](https://github.com/user-attachments/assets/edf0d6f7-a3d1-496d-9422-71522198d61c)
 
 </div>
 
 [fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原来复杂的功能进行了大幅裁剪，移除了速度慢和失效的翻译源，并引入 Groq 加持的 llama3 进行翻译，翻译速度一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
 - 🐑 增加 llama3 翻译结果。
+- 🌈 渐变色彩输出，更加灵动浮夸。
 - 🗑️ 移除 openai 翻译。
 - 🗑️ 移除 youdao 翻译。
 - 🗑️ 移除 dictionary 翻译。
 - 🗑️ 移除单词发音功能，从而解决 Linux 安装兼容问题。
 - 🚀 全局配置方式修改为 `fanyi config set color false` `fanyi config set iciba false`。
 - 💄 重构和简化代码，并增加了 lint 和覆盖率的 GitHub Action。
-
 
 ## Install
 
@@ -57,7 +57,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and [fanyi.youdao.com](https://fanyi.youdao.com), and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com) and grop ai, and only support translation between Chinese and English.
 
 Translate one word.
 
