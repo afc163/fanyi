@@ -24,7 +24,7 @@
     "commander": "^12.1.0",
     "dayjs": "^1.11.13",
     "fast-xml-parser": "^4.5.0",
-    "gradient-string": "^2.0.2",
+    "gradient-string": "^3.0.0",
     "groq-sdk": "^0.7.0",
     "node-fetch": "^3.3.2",
     "ora": "^8.1.0",
