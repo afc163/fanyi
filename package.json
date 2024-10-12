@@ -2,7 +2,7 @@
   "name": "fanyi",
   "version": "9.0.6",
   "description": "A translator in your command line",
-  "main": "index.js",
+  "main": "index.mjs",
   "repository": {
     "type": "git",
     "url": "git@github.com:afc163/fanyi.git"
@@ -18,7 +18,7 @@
     "node": ">=16.0.0"
   },
   "readmeFilename": "README.md",
-  "files": ["index.js", "bin", "lib"],
+  "files": ["index.mjs", "bin", "lib"],
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
