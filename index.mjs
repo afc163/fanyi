@@ -46,7 +46,7 @@ export default async (word, options) => {
   // groq ai
   if (isTrueOrUndefined(groq)) {
     const groqClient = new Groq({
-      apiKey: GROQ_API_KEY || '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',
+      apiKey: GROQ_API_KEY || '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',
     });
     const model = 'llama-3.1-70b-versatile';
     const spinner = ora(`正在请教 ${model}...`).start();
