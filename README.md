@@ -1,6 +1,9 @@
 <div align="center">
 
 # Fānyì (翻译)
+Ensure you have Bun installed on your system. You can follow the official Bun installation guide [here](https://bun.sh/docs/install).
+
+
 
 A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
 
