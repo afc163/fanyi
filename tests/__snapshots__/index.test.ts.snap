@@ -1,4 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+Ensure that the GROQ_API_KEY is set in your environment variables.
 
 exports[`fanyi CLI > should print help if -h is given 1`] = `
 "Usage: fanyi [options] [command]
