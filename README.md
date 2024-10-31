@@ -141,4 +141,5 @@ $ fanyi config set iciba false            // disable iciba globally
 $ fanyi config set groq false             // disable groq globally
 $ fanyi config set color false            // disable color globally
 $ fanyi config set GROQ_API_KEY your-api-key // set GROQ_API_KEY
+$ fanyi config set OTHER_API_KEYS your-other-api-keys # set OTHER_API_KEYS
 ```
