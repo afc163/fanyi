@@ -1,6 +1,8 @@
 import { XMLParser } from 'fast-xml-parser';
+import process from 'process';
 import gradient from 'gradient-string';
 import { Groq } from 'groq-sdk';
+  GROQ_API_KEY = process.env.GROQ_API_KEY,
 import fetch from 'node-fetch';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';

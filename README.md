@@ -3,6 +3,7 @@
 # Fānyì (翻译)
 
 A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
+Ensure that the GROQ_API_KEY is set in your environment variables.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
