@@ -82,4 +82,9 @@ describe('fanyi CLI', () => {
     const { stderr } = await runScript(['ant love']);
     expect(stderr).not.toContain('访问 iciba 失败');
   });
+
+  it('should translate Chinese text to English', async () => {
+    const { stdout } = await runScript(['translate', '无法翻译这段文字']);
+    expect(stdout).toContain('Translation failed. Please try again later.');
+  });
 });

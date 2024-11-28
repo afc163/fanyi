@@ -27,6 +27,7 @@
     "gradient-string": "^3.0.0",
     "groq-sdk": "^0.8.0",
     "node-fetch": "^3.3.2",
+    "axios": "^0.21.1",
     "ora": "^8.1.0",
     "update-notifier": "^7.3.1"
   },
