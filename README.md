@@ -4,10 +4,21 @@
 
 A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
 
+## Install via x-cmd
+
+You can also install `fanyi` using the lightweight `x-cmd` package manager. This method does not require root permissions and is suitable for users who prefer a simple installation process.
+
+```bash
+x env use fanyi
+```
+
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 [![build status][github-actions-image]][github-actions-url]
 [![Codecov][codecov-image]][codecov-url]
+
+For more information, you can refer to the [demo and article](https://www.x-cmd.com/pkg/fanyi) or watch the [Bilibili video](https://www.bilibili.com/video/BV1RQ16YbEkD/). These resources provide additional guidance on using `fanyi` with `x-cmd`.
+
 
 [npm-image]: http://img.shields.io/npm/v/fanyi.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/fanyi
