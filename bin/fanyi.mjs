@@ -1,6 +1,8 @@
 #!/usr/bin/env -S node --no-deprecation
+import process from 'process';
 
 import { readFile } from 'node:fs/promises';
+  GROQ_API_KEY = process.env.GROQ_API_KEY,
 import chalk from 'chalk';
 import { Command } from 'commander';
 import updateNotifier from 'update-notifier';
