@@ -23,7 +23,7 @@ const gradients = [
 
 export default async (word, options) => {
   console.log('');
-  const { iciba, groq, GROQ_API_KEY } = options;
+  const { iciba, groq, GROQ_API_KEY, OTHER_API_KEYS } = options;
   const endcodedWord = encodeURIComponent(word);
 
   // iciba
@@ -45,8 +45,8 @@ export default async (word, options) => {
 
   // groq ai
   if (isTrueOrUndefined(groq)) {
-    const groqClient = new Groq({
-      apiKey: GROQ_API_KEY || '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',
+    const apiKey = OTHER_API_KEYS || GROQ_API_KEY;
+      apiKey: apiKey || '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',
     });
     const model = 'llama-3.1-70b-versatile';
     const spinner = ora(`正在请教 ${model}...`).start();

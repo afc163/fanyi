@@ -43,7 +43,7 @@ program
       .argument('<value>', '配置项值')
       .action(async (key, value) => {
         const options = {};
-        if (key === 'GROQ_API_KEY') {
+        if (key === 'GROQ_API_KEY' || key === 'OTHER_API_KEYS') {
           options[key] = value;
         } else {
           options[key] = value === 'true' ? true : value === 'false' ? false : value;
@@ -71,6 +71,7 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set groq true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set GROQ_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set OTHER_API_KEYS your_other_api_keys_here`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
