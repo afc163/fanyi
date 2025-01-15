@@ -7,7 +7,7 @@ import updateNotifier from 'update-notifier';
 import config from '../lib/config.mjs';
 import { searchList } from '../lib/searchHistory.mjs';
 
-const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
+const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url.replace('gitauto/issue-161-20250115-000912', 'main'))));
 
 updateNotifier({ pkg }).notify();
 const program = new Command();
