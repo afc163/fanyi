@@ -1,6 +1,6 @@
 {
   "name": "fanyi",
-  "version": "9.0.7",
+  "version": "10.0.0",
   "description": "A translator in your command line",
   "main": "index.mjs",
   "repository": {
