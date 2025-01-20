@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and groq.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and deepseek.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -22,7 +22,7 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 
 </div>
 
-[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 Groq 加持的 llama3 进行翻译，翻译速度一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
+[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 加持的 llama3 进行翻译，翻译速度一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
 - 🐑 增加 llama3 翻译结果。
 - 🌈 渐变色彩输出，更加灵动浮夸。
@@ -57,7 +57,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and grop ai, and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com) and deepseek ai, and only support translation between Chinese and English.
 
 Translate one word.
 
@@ -138,7 +138,7 @@ Example:
 ```bash
 $ fanyi config list                       // list all configuration options
 $ fanyi config set iciba false            // disable iciba globally
-$ fanyi config set groq false             // disable groq globally
+$ fanyi config set deepseek false             // disable deepseek globally
 $ fanyi config set color false            // disable color globally
-$ fanyi config set GROQ_API_KEY your-api-key // set GROQ_API_KEY
+$ fanyi config set LLM_API_KEY your-api-key // set LLM_API_KEY
 ```

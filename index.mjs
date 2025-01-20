@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import gradient from 'gradient-string';
-import { Groq } from 'groq-sdk';
 import fetch from 'node-fetch';
+import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
 
@@ -23,7 +23,7 @@ const gradients = [
 
 export default async (word, options) => {
   console.log('');
-  const { iciba, groq, GROQ_API_KEY } = options;
+  const { iciba, deepseek, LLM_API_KEY } = options;
   const endcodedWord = encodeURIComponent(word);
 
   // iciba
@@ -43,15 +43,18 @@ export default async (word, options) => {
     }
   }
 
-  // groq ai
-  if (isTrueOrUndefined(groq)) {
-    const groqClient = new Groq({
-      apiKey: GROQ_API_KEY || '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',
+  // deepseek
+  if (isTrueOrUndefined(deepseek)) {
+    const openai = new OpenAI({
+      baseURL: 'https://api.deepseek.com',
+      apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
-    const model = 'llama-3.1-70b-versatile';
+
+    const model = 'deepseek-chat';
+
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
-      const chatCompletion = await groqClient.chat.completions.create({
+      const chatCompletion = await openai.chat.completions.create({
         messages: [
           {
             role: 'system',
@@ -107,9 +110,7 @@ export default async (word, options) => {
           },
         ],
         model,
-        temperature: 0.3,
-        max_tokens: 1024,
-        top_p: 0.8,
+        temperature: 1.3,
       });
       spinner.stop();
       const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
