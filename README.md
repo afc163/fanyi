@@ -22,9 +22,9 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 
 </div>
 
-[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 加持的 llama3 进行翻译，翻译速度一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
+[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 大模型进行翻译，翻译速度和效果一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
-- 🐑 增加 llama3 翻译结果。
+- 🐑 增加大模型翻译结果。
 - 🌈 渐变色彩输出，更加灵动浮夸。
 - 🗑️ 移除 openai 翻译。
 - 🗑️ 移除 youdao 翻译。
