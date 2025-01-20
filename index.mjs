@@ -29,7 +29,7 @@ export default async (word, options) => {
   // iciba
   if (isTrueOrUndefined(iciba)) {
     const ICIBA_URL =
-      'http://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&w=';
+      'https://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&word=';
     const spinner = ora('正在请教 iciba...').start();
     try {
       const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
