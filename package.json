@@ -13,7 +13,7 @@
     "fy": "bin/fanyi.mjs",
     "fanyi": "bin/fanyi.mjs"
   },
-  "keywords": ["chinese", "translator", "iciba", "groq", "llama", "cli", "fanyi"],
+  "keywords": ["chinese", "translator", "iciba", "deepseek", "cli", "fanyi"],
   "engines": {
     "node": ">=16.0.0"
   },
@@ -25,8 +25,8 @@
     "dayjs": "^1.11.13",
     "fast-xml-parser": "^4.5.0",
     "gradient-string": "^3.0.0",
-    "groq-sdk": "^0.9.0",
     "node-fetch": "^3.3.2",
+    "openai": "^4.79.1",
     "ora": "^8.1.0",
     "update-notifier": "^7.3.1"
   },

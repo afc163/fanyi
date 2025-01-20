@@ -43,7 +43,7 @@ program
       .argument('<value>', '配置项值')
       .action(async (key, value) => {
         const options = {};
-        if (key === 'GROQ_API_KEY') {
+        if (key === 'LLM_API_KEY') {
           options[key] = value;
         } else {
           options[key] = value === 'true' ? true : value === 'false' ? false : value;
@@ -69,8 +69,8 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set groq true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set GROQ_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set deepseek true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });

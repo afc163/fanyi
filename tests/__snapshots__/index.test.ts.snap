@@ -19,8 +19,8 @@ Commands:
   $ fanyi chinglish
   $ fanyi config set color true
   $ fanyi config set iciba true
-  $ fanyi config set groq true
-  $ fanyi config set GROQ_API_KEY your_api_key_here
+  $ fanyi config set deepseek true
+  $ fanyi config set LLM_API_KEY your_api_key_here
   $ fanyi config list
 
 "
@@ -45,8 +45,8 @@ Commands:
   $ fanyi chinglish
   $ fanyi config set color true
   $ fanyi config set iciba true
-  $ fanyi config set groq true
-  $ fanyi config set GROQ_API_KEY your_api_key_here
+  $ fanyi config set deepseek true
+  $ fanyi config set LLM_API_KEY your_api_key_here
   $ fanyi config list
 
 "
