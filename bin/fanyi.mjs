@@ -68,9 +68,6 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi world peace`);
   console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set deepseek true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });

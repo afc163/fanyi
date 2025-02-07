@@ -1,29 +1,12 @@
 import { XMLParser } from 'fast-xml-parser';
-import gradient from 'gradient-string';
 import fetch from 'node-fetch';
 import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
 
-const gradients = [
-  'cristal',
-  'teen',
-  'mind',
-  'morning',
-  'vice',
-  'passion',
-  'fruit',
-  'instagram',
-  'atlas',
-  'retro',
-  'summer',
-  'pastel',
-  'rainbow',
-];
-
 export default async (word, options) => {
   console.log('');
-  const { iciba, deepseek, LLM_API_KEY } = options;
+  const { iciba, llm } = options;
   const endcodedWord = encodeURIComponent(word);
 
   // iciba
@@ -43,18 +26,18 @@ export default async (word, options) => {
     }
   }
 
-  // deepseek
-  if (isTrueOrUndefined(deepseek)) {
+  // llm
+  if (isTrueOrUndefined(llm)) {
     const openai = new OpenAI({
-      baseURL: 'https://api.deepseek.com',
-      apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
+      baseURL: 'https://api.siliconflow.cn/v1',
+      apiKey: 'sk-jfivwlkbbvdhaefiabdvfefdtaluhikwnirluiechbsftktt',
     });
 
-    const model = 'deepseek-chat';
+    const model = 'Qwen/Qwen2.5-7B-Instruct';
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
-      const chatCompletion = await openai.chat.completions.create({
+      const stream = await openai.chat.completions.create({
         messages: [
           {
             role: 'system',
@@ -111,11 +94,15 @@ export default async (word, options) => {
         ],
         model,
         temperature: 1.3,
+        stream: true,
       });
       spinner.stop();
-      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-      console.log(gradient[randomGradient](chatCompletion.choices[0].message.content));
+
+      for await (const chunk of stream) {
+        process.stdout.write(chunk.choices[0]?.delta?.content || '');
+      }
     } catch (error) {
+      console.log(error);
       spinner.fail(`访问 ${model} 失败，请检查网络或 API 密钥`);
     }
   }
