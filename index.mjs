@@ -46,7 +46,7 @@ export default async (word, options) => {
   // deepseek
   if (isTrueOrUndefined(deepseek)) {
     const openai = new OpenAI({
-      baseURL: 'https://api.deepseek.com',
+      baseURL: 'https://v10.deepseek.cn/api',
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
 
