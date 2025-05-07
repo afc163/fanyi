@@ -23,7 +23,7 @@ const gradients = [
 
 export default async (word, options) => {
   console.log('');
-  const { iciba, deepseek, LLM_API_KEY } = options;
+  const { iciba, deepseek, openai, LLM_API_KEY, OPENAI_API_KEY, OPENAI_API_HOST } = options;
   const endcodedWord = encodeURIComponent(word);
 
   // iciba
@@ -45,7 +45,7 @@ export default async (word, options) => {
 
   // deepseek
   if (isTrueOrUndefined(deepseek)) {
-    const openai = new OpenAI({
+    const openaiClient = new OpenAI({
       baseURL: 'https://api.deepseek.com',
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
@@ -54,7 +54,7 @@ export default async (word, options) => {
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
-      const chatCompletion = await openai.chat.completions.create({
+      const chatCompletion = await openaiClient.chat.completions.create({
         messages: [
           {
             role: 'system',
@@ -117,6 +117,76 @@ export default async (word, options) => {
       console.log(gradient[randomGradient](chatCompletion.choices[0].message.content));
     } catch (error) {
       spinner.fail(`访问 ${model} 失败，请检查网络或 API 密钥`);
+    }
+  }
+
+  // openai
+  if (isTrueOrUndefined(openai)) {
+    const apiKey = OPENAI_API_KEY || LLM_API_KEY;
+    if (!apiKey) {
+      console.log(
+        '未设置 OpenAI API 密钥，请使用 "fanyi config set OPENAI_API_KEY 你的密钥" 进行设置',
+      );
+      return;
+    }
+
+    const openaiOptions = {
+      apiKey,
+    };
+
+    // 如果设置了自定义的 API 主机
+    if (OPENAI_API_HOST) {
+      openaiOptions.baseURL = `https://${OPENAI_API_HOST}/v1`;
+    }
+
+    const openaiClient = new OpenAI(openaiOptions);
+    const model = 'gpt-3.5-turbo';
+
+    const spinner = ora(`正在请教 OpenAI (${model})...`).start();
+    try {
+      const chatCompletion = await openaiClient.chat.completions.create({
+        messages: [
+          {
+            role: 'system',
+            content: `
+你是一本专业的中英文双语词典。请按照以下要求提供翻译和解释：
+
+1. 格式要求：
+   [原词] [音标] ~ [翻译] [拼音]
+   
+   - [词性] [释义1]
+   - [词性] [释义2]
+   ...
+
+   例句：
+   1. [原文例句]
+      [翻译]
+   2. [原文例句]
+      [翻译]
+   ...
+
+2. 翻译规则：
+   - 英文输入翻译为中文，中文输入翻译为英文
+   - 提供准确的音标（英文）或拼音（中文）
+   - 列出所有常见词性及其对应的释义
+   - 释义应简洁明了，涵盖词语的主要含义
+   - 提供2-3个地道的例句，体现词语的不同用法和语境
+`,
+          },
+          {
+            role: 'user',
+            content: `请翻译：${word}`,
+          },
+        ],
+        model,
+        temperature: 0.7,
+      });
+      spinner.stop();
+      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+      console.log(gradient[randomGradient](chatCompletion.choices[0].message.content));
+    } catch (error) {
+      spinner.fail(`访问 OpenAI 失败: ${error.message}`);
+      console.log('请检查网络连接或 API 密钥是否正确');
     }
   }
 };
