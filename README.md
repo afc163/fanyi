@@ -140,7 +140,7 @@ $ fanyi config list                                   // list all configuration 
 $ fanyi config set iciba false                        // disable iciba globally
 $ fanyi config set llm false                          // disable llm globally
 $ fanyi config set color false                        // disable color globally
-$ fanyi config set LLM_API_BASE_URL your-api-base-url // set LLM_API_BASE)URL
+$ fanyi config set LLM_API_BASE_URL your-api-base-url // set LLM_API_BASE_URL
 $ fanyi config set LLM_API_KEY your-api-key           // set LLM_API_KEY
 $ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 ```
