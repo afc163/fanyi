@@ -136,9 +136,15 @@ Use subcommand `fanyi config set <key> <value>` to set configuration options.
 Example:
 
 ```bash
-$ fanyi config list                       // list all configuration options
-$ fanyi config set iciba false            // disable iciba globally
-$ fanyi config set deepseek false             // disable deepseek globally
-$ fanyi config set color false            // disable color globally
-$ fanyi config set LLM_API_KEY your-api-key // set LLM_API_KEY
+$ fanyi config list                                   // list all configuration options
+$ fanyi config set iciba false                        // disable iciba globally
+$ fanyi config set llm false                          // disable llm globally
+$ fanyi config set color false                        // disable color globally
+$ fanyi config set LLM_API_BASE_URL your-api-base-url // set LLM_API_BASE)URL
+$ fanyi config set LLM_API_KEY your-api-key           // set LLM_API_KEY
+$ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 ```
+
+If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
+
+If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LLM_API_BASE_URL` and `LLM_MODEL_ID`. Also, the api endpoint should be [OpenAi Compatible](https://platform.openai.com/docs/api-reference/chat/create).

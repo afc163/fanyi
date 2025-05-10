@@ -23,7 +23,7 @@ const gradients = [
 
 export default async (word, options) => {
   console.log('');
-  const { iciba, deepseek, LLM_API_KEY } = options;
+  const { iciba, llm, LLM_API_BASE_URL, LLM_API_KEY, LLM_MODEL_ID } = options;
   const endcodedWord = encodeURIComponent(word);
 
   // iciba
@@ -43,14 +43,14 @@ export default async (word, options) => {
     }
   }
 
-  // deepseek
-  if (isTrueOrUndefined(deepseek)) {
+  // llm
+  if (isTrueOrUndefined(llm)) {
     const openai = new OpenAI({
-      baseURL: 'https://api.deepseek.com',
+      baseURL: LLM_API_BASE_URL || 'https://api.deepseek.com',
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
 
-    const model = 'deepseek-chat';
+    const model = LLM_MODEL_ID || 'deepseek-chat';
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
@@ -63,7 +63,7 @@ export default async (word, options) => {
 
 1. 格式要求：
    [原词] [音标] ~ [翻译] [拼音] ~ [EMOJI]
-   
+
    - [词性] [释义1]
    - [词性] [释义2]
    ...
@@ -110,7 +110,7 @@ export default async (word, options) => {
           },
         ],
         model,
-        temperature: 1.3,
+        temperature: 1.0, // glm-4-flash and most of other models only allows temperature in [0, 1]
       });
       spinner.stop();
       const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];

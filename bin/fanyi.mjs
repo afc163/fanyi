@@ -43,7 +43,7 @@ program
       .argument('<value>', '配置项值')
       .action(async (key, value) => {
         const options = {};
-        if (key === 'LLM_API_KEY') {
+        if (key === 'LLM_API_KEY' || key === 'LLM_API_BASE_URL' || key === 'LLM_MODEL_ID') {
           options[key] = value;
         } else {
           options[key] = value === 'true' ? true : value === 'false' ? false : value;
@@ -69,8 +69,10 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi chinglish`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set deepseek true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set llm true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_BASE_URL your_api_base_url`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID your_model_id`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
