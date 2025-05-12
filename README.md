@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and deepseek.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba, deepseek, and OpenAI.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -24,9 +24,11 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 
 [fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 大模型进行翻译，翻译速度和效果一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
+> **注意**: 此分支已经重新添加了 OpenAI 支持。现在你可以同时使用 iciba、deepseek 和 OpenAI 进行翻译。
+
 - 🐑 增加大模型翻译结果。
 - 🌈 渐变色彩输出，更加灵动浮夸。
-- 🗑️ 移除 openai 翻译。
+- ✅ 支持 OpenAI 翻译，可配置 API 密钥和自定义 API 主机。
 - 🗑️ 移除 youdao 翻译。
 - 🗑️ 移除 dictionary 翻译。
 - 🗑️ 移除单词发音功能，从而解决 Linux 安装兼容问题。
@@ -57,7 +59,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and deepseek ai, and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com), deepseek AI, and OpenAI, and only support translation between Chinese and English.
 
 Translate one word.
 
@@ -136,9 +138,32 @@ Use subcommand `fanyi config set <key> <value>` to set configuration options.
 Example:
 
 ```bash
-$ fanyi config list                       // list all configuration options
-$ fanyi config set iciba false            // disable iciba globally
+$ fanyi config list                           // list all configuration options
+$ fanyi config set iciba false                // disable iciba globally
 $ fanyi config set deepseek false             // disable deepseek globally
-$ fanyi config set color false            // disable color globally
-$ fanyi config set LLM_API_KEY your-api-key // set LLM_API_KEY
+$ fanyi config set openai true                // enable openai globally
+$ fanyi config set color false                // disable color globally
+$ fanyi config set LLM_API_KEY your-api-key   // set LLM_API_KEY for deepseek
+$ fanyi config set OPENAI_API_KEY your-key    // set OPENAI_API_KEY for OpenAI
+$ fanyi config set OPENAI_API_HOST custom-host // set custom API host for OpenAI
+```
+
+## Enable OpenAI 🚀
+
+Set an [OpenAI API key](https://platform.openai.com/overview) to enable OpenAI translation:
+
+```bash
+$ fanyi config set OPENAI_API_KEY sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+You can also use a custom API host for OpenAI if needed:
+
+```bash
+$ fanyi config set OPENAI_API_HOST api.example.com
+```
+
+Turn off OpenAI translation:
+
+```bash
+$ fanyi config set openai false
 ```

@@ -43,7 +43,7 @@ program
       .argument('<value>', '配置项值')
       .action(async (key, value) => {
         const options = {};
-        if (key === 'LLM_API_KEY') {
+        if (key === 'LLM_API_KEY' || key === 'OPENAI_API_KEY' || key === 'OPENAI_API_HOST') {
           options[key] = value;
         } else {
           options[key] = value === 'true' ? true : value === 'false' ? false : value;
@@ -70,7 +70,10 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set deepseek true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set openai true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set OPENAI_API_KEY your_openai_api_key`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set OPENAI_API_HOST your_openai_api_host`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });

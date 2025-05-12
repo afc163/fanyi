@@ -13,7 +13,7 @@
     "fy": "bin/fanyi.mjs",
     "fanyi": "bin/fanyi.mjs"
   },
-  "keywords": ["chinese", "translator", "iciba", "deepseek", "cli", "fanyi"],
+  "keywords": ["chinese", "translator", "iciba", "deepseek", "openai", "cli", "fanyi"],
   "engines": {
     "node": ">=16.0.0"
   },
