@@ -39,14 +39,14 @@ export default async (word, options) => {
       spinner.stop();
       printIciba(result.dict, options);
     } catch (error) {
-      spinner.fail('访问 iciba 失败，请检查网络');
+      spinner.fail('访问 deepseek 失败，请检查网络');
     }
   }
 
   // deepseek
   if (isTrueOrUndefined(deepseek)) {
     const openai = new OpenAI({
-      baseURL: 'https://api.deepseek.com',
+      baseURL: 'https://v10.deepseek.cn/api',
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
 
