@@ -19,8 +19,10 @@ Commands:
   $ fanyi chinglish
   $ fanyi config set color true
   $ fanyi config set iciba true
-  $ fanyi config set deepseek true
+  $ fanyi config set llm true
+  $ fanyi config set LLM_API_BASE_URL your_api_base_url
   $ fanyi config set LLM_API_KEY your_api_key_here
+  $ fanyi config set LLM_MODEL_ID your_model_id
   $ fanyi config list
 
 "
@@ -45,8 +47,10 @@ Commands:
   $ fanyi chinglish
   $ fanyi config set color true
   $ fanyi config set iciba true
-  $ fanyi config set deepseek true
+  $ fanyi config set llm true
+  $ fanyi config set LLM_API_BASE_URL your_api_base_url
   $ fanyi config set LLM_API_KEY your_api_key_here
+  $ fanyi config set LLM_MODEL_ID your_model_id
   $ fanyi config list
 
 "
