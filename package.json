@@ -21,7 +21,7 @@
   "files": ["index.mjs", "bin", "lib"],
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^12.1.0",
+    "commander": "^14.0.0",
     "dayjs": "^1.11.13",
     "fast-xml-parser": "^5.0.6",
     "gradient-string": "^3.0.0",
