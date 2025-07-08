@@ -1,0 +1,9 @@
+name: test
+
+on: pull_request
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event.pull_request.user.login }}
