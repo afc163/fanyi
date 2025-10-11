@@ -71,6 +71,7 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set deepseek true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set openai true`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set pager false`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set OPENAI_API_KEY your_openai_api_key`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set OPENAI_API_HOST your_openai_api_host`);

@@ -143,6 +143,7 @@ $ fanyi config set iciba false                // disable iciba globally
 $ fanyi config set deepseek true              // enable deepseek globally
 $ fanyi config set openai true                // enable openai globally
 $ fanyi config set color false                // disable color globally
+$ fanyi config set pager false                // disable pager (uses less by default)
 $ fanyi config set LLM_API_KEY your-api-key   // set LLM_API_KEY for deepseek
 $ fanyi config set OPENAI_API_KEY your-key    // set OPENAI_API_KEY for OpenAI
 $ fanyi config set OPENAI_API_HOST custom-host // set custom API host for OpenAI
