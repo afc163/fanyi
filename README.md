@@ -61,6 +61,12 @@ $ fy word
 
 Translation data is fetched from [iciba.com](https://iciba.com), deepseek AI, and OpenAI, and only support translation between Chinese and English.
 
+### LLM Output Formatting
+
+- Synonym/Antonym comparison tables: results include Markdown tables that contrast words by “差异点/使用场景/对立维度”，便于快速选择合适用词。
+- Colorized sections: 同义词为绿色、反义词为红色、例句为蓝色；表格分隔线为灰色，便于阅读。
+- Paged view: long outputs open in a pager for easy navigation (see below to configure).
+
 Translate one word.
 
 ```bash
@@ -148,6 +154,30 @@ $ fanyi config set LLM_API_KEY your-api-key   // set LLM_API_KEY for deepseek
 $ fanyi config set OPENAI_API_KEY your-key    // set OPENAI_API_KEY for OpenAI
 $ fanyi config set OPENAI_API_HOST custom-host // set custom API host for OpenAI
 ```
+
+Notes:
+- DeepSeek is disabled by default; enable it via `deepseek true`.
+- OpenAI requires an API key; without it the OpenAI step is skipped with a hint.
+
+### Pager (default on)
+
+- By default, long results open in a pager with `less -R -F -X` so colors render and short outputs auto-exit.
+- Respect `PAGER` if set, e.g. `export PAGER=less`.
+- Disable if you prefer plain stdout:
+
+```bash
+$ fanyi config set pager false
+```
+
+### Color
+
+- Output is colorized by default for readability. Disable:
+
+```bash
+$ fanyi config set color false
+```
+
+- If your terminal still shows plain white, ensure it supports ANSI colors or try a different theme. The pager is configured to pass colors through.
 
 ## Enable OpenAI 🚀
 
