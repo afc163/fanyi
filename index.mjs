@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import { Chalk } from 'chalk';
 import { XMLParser } from 'fast-xml-parser';
 import gradient from 'gradient-string';
 import fetch from 'node-fetch';
@@ -322,10 +323,31 @@ function postProcessColor(text, { color } = {}) {
     // strip any ANSI possibly added by renderers
     return stripAnsi(text);
   }
-  // If renderer produced no ANSI, add a gentle gradient for readability
-  if (stripAnsi(text) === text) {
+  const chalk = new Chalk({ level: 3 });
+
+  const lines = text.split('\n');
+  const isTableLine = (l) => /\|/.test(l) && l.split('|').length >= 3;
+  const isSeparator = (l) =>
+    /^\s*\|?\s*:?[-=]{2,}(\s*\|\s*:?[-=]{2,})+\s*\|?\s*$/.test(stripAnsi(l));
+
+  const colored = lines.map((line) => {
+    // Leave pre-colored lines as-is
+    const plain = stripAnsi(line);
+    const hasColor = plain !== line;
+    if (hasColor) return line;
+
+    if (isTableLine(plain)) {
+      if (isSeparator(plain)) {
+        return chalk.gray(plain);
+      }
+      // Lightly color table content for readability
+      return chalk.cyan(plain);
+    }
+
+    // Apply a gentle gradient to plain paragraphs
     const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-    return gradient[randomGradient](text);
-  }
-  return text;
+    return gradient[randomGradient](plain);
+  });
+
+  return colored.join('\n');
 }
