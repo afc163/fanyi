@@ -260,7 +260,7 @@ async function printLLMOutput(content, { pager, color } = {}) {
         const m = new Marked();
         m.use(TerminalPlugin({ reflowText: true, width, tab: 2, unescape: true }));
         rendered = m.parse(content);
-        rendered = postProcessColor(rendered, { color });
+        rendered = postProcessColor(rendered, { color, pager });
         return pageOrPrint(rendered, { pager });
       }
     } catch {}
@@ -274,7 +274,7 @@ async function printLLMOutput(content, { pager, color } = {}) {
         });
         const output = marked(content);
         if (typeof output === 'string') {
-          rendered = postProcessColor(output, { color });
+          rendered = postProcessColor(output, { color, pager });
           return pageOrPrint(rendered, { pager });
         }
       }
@@ -284,12 +284,7 @@ async function printLLMOutput(content, { pager, color } = {}) {
   }
 
   // Fallback: print with gradient to keep previous behavior
-  if (color === false) {
-    rendered = stripAnsi(content); // ensure no color
-  } else {
-    const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-    rendered = gradient[randomGradient](content);
-  }
+  rendered = postProcessColor(content, { color, pager });
   return pageOrPrint(rendered, { pager });
 }
 
@@ -306,7 +301,10 @@ function pageOrPrint(text, { pager } = {}) {
   const pagerCmd = envPager ? envPager : 'less';
   const pagerArgs = envPager ? [] : ['-R', '-F', '-X'];
   try {
-    const child = spawn(pagerCmd, pagerArgs, { stdio: ['pipe', 'inherit', 'inherit'] });
+    const child = spawn(pagerCmd, pagerArgs, {
+      stdio: ['pipe', 'inherit', 'inherit'],
+      env: { ...process.env, FORCE_COLOR: '1' },
+    });
     child.on('error', () => {
       // If pager binary missing, fall back to console
       console.log(text);
@@ -318,7 +316,7 @@ function pageOrPrint(text, { pager } = {}) {
   }
 }
 
-function postProcessColor(text, { color } = {}) {
+function postProcessColor(text, { color, pager } = {}) {
   if (color === false) {
     // strip any ANSI possibly added by renderers
     return stripAnsi(text);
@@ -330,7 +328,15 @@ function postProcessColor(text, { color } = {}) {
   const isSeparator = (l) =>
     /^\s*\|?\s*:?[-=]{2,}(\s*\|\s*:?[-=]{2,})+\s*\|?\s*$/.test(stripAnsi(l));
 
-  const colored = lines.map((line) => {
+  const palette = [
+    chalk.cyanBright,
+    chalk.magentaBright,
+    chalk.greenBright,
+    chalk.blueBright,
+    chalk.yellowBright,
+  ];
+
+  const colored = lines.map((line, idx) => {
     // Leave pre-colored lines as-is
     const plain = stripAnsi(line);
     const hasColor = plain !== line;
@@ -341,12 +347,13 @@ function postProcessColor(text, { color } = {}) {
         return chalk.gray(plain);
       }
       // Lightly color table content for readability
-      return chalk.cyan(plain);
+      return chalk.cyanBright(plain);
     }
 
     // Apply a gentle gradient to plain paragraphs
-    const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-    return gradient[randomGradient](plain);
+    // Avoid gradient when piping to a pager; use a bright palette instead for stability
+    const colorize = palette[idx % palette.length];
+    return colorize(plain);
   });
 
   return colored.join('\n');
