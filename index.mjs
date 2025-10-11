@@ -141,7 +141,7 @@ export default async (word, options) => {
 
   // openai
   if (isTrueOrUndefined(openai)) {
-    const apiKey = OPENAI_API_KEY || LLM_API_KEY;
+    const apiKey = OPENAI_API_KEY;
     if (!apiKey) {
       console.log(
         '未设置 OpenAI API 密钥，请使用 "fanyi config set OPENAI_API_KEY 你的密钥" 进行设置',
