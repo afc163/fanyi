@@ -336,17 +336,38 @@ function postProcessColor(text, { color, pager } = {}) {
     chalk.yellowBright,
   ];
 
+  let section = '';
+  const isSynHeader = (l) => /(同义词对比表|同义词|Synonyms?)/i.test(stripAnsi(l));
+  const isAntHeader = (l) => /(反义词对比表|反义词|Antonyms?)/i.test(stripAnsi(l));
+  const isExHeader = (l) => /(例句|Examples?)/i.test(stripAnsi(l));
+
   const colored = lines.map((line, idx) => {
     // Leave pre-colored lines as-is
     const plain = stripAnsi(line);
     const hasColor = plain !== line;
     if (hasColor) return line;
 
+    if (isSynHeader(plain)) {
+      section = 'syn';
+      return chalk.bold.greenBright(plain);
+    }
+    if (isAntHeader(plain)) {
+      section = 'ant';
+      return chalk.bold.redBright(plain);
+    }
+    if (isExHeader(plain)) {
+      section = 'ex';
+      return chalk.bold.blueBright(plain);
+    }
+
     if (isTableLine(plain)) {
       if (isSeparator(plain)) {
         return chalk.gray(plain);
       }
       // Lightly color table content for readability
+      if (section === 'syn') return chalk.greenBright(plain);
+      if (section === 'ant') return chalk.redBright(plain);
+      if (section === 'ex') return chalk.blueBright(plain);
       return chalk.cyanBright(plain);
     }
 
