@@ -342,10 +342,7 @@ function postProcessColor(text, { color, pager } = {}) {
   const isExHeader = (l) => /(例句|Examples?)/i.test(stripAnsi(l));
 
   const colored = lines.map((line, idx) => {
-    // Leave pre-colored lines as-is
     const plain = stripAnsi(line);
-    const hasColor = plain !== line;
-    if (hasColor) return line;
 
     if (isSynHeader(plain)) {
       section = 'syn';
@@ -365,6 +362,14 @@ function postProcessColor(text, { color, pager } = {}) {
         return chalk.gray(plain);
       }
       // Lightly color table content for readability
+      if (section === 'syn') return chalk.greenBright(plain);
+      if (section === 'ant') return chalk.redBright(plain);
+      if (section === 'ex') return chalk.blueBright(plain);
+      return chalk.cyanBright(plain);
+    }
+
+    // Bulleted list items
+    if (/^\s*[-*+]\s+/.test(plain)) {
       if (section === 'syn') return chalk.greenBright(plain);
       if (section === 'ant') return chalk.redBright(plain);
       if (section === 'ex') return chalk.blueBright(plain);
