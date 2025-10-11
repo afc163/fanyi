@@ -43,8 +43,8 @@ export default async (word, options) => {
     }
   }
 
-  // deepseek
-  if (isTrueOrUndefined(deepseek)) {
+  // deepseek (disabled by default; enable with `deepseek: true`)
+  if (deepseek === true) {
     const openaiClient = new OpenAI({
       baseURL: 'https://api.deepseek.com',
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',

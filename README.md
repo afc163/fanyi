@@ -140,7 +140,7 @@ Example:
 ```bash
 $ fanyi config list                           // list all configuration options
 $ fanyi config set iciba false                // disable iciba globally
-$ fanyi config set deepseek false             // disable deepseek globally
+$ fanyi config set deepseek true              // enable deepseek globally
 $ fanyi config set openai true                // enable openai globally
 $ fanyi config set color false                // disable color globally
 $ fanyi config set LLM_API_KEY your-api-key   // set LLM_API_KEY for deepseek
