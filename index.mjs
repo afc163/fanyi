@@ -54,7 +54,7 @@ export default async (word, options) => {
       apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
     });
 
-    const model = 'deepseek-chat';
+    const model = LLM_MODEL_ID || 'deepseek-chat';
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
@@ -67,7 +67,7 @@ export default async (word, options) => {
 
 1. 格式要求：
    [原词] [音标] ~ [翻译] [拼音] ~ [EMOJI]
-   
+
    - [词性] [释义1]
    - [词性] [释义2]
    ...
@@ -130,7 +130,7 @@ export default async (word, options) => {
           },
         ],
         model,
-        temperature: 1.3,
+        temperature: 1.0, // glm-4-flash and most of other models only allows temperature in [0, 1]
       });
       spinner.stop();
       await printLLMOutput(chatCompletion.choices[0].message.content, { pager, color });
