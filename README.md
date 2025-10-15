@@ -57,7 +57,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and deepseek ai, and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com) and [OpenRouter](https://openrouter.ai), and only support translation between Chinese and English.
 
 Translate one word.
 
