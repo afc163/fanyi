@@ -20,9 +20,9 @@ Commands:
   $ fanyi config set color true
   $ fanyi config set iciba true
   $ fanyi config set llm true
-  $ fanyi config set LLM_API_BASE_URL your_api_base_url
-  $ fanyi config set LLM_API_KEY your_api_key_here
-  $ fanyi config set LLM_MODEL_ID your_model_id
+  $ fanyi config set LLM_API_KEY sk-or-v1-your-openrouter-key
+  $ fanyi config set LLM_MODEL_ID openai/gpt-4o
+  $ fanyi config set LLM_MODEL_ID anthropic/claude-3.5-sonnet
   $ fanyi config list
 
 "
@@ -48,9 +48,9 @@ Commands:
   $ fanyi config set color true
   $ fanyi config set iciba true
   $ fanyi config set llm true
-  $ fanyi config set LLM_API_BASE_URL your_api_base_url
-  $ fanyi config set LLM_API_KEY your_api_key_here
-  $ fanyi config set LLM_MODEL_ID your_model_id
+  $ fanyi config set LLM_API_KEY sk-or-v1-your-openrouter-key
+  $ fanyi config set LLM_MODEL_ID openai/gpt-4o
+  $ fanyi config set LLM_MODEL_ID anthropic/claude-3.5-sonnet
   $ fanyi config list
 
 "

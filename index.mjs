@@ -45,12 +45,21 @@ export default async (word, options) => {
 
   // llm
   if (isTrueOrUndefined(llm)) {
+    if (!LLM_API_KEY) {
+      console.log('');
+      console.log('⚠️  需要设置 OpenRouter API Key 才能使用 LLM 翻译功能');
+      console.log('请访问 https://openrouter.ai/keys 获取 API Key，然后运行:');
+      console.log('fanyi config set LLM_API_KEY sk-or-v1-your-key-here');
+      console.log('');
+      return;
+    }
+
     const openai = new OpenAI({
-      baseURL: LLM_API_BASE_URL || 'https://api.deepseek.com',
-      apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
+      baseURL: LLM_API_BASE_URL || 'https://openrouter.ai/api/v1',
+      apiKey: LLM_API_KEY,
     });
 
-    const model = LLM_MODEL_ID || 'deepseek-chat';
+    const model = LLM_MODEL_ID || 'anthropic/claude-3.5-sonnet';
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {

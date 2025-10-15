@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and deepseek.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and OpenRouter.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -22,7 +22,7 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 
 </div>
 
-[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 大模型进行翻译，翻译速度和效果一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
+[fanyi@10.0.0](https://github.com/afc163/fanyi/releases/tag/v10.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 OpenRouter 大模型进行翻译，翻译速度和效果一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
 - 🐑 增加大模型翻译结果。
 - 🌈 渐变色彩输出，更加灵动浮夸。
@@ -57,7 +57,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and deepseek ai, and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com) and OpenRouter AI, and only support translation between Chinese and English.
 
 Translate one word.
 
@@ -145,6 +145,6 @@ $ fanyi config set LLM_API_KEY your-api-key           // set LLM_API_KEY
 $ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 ```
 
-If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
+If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `anthropic/claude-3.5-sonnet` at [OpenRouter](https://openrouter.ai) by default.
 
-If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LLM_API_BASE_URL` and `LLM_MODEL_ID`. Also, the api endpoint should be [OpenAi Compatible](https://platform.openai.com/docs/api-reference/chat/create).
+If you want to use other LLMs via OpenRouter, make sure you have properly set `LLM_API_KEY` (get one from [OpenRouter](https://openrouter.ai/keys)), and optionally `LLM_API_BASE_URL` and `LLM_MODEL_ID`. The API endpoint should be [OpenAI Compatible](https://platform.openai.com/docs/api-reference/chat/create).

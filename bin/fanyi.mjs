@@ -70,9 +70,9 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set llm true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_BASE_URL your_api_base_url`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID your_model_id`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY sk-or-v1-your-openrouter-key`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID openai/gpt-4o`);
+  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID anthropic/claude-3.5-sonnet`);
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
