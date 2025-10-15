@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and deepseek.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and openrouter.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
