@@ -145,6 +145,45 @@ $ fanyi config set LLM_API_KEY your-api-key           // set LLM_API_KEY
 $ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 ```
 
-If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
+### Using OpenRouter
 
-If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LLM_API_BASE_URL` and `LLM_MODEL_ID`. Also, the api endpoint should be [OpenAi Compatible](https://platform.openai.com/docs/api-reference/chat/create).
+By default, fanyi uses [OpenRouter](https://openrouter.ai) to access various LLM models. OpenRouter provides a unified API to access multiple AI models from different providers.
+
+To use OpenRouter:
+
+1. Sign up at [OpenRouter](https://openrouter.ai) and get your API key
+2. Set your API key:
+   ```bash
+   $ fanyi config set LLM_API_KEY your-openrouter-api-key
+   ```
+3. (Optional) Choose a specific model:
+   ```bash
+   $ fanyi config set LLM_MODEL_ID anthropic/claude-3.5-sonnet
+   ```
+
+If you only set `LLM_API_KEY` and leave `LLM_API_BASE_URL` and `LLM_MODEL_ID` empty, it will use `anthropic/claude-3.5-sonnet` at [OpenRouter](https://openrouter.ai) by default.
+
+### Available Models
+
+OpenRouter supports many models. Some popular options include:
+
+- `anthropic/claude-3.5-sonnet` (default, recommended)
+- `openai/gpt-4-turbo`
+- `openai/gpt-3.5-turbo`
+- `google/gemini-pro`
+- `meta-llama/llama-3.1-70b-instruct`
+- `deepseek/deepseek-chat`
+
+For a complete list of available models, visit [OpenRouter Models](https://openrouter.ai/models).
+
+### Using Other LLM Providers
+
+If you want to use other LLM providers (like DeepSeek directly, or any OpenAI-compatible API), make sure you have properly set `LLM_API_KEY`, `LLM_API_BASE_URL`, and `LLM_MODEL_ID`. The API endpoint should be [OpenAI Compatible](https://platform.openai.com/docs/api-reference/chat/create).
+
+Example for DeepSeek:
+
+```bash
+$ fanyi config set LLM_API_BASE_URL https://api.deepseek.com
+$ fanyi config set LLM_API_KEY your-deepseek-api-key
+$ fanyi config set LLM_MODEL_ID deepseek-chat
+```
