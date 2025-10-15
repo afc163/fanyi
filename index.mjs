@@ -46,11 +46,11 @@ export default async (word, options) => {
   // llm
   if (isTrueOrUndefined(llm)) {
     const openai = new OpenAI({
-      baseURL: LLM_API_BASE_URL || 'https://api.deepseek.com',
-      apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
+      baseURL: LLM_API_BASE_URL || 'https://openrouter.ai/api/v1',
+      apiKey: LLM_API_KEY,
     });
 
-    const model = LLM_MODEL_ID || 'deepseek-chat';
+    const model = LLM_MODEL_ID || 'anthropic/claude-3.5-sonnet';
 
     const spinner = ora(`正在请教 ${model}...`).start();
     try {
