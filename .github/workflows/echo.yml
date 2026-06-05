@@ -2,6 +2,8 @@ name: test
 
 on: pull_request
 
+permissions: {}
+
 jobs:
   verify:
     runs-on: ubuntu-latest
