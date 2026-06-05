@@ -27,7 +27,7 @@ describe('printIciba', () => {
       { color: false },
     );
     expect(output()).toContain('gap');
-    expect(output()).toContain('~  iciba.com');
+    expect(output()).toContain('~ iciba.com');
     expect(output()).toContain('n. 缺口；间隔');
     // related words
     expect(output()).toContain('gape');

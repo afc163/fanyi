@@ -1,24 +1,7 @@
-import gradient from 'gradient-string';
 import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
 import { printYoudao } from './lib/youdao.mjs';
-
-const gradients = [
-  'cristal',
-  'teen',
-  'mind',
-  'morning',
-  'vice',
-  'passion',
-  'fruit',
-  'instagram',
-  'atlas',
-  'retro',
-  'summer',
-  'pastel',
-  'rainbow',
-];
 
 // 默认代理（内置免费翻译，无需 API Key）
 const PROXY_URL = 'https://llmapi.fanyi-cli.deno.net';
