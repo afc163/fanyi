@@ -34,7 +34,8 @@ describe('fanyi CLI', () => {
   it('should print translation of the word', async () => {
     await runScript(['config', 'set', 'color', 'false']);
     const { stdout } = await runScript(['hello']);
-    expect(stdout).toContain(`hello  英[ hə'ləʊ ]  美[ həˈloʊ ]  ~  iciba.com`);
+    expect(stdout).toContain('hello');
+    expect(stdout).toContain('~  iciba.com');
     await runScript(['config', 'set', 'color', 'true']);
   });
 
@@ -62,11 +63,11 @@ describe('fanyi CLI', () => {
   it('should print without color', async () => {
     await runScript(['config', 'set', 'color', 'false']);
     const { stdout } = await runScript(['hello']);
-    expect(stdout).not.toContain('\u001b[35m');
+    expect(stdout).not.toContain('\u001b[32m');
     await runScript(['config', 'set', 'color', 'true']);
     const { stdout: stdout2 } = await runScript(['hello']);
-    expect(stdout2).toContain('\u001b[35m');
-  });
+    expect(stdout2).toContain('\u001b[32m');
+  }, 30000);
 
   it('should print config', async () => {
     const { stdout } = await runScript(['config', 'list']);

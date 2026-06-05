@@ -15,7 +15,7 @@
   },
   "keywords": ["chinese", "translator", "iciba", "deepseek", "cli", "fanyi"],
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20.0.0"
   },
   "readmeFilename": "README.md",
   "files": ["index.mjs", "bin", "lib"],
@@ -23,9 +23,7 @@
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "dayjs": "^1.11.13",
-    "fast-xml-parser": "^5.0.6",
     "gradient-string": "^3.0.0",
-    "node-fetch": "^3.3.2",
     "openai": "^4.79.1",
     "ora": "^8.1.0",
     "update-notifier": "^7.3.1"
@@ -41,7 +39,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^16.0.0",
     "np": "^10.0.7",
-    "vitest": "^3.0.2"
+    "vitest": "^4.1.8"
   },
   "scripts": {
     "test": "vitest run --test-timeout=20000",
