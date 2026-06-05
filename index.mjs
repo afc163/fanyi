@@ -1,6 +1,4 @@
-import { XMLParser } from 'fast-xml-parser';
 import gradient from 'gradient-string';
-import fetch from 'node-fetch';
 import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
@@ -29,15 +27,13 @@ export default async (word, options) => {
   // iciba
   if (isTrueOrUndefined(iciba)) {
     const ICIBA_URL =
-      'https://dict-co.iciba.com/api/dictionary.php?key=D191EBD014295E913574E1EAF8E06666&w=';
+      'https://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=10&is_need_mean=1&word=';
     const spinner = ora('正在请教 iciba...').start();
     try {
       const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
-      const xml = await response.text();
-      const parser = new XMLParser();
-      const result = parser.parse(xml);
+      const result = await response.json();
       spinner.stop();
-      printIciba(result.dict, options);
+      printIciba(word, result.message, options);
     } catch (error) {
       spinner.fail('访问 iciba 失败，请检查网络');
     }
