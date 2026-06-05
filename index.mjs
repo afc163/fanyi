@@ -112,7 +112,7 @@ export default async (word, options) => {
       LLM_API_BASE_URL ||
       process.env.LLM_API_BASE_URL ||
       (useProxy ? PROXY_URL : 'https://api.deepseek.com');
-    const model = LLM_MODEL_ID || process.env.LLM_MODEL_ID || 'glm-4.7-flashx';
+    const model = LLM_MODEL_ID || process.env.LLM_MODEL_ID || 'glm-4-flash';
 
     // 走代理时用 OpenAI SDK 直接请求代理端点
     const openai = new OpenAI({

@@ -77,7 +77,7 @@ program.on('--help', () => {
     `${chalk.cyan('  $ ')}fanyi config set LLM_API_BASE_URL <your-url>     (可选，默认走免费代理)`,
   );
   console.log(
-    `${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4.7-flashx)`,
+    `${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4-flash)`,
   );
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
