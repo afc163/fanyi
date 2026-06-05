@@ -120,7 +120,13 @@ export default async (word, options) => {
       apiKey: apiKey || 'proxy',
     });
 
-    const spinner = ora('正在请教 LLM...').start();
+    const startTime = Date.now();
+    const spinner = ora('正在请教 LLM... 0s').start();
+    const timer = setInterval(() => {
+      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      spinner.text = `正在请教 LLM... ${elapsed}s`;
+    }, 1000);
+
     try {
       let content = '';
 
@@ -136,7 +142,8 @@ export default async (word, options) => {
 
         if (contentType.includes('text/event-stream')) {
           // 流式响应：连接已建立，切换为翻译中 loading
-          spinner.text = '正在翻译...';
+          const elapsed = Math.round((Date.now() - startTime) / 1000);
+          spinner.text = `正在翻译... ${elapsed}s`;
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let buffer = '';
@@ -157,6 +164,7 @@ export default async (word, options) => {
                 const delta = parsed.choices?.[0]?.delta?.content;
                 if (delta) {
                   if (!started) {
+                    clearInterval(timer);
                     spinner.stop();
                     started = true;
                   }
@@ -174,6 +182,7 @@ export default async (word, options) => {
           const data = await response.json();
           content = data.choices?.[0]?.message?.content;
           if (!content) throw new Error('代理返回数据格式异常');
+          clearInterval(timer);
           spinner.stop();
           console.log(content);
         }
@@ -190,12 +199,14 @@ export default async (word, options) => {
         });
 
         // 连接已建立，切换为翻译中 loading
-        spinner.text = '正在翻译...';
+        const elapsed = Math.round((Date.now() - startTime) / 1000);
+        spinner.text = `正在翻译... ${elapsed}s`;
         let started = false;
         for await (const chunk of stream) {
           const delta = chunk.choices[0]?.delta?.content || '';
           if (delta) {
             if (!started) {
+              clearInterval(timer);
               spinner.stop();
               started = true;
             }
@@ -211,6 +222,7 @@ export default async (word, options) => {
         spinner.warn('LLM 返回了空内容');
       }
     } catch (error) {
+      clearInterval(timer);
       if (useProxy) {
         spinner.fail(`LLM 代理暂不可用，可配置自己的 API Key 解决：${LLM_SETUP_GUIDE}`);
       } else if (error.status === 401 || error.status === 403) {
