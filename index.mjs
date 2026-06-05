@@ -4,7 +4,7 @@ import { printIciba } from './lib/iciba.mjs';
 import { printYoudao } from './lib/youdao.mjs';
 
 // 默认代理（内置免费翻译，无需 API Key）
-const PROXY_URL = 'https://fanyi-llm-proxy.afc163.workers.dev';
+const PROXY_URL = 'https://fanyi-llm-proxy.ant-design-demo.workers.dev';
 
 const LLM_SETUP_GUIDE = `
   配置自己的 API Key 可获得更快更稳的翻译体验：
