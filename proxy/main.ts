@@ -9,7 +9,7 @@
  */
 
 const ZHIPU_API_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
-const MODEL = 'glm-4.7-flash';
+const MODEL = 'glm-4.7-flashx';
 
 const SYSTEM_PROMPT = `
 你是一本专业的中英文双语词典。请按照以下要求提供翻译和解释：
