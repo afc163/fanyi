@@ -70,9 +70,15 @@ program.on('--help', () => {
   console.log(`${chalk.cyan('  $ ')}fanyi config set color true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set iciba true`);
   console.log(`${chalk.cyan('  $ ')}fanyi config set llm true`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_BASE_URL your_api_base_url`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY your_api_key_here`);
-  console.log(`${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID your_model_id`);
+  console.log(
+    `${chalk.cyan('  $ ')}fanyi config set LLM_API_KEY <your-key>        (配置自己的 API Key)`,
+  );
+  console.log(
+    `${chalk.cyan('  $ ')}fanyi config set LLM_API_BASE_URL <your-url>     (可选，默认走免费代理)`,
+  );
+  console.log(
+    `${chalk.cyan('  $ ')}fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4.7-flash)`,
+  );
   console.log(`${chalk.cyan('  $ ')}fanyi config list`);
   console.log('');
 });
