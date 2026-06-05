@@ -31,9 +31,12 @@ export default async (word, options) => {
     const spinner = ora('正在请教 iciba...').start();
     try {
       const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
       const result = await response.json();
       spinner.stop();
-      printIciba(word, result.message, options);
+      printIciba(word, result?.message, options);
     } catch (error) {
       spinner.fail('访问 iciba 失败，请检查网络');
     }
