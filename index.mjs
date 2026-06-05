@@ -2,6 +2,7 @@ import gradient from 'gradient-string';
 import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
+import { printYoudao } from './lib/youdao.mjs';
 
 const gradients = [
   'cristal',
@@ -19,45 +20,20 @@ const gradients = [
   'rainbow',
 ];
 
-export default async (word, options) => {
-  console.log('');
-  const { iciba, llm, LLM_API_BASE_URL, LLM_API_KEY, LLM_MODEL_ID } = options;
-  const endcodedWord = encodeURIComponent(word);
+// 默认代理（内置免费翻译，无需 API Key）
+const PROXY_URL = 'https://llmapi.fanyi-cli.deno.net';
 
-  // iciba
-  if (isTrueOrUndefined(iciba)) {
-    const ICIBA_URL =
-      'https://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=10&is_need_mean=1&word=';
-    const spinner = ora('正在请教 iciba...').start();
-    try {
-      const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-      const result = await response.json();
-      spinner.stop();
-      printIciba(word, result?.message, options);
-    } catch (error) {
-      spinner.fail('访问 iciba 失败，请检查网络');
-    }
-  }
+const LLM_SETUP_GUIDE = `
+  配置自己的 API Key 可获得更快更稳的翻译体验：
 
-  // llm
-  if (isTrueOrUndefined(llm)) {
-    const openai = new OpenAI({
-      baseURL: LLM_API_BASE_URL || 'https://api.deepseek.com',
-      apiKey: LLM_API_KEY || 'sk-a6325c2f3d2044968e6a83f249cc1541',
-    });
+    fanyi config set LLM_API_KEY <your-key>
+    fanyi config set LLM_API_BASE_URL <your-api-url>    (可选)
+    fanyi config set LLM_MODEL_ID <model-id>             (可选)
 
-    const model = LLM_MODEL_ID || 'deepseek-chat';
+  也可设置环境变量：export LLM_API_KEY=<your-key>
+`;
 
-    const spinner = ora(`正在请教 ${model}...`).start();
-    try {
-      const chatCompletion = await openai.chat.completions.create({
-        messages: [
-          {
-            role: 'system',
-            content: `
+const SYSTEM_PROMPT = `
 你是一本专业的中英文双语词典。请按照以下要求提供翻译和解释：
 
 1. 格式要求：
@@ -101,21 +77,153 @@ export default async (word, options) => {
 
 ---
 最后使用这个词写一句简短的积极向上令人深思的英文座右铭，并提供中文翻译。但回复中不要包含"座右铭"三个字
-`,
-          },
-          {
-            role: 'user',
-            content: `请翻译：${word}`,
-          },
-        ],
-        model,
-        temperature: 1.0, // glm-4-flash and most of other models only allows temperature in [0, 1]
-      });
+`;
+
+export default async (word, options) => {
+  console.log('');
+  const { iciba, youdao, llm, LLM_API_BASE_URL, LLM_API_KEY, LLM_MODEL_ID } = options;
+  const endcodedWord = encodeURIComponent(word);
+
+  // iciba
+  if (isTrueOrUndefined(iciba)) {
+    const ICIBA_URL =
+      'https://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=10&is_need_mean=1&word=';
+    const spinner = ora('正在请教 iciba...').start();
+    try {
+      const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const result = await response.json();
       spinner.stop();
-      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-      console.log(gradient[randomGradient](chatCompletion.choices[0].message.content));
+      printIciba(word, result?.message, options);
     } catch (error) {
-      spinner.fail(`访问 ${model} 失败，请检查网络或 API 密钥`);
+      spinner.fail('访问 iciba 失败，请检查网络');
+    }
+  }
+
+  // youdao
+  if (isTrueOrUndefined(youdao)) {
+    const YOUDAO_URL = `http://dict.youdao.com/jsonapi?q=${endcodedWord}`;
+    const spinner = ora('正在请教 youdao...').start();
+    try {
+      const response = await fetch(YOUDAO_URL);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const result = await response.json();
+      spinner.stop();
+      printYoudao(word, result, options);
+    } catch (error) {
+      spinner.fail('访问 youdao 失败，请检查网络');
+    }
+  }
+
+  // llm
+  if (isTrueOrUndefined(llm)) {
+    // 优先级：用户配置 > 环境变量 > 内置代理
+    const apiKey = LLM_API_KEY || process.env.LLM_API_KEY;
+    const useProxy = !apiKey;
+
+    const baseURL =
+      LLM_API_BASE_URL ||
+      process.env.LLM_API_BASE_URL ||
+      (useProxy ? PROXY_URL : 'https://api.deepseek.com');
+    const model = LLM_MODEL_ID || process.env.LLM_MODEL_ID || 'glm-4.7-flash';
+
+    // 走代理时用 OpenAI SDK 直接请求代理端点
+    const openai = new OpenAI({
+      baseURL,
+      apiKey: apiKey || 'proxy',
+    });
+
+    const spinner = ora(useProxy ? '正在请教 LLM（代理）...' : `正在请教 ${model}...`).start();
+    try {
+      let content = '';
+
+      if (useProxy) {
+        // 代理模式：流式请求代理端点
+        const response = await fetch(`${PROXY_URL}?word=${endcodedWord}`);
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `代理请求失败 (HTTP ${response.status})`);
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+
+        if (contentType.includes('text/event-stream')) {
+          // 流式响应
+          spinner.stop();
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = '';
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed || !trimmed.startsWith('data:')) continue;
+              const data = trimmed.slice(5).trim();
+              if (data === '[DONE]') continue;
+              try {
+                const parsed = JSON.parse(data);
+                const delta = parsed.choices?.[0]?.delta?.content;
+                if (delta) {
+                  process.stdout.write(delta);
+                  content += delta;
+                }
+              } catch {
+                // 忽略解析失败的行
+              }
+            }
+          }
+          if (content) console.log('');
+        } else {
+          // 非流式兜底
+          const data = await response.json();
+          content = data.choices?.[0]?.message?.content;
+          if (!content) throw new Error('代理返回数据格式异常');
+          spinner.stop();
+          console.log(content);
+        }
+      } else {
+        // 直连模式：流式请求
+        const stream = await openai.chat.completions.create({
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'user', content: `请翻译：${word}` },
+          ],
+          model,
+          temperature: 1.0,
+          stream: true,
+        });
+
+        spinner.stop();
+        for await (const chunk of stream) {
+          const delta = chunk.choices[0]?.delta?.content || '';
+          if (delta) {
+            process.stdout.write(delta);
+            content += delta;
+          }
+        }
+        if (content) console.log('');
+      }
+
+      // 无内容时提示
+      if (!content) {
+        spinner.warn('LLM 返回了空内容');
+      }
+    } catch (error) {
+      if (useProxy) {
+        spinner.fail(`LLM 代理暂不可用，可配置自己的 API Key 解决：${LLM_SETUP_GUIDE}`);
+      } else if (error.status === 401 || error.status === 403) {
+        spinner.fail('API Key 无效或已过期，请重新配置：fanyi config set LLM_API_KEY <your-key>');
+      } else {
+        spinner.fail(`访问 ${model} 失败，请检查网络或 API 密钥`);
+      }
     }
   }
 };
