@@ -39,7 +39,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^16.0.0",
     "np": "^10.0.7",
-    "vitest": "^3.0.2"
+    "vitest": "^4.1.8"
   },
   "scripts": {
     "test": "vitest run --test-timeout=20000",
