@@ -15,7 +15,7 @@
   },
   "keywords": ["chinese", "translator", "iciba", "deepseek", "cli", "fanyi"],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "readmeFilename": "README.md",
   "files": ["index.mjs", "bin", "lib"],
