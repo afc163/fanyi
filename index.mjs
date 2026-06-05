@@ -135,11 +135,12 @@ export default async (word, options) => {
         const contentType = response.headers.get('content-type') || '';
 
         if (contentType.includes('text/event-stream')) {
-          // 流式响应
-          spinner.stop();
+          // 流式响应：连接已建立，切换为翻译中 loading
+          spinner.text = '正在翻译...';
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let buffer = '';
+          let started = false;
           while (true) {
             const { done, value } = await reader.read();
             if (done) break;
@@ -155,6 +156,10 @@ export default async (word, options) => {
                 const parsed = JSON.parse(data);
                 const delta = parsed.choices?.[0]?.delta?.content;
                 if (delta) {
+                  if (!started) {
+                    spinner.stop();
+                    started = true;
+                  }
                   process.stdout.write(delta);
                   content += delta;
                 }
@@ -184,10 +189,16 @@ export default async (word, options) => {
           stream: true,
         });
 
-        spinner.stop();
+        // 连接已建立，切换为翻译中 loading
+        spinner.text = '正在翻译...';
+        let started = false;
         for await (const chunk of stream) {
           const delta = chunk.choices[0]?.delta?.content || '';
           if (delta) {
+            if (!started) {
+              spinner.stop();
+              started = true;
+            }
             process.stdout.write(delta);
             content += delta;
           }
