@@ -120,7 +120,7 @@ export default async (word, options) => {
       apiKey: apiKey || 'proxy',
     });
 
-    const spinner = ora(useProxy ? '正在请教 LLM（代理）...' : `正在请教 ${model}...`).start();
+    const spinner = ora('正在请教 LLM...').start();
     try {
       let content = '';
 
