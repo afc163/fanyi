@@ -182,6 +182,7 @@ export default async (word, options) => {
 
         if (contentType.includes('text/event-stream')) {
           // 流式响应：连接已建立，流光 spinner 继续转，直到首个着色文本产出
+          if (!response.body) throw new Error('代理返回了空响应体');
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let buffer = '';
@@ -213,7 +214,7 @@ export default async (word, options) => {
         } else {
           // 非流式兜底
           const data = await response.json();
-          content = data.choices?.[0]?.message?.content;
+          content = data?.choices?.[0]?.message?.content;
           if (!content) throw new Error('代理返回数据格式异常');
           clearInterval(timer);
           spinner.stop();
@@ -235,7 +236,7 @@ export default async (word, options) => {
 
         // 连接已建立，流光 spinner 继续转，直到首个着色文本产出
         for await (const chunk of stream) {
-          const delta = chunk.choices[0]?.delta?.content || '';
+          const delta = chunk.choices?.[0]?.delta?.content || '';
           if (delta) {
             content += delta;
             writeDelta(delta);
