@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import ora from 'ora';
 import { printIciba } from './lib/iciba.mjs';
+import { createShimmer } from './lib/shimmer.mjs';
 import { createStreamColorizer } from './lib/streamColor.mjs';
 import { printYoudao } from './lib/youdao.mjs';
 
@@ -104,11 +105,19 @@ export default async (word, options) => {
     });
 
     const startTime = Date.now();
-    const spinner = ora('正在请教 LLM... 0s').start();
-    const timer = setInterval(() => {
+    // 当前阶段文案，由 timer 统一渲染，避免两处直接写 spinner.text 互相覆盖
+    let phase = '正在请教 LLM';
+    let frame = 0;
+    const paintShimmer = createShimmer(options);
+    const renderSpinner = () => {
       const elapsed = Math.round((Date.now() - startTime) / 1000);
-      spinner.text = `正在请教 LLM... ${elapsed}s`;
-    }, 1000);
+      // 流光只作用于文案，秒数保持常态灰
+      spinner.text = `${paintShimmer(`${phase}...`, frame)} ${elapsed}s`;
+      frame += 1;
+    };
+    const spinner = ora('正在请教 LLM... 0s').start();
+    // 80ms 一帧让流光顺滑流动
+    const timer = setInterval(renderSpinner, 80);
 
     // 流式着色器：按行结算上色，同时过滤占位符/指令泄漏
     const colorizer = createStreamColorizer(options);
@@ -152,8 +161,8 @@ export default async (word, options) => {
 
         if (contentType.includes('text/event-stream')) {
           // 流式响应：连接已建立，切换为翻译中 loading
-          const elapsed = Math.round((Date.now() - startTime) / 1000);
-          spinner.text = `正在翻译... ${elapsed}s`;
+          phase = '正在翻译';
+          renderSpinner();
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let buffer = '';
@@ -206,8 +215,8 @@ export default async (word, options) => {
         });
 
         // 连接已建立，切换为翻译中 loading
-        const elapsed = Math.round((Date.now() - startTime) / 1000);
-        spinner.text = `正在翻译... ${elapsed}s`;
+        phase = '正在翻译';
+        renderSpinner();
         for await (const chunk of stream) {
           const delta = chunk.choices[0]?.delta?.content || '';
           if (delta) {
