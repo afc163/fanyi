@@ -22,3 +22,4 @@ node_modules/
 package-lock.json
 coverage
 pnpm-lock.yaml
+.claude/
