@@ -125,11 +125,12 @@ export default {
           ...CORS_HEADERS,
         },
       });
-    } catch (error) {
-      return new Response(
-        JSON.stringify({ error: 'Upstream request failed', detail: String(error) }),
-        { status: 502, headers: { 'Content-Type': 'application/json', ...CORS_HEADERS } },
-      );
+    } catch (_error) {
+      // 不向客户端回传异常细节，避免栈信息泄漏
+      return new Response(JSON.stringify({ error: 'Upstream request failed' }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      });
     }
   },
 } satisfies ExportedHandler<Env>;
