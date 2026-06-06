@@ -85,10 +85,33 @@ fanyi config set LLM_MODEL_ID <model-id>        # 指定模型 ID
 
 配置写入 `~/.config/fanyi/.fanyirc`。
 
-## 前置条件
+## 前置条件:确保 fanyi 已安装
 
-需要先全局安装 `fanyi`。如果运行命令时提示 `command not found`,提示用户安装:
+运行翻译命令前,先确认 `fanyi` 可用(例如 `command -v fanyi`)。如果提示 `command not found`,**直接帮用户装上**,不要只丢一条命令让用户自己敲。
 
-```bash
-npm i fanyi -g
-```
+安装步骤:
+
+1. **探测用户机器上有哪些包管理器**,按下面顺序取第一个可用的即可(它们大多兼容 npm 的全局安装语义):
+
+   ```bash
+   for pm in bun pnpm yarn cnpm tnpm utoo npm; do
+     command -v "$pm" >/dev/null 2>&1 && echo "$pm"
+   done
+   ```
+
+2. **用探测到的包管理器全局安装**,各工具的全局安装命令:
+
+   | 包管理器 | 安装命令 |
+   | --- | --- |
+   | bun | `bun add -g fanyi` |
+   | pnpm | `pnpm add -g fanyi` |
+   | yarn | `yarn global add fanyi` |
+   | cnpm | `cnpm i fanyi -g` |
+   | tnpm | `tnpm i fanyi -g` |
+   | utoo | `utoo i fanyi -g`(或 `utoo add -g fanyi`) |
+   | npm | `npm i fanyi -g` |
+
+   优先选 bun / pnpm(更快);都没有就回退到 npm。装完再跑一次翻译命令即可。
+
+为什么这样做:用户的本意是想翻译,卡在"没装工具"这一步上很扫兴。帮他用现成的包管理器一键装好、然后立刻给出翻译结果,体验最顺。注意全局安装在某些环境(如系统 Node)可能需要权限,若报 `EACCES` 之类的权限错误,再把命令和 `sudo` 提示交给用户判断,不要擅自加 `sudo` 执行。
+
