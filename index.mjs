@@ -8,6 +8,25 @@ import { printYoudao } from './lib/youdao.mjs';
 // 默认代理（内置免费翻译，无需 API Key）
 const PROXY_URL = 'https://fanyi-llm-proxy.ant-design-demo.workers.dev';
 
+/**
+ * 启动一个带灰白流光动画的 spinner。
+ * @param {string} text 文案（不含尾部 ...）
+ * @param {object} options CLI options（含 color）
+ * @returns {{ spinner, stop: () => void }} stop 会清掉定时器
+ */
+function startShimmerSpinner(text, options) {
+  const paint = createShimmer(options);
+  const start = Date.now();
+  const spinner = ora(`${text}...`).start();
+  const timer = setInterval(() => {
+    spinner.text = paint(`${text}...`, Date.now() - start);
+  }, 80);
+  return {
+    spinner,
+    stop: () => clearInterval(timer),
+  };
+}
+
 const LLM_SETUP_GUIDE = `
   配置自己的 API Key 可获得更快更稳的翻译体验：
 
@@ -55,16 +74,18 @@ export default async (word, options) => {
   if (isTrueOrUndefined(iciba)) {
     const ICIBA_URL =
       'https://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=10&is_need_mean=1&word=';
-    const spinner = ora('正在请教 iciba...').start();
+    const { spinner, stop } = startShimmerSpinner('正在请教 iciba', options);
     try {
       const response = await fetch(`${ICIBA_URL}${endcodedWord}`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       const result = await response.json();
+      stop();
       spinner.stop();
       printIciba(word, result?.message, options);
     } catch (error) {
+      stop();
       spinner.fail('访问 iciba 失败，请检查网络');
     }
   }
@@ -72,16 +93,18 @@ export default async (word, options) => {
   // youdao
   if (isTrueOrUndefined(youdao)) {
     const YOUDAO_URL = `http://dict.youdao.com/jsonapi?q=${endcodedWord}`;
-    const spinner = ora('正在请教 youdao...').start();
+    const { spinner, stop } = startShimmerSpinner('正在请教 youdao', options);
     try {
       const response = await fetch(YOUDAO_URL);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       const result = await response.json();
+      stop();
       spinner.stop();
       printYoudao(word, result, options);
     } catch (error) {
+      stop();
       spinner.fail('访问 youdao 失败，请检查网络');
     }
   }
@@ -105,15 +128,13 @@ export default async (word, options) => {
     });
 
     const startTime = Date.now();
-    // 当前阶段文案，由 timer 统一渲染，避免两处直接写 spinner.text 互相覆盖
-    let phase = '正在请教 LLM';
-    let frame = 0;
     const paintShimmer = createShimmer(options);
+    // 流光由真实流逝时间驱动，持续顺滑流动；文案固定为「正在请教 LLM」不再切换
     const renderSpinner = () => {
-      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      const tMs = Date.now() - startTime;
+      const elapsed = Math.round(tMs / 1000);
       // 流光只作用于文案，秒数保持常态灰
-      spinner.text = `${paintShimmer(`${phase}...`, frame)} ${elapsed}s`;
-      frame += 1;
+      spinner.text = `${paintShimmer('正在请教 LLM...', tMs)} ${elapsed}s`;
     };
     const spinner = ora('正在请教 LLM... 0s').start();
     // 80ms 一帧让流光顺滑流动
@@ -160,9 +181,7 @@ export default async (word, options) => {
         const contentType = response.headers.get('content-type') || '';
 
         if (contentType.includes('text/event-stream')) {
-          // 流式响应：连接已建立，切换为翻译中 loading
-          phase = '正在翻译';
-          renderSpinner();
+          // 流式响应：连接已建立，流光 spinner 继续转，直到首个着色文本产出
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let buffer = '';
@@ -214,9 +233,7 @@ export default async (word, options) => {
           stream: true,
         });
 
-        // 连接已建立，切换为翻译中 loading
-        phase = '正在翻译';
-        renderSpinner();
+        // 连接已建立，流光 spinner 继续转，直到首个着色文本产出
         for await (const chunk of stream) {
           const delta = chunk.choices[0]?.delta?.content || '';
           if (delta) {
