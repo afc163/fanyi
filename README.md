@@ -2,7 +2,7 @@
 
 # Fānyì (翻译)
 
-A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba and deepseek.
+A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by iciba, youdao and LLM.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -25,16 +25,14 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 
 </div>
 
-[fanyi@9.0.0](https://github.com/afc163/fanyi/releases/tag/v9.0.0) 正式发布！这一版对原有功能进行了大幅裁剪，移除了速度慢和失效的翻译源，以及对 say 命令的依赖，并引入 deepseek 大模型进行翻译，翻译速度和效果一流。代码也做了整体重构，依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
+[fanyi@11.0.0](https://github.com/afc163/fanyi/releases/tag/v11.0.0) 正式发布！这一版**开箱即用、无需任何配置**：内置免费 LLM 代理，装上就能用大模型翻译。同时恢复了有道词典，LLM 结果支持流式语义着色，并新增了让 AI Agent 直接调用 fanyi 的 [Agent Skill](skills/fanyi)。依旧是你命令行中**最简单顺手快捷**的中英文翻译工具。
 
-- 🐑 增加大模型翻译结果。
-- 🌈 渐变色彩输出，更加灵动浮夸。
-- 🗑️ 移除 openai 翻译。
-- 🗑️ 移除 youdao 翻译。
-- 🗑️ 移除 dictionary 翻译。
-- 🗑️ 移除单词发音功能，从而解决 Linux 安装兼容问题。
-- 🚀 全局配置方式修改为 `fanyi config set color false` `fanyi config set iciba false`。
-- 💄 重构和简化代码，并增加了 lint 和覆盖率的 GitHub Action。
+- 🆓 内置免费 LLM 代理，无需 API Key 即可使用大模型翻译，开箱即用。
+- 🌊 LLM 结果流式输出 + 语义着色，边生成边上色，等待时显示实时耗时。
+- 📖 恢复有道词典翻译源，与 iciba、LLM 三路结果并列。
+- ✨ 全新青紫流光 spinner 与绿色微渐变词义着色，输出更灵动。
+- 🤖 新增 [Agent Skill](skills/fanyi)，让 Claude Code 等 AI Agent 自动调用 fanyi 翻译。
+- 🔧 支持自定义 LLM：配置 `LLM_API_KEY` / `LLM_API_BASE_URL` / `LLM_MODEL_ID` 接入任意 OpenAI 兼容模型。
 
 ## Install
 
@@ -60,7 +58,7 @@ For short:
 $ fy word
 ```
 
-Translation data is fetched from [iciba.com](https://iciba.com) and deepseek ai, and only support translation between Chinese and English.
+Translation data is fetched from [iciba.com](https://iciba.com), [youdao.com](https://youdao.com) and an LLM, and only support translation between Chinese and English.
 
 Translate one word.
 
@@ -141,6 +139,7 @@ Example:
 ```bash
 $ fanyi config list                                   // list all configuration options
 $ fanyi config set iciba false                        // disable iciba globally
+$ fanyi config set youdao false                       // disable youdao globally
 $ fanyi config set llm false                          // disable llm globally
 $ fanyi config set color false                        // disable color globally
 $ fanyi config set LLM_API_BASE_URL your-api-base-url // set LLM_API_BASE_URL
@@ -148,7 +147,9 @@ $ fanyi config set LLM_API_KEY your-api-key           // set LLM_API_KEY
 $ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 ```
 
-If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
+By default fanyi works out of the box with **no configuration** — when no `LLM_API_KEY` is set, it routes LLM translation through a built-in free proxy, so you can use large-model translation immediately after install.
+
+If you set `LLM_API_KEY` but leave `LLM_API_BASE_URL` and `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
 
 If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LLM_API_BASE_URL` and `LLM_MODEL_ID`. Also, the api endpoint should be [OpenAi Compatible](https://platform.openai.com/docs/api-reference/chat/create).
 
