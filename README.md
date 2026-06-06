@@ -158,7 +158,7 @@ This repo ships an [Agent Skill](https://github.com/afc163/fanyi/tree/main/skill
 
 ### Install
 
-First make sure the CLI is installed globally so the skill can invoke it:
+First make sure the CLI is installed globally so the skill can invoke it (the skill auto-detects your package manager — `bun` / `pnpm` / `yarn` / `cnpm` / `tnpm` / `utoo` / `npm` — and installs it for you when it's missing):
 
 ```bash
 $ npm i fanyi -g
