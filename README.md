@@ -19,7 +19,7 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 [download-image]: https://img.shields.io/npm/dm/fanyi.svg?style=flat-square
 [download-url]: https://npmjs.org/package/fanyi
 [skill-image]: https://img.shields.io/badge/Agent-Skill-d97757?style=flat-square
-[skill-url]: https://github.com/afc163/fanyi/tree/main/skills/fanyi
+[skill-url]: skills/fanyi
 
 ![](https://github.com/user-attachments/assets/edf0d6f7-a3d1-496d-9422-71522198d61c)
 
@@ -154,7 +154,7 @@ If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LL
 
 ## Agent Skill
 
-This repo ships an [Agent Skill](https://github.com/afc163/fanyi/tree/main/skills/fanyi) so AI agents (Claude Code, Claude.ai, and other tools that support the Agent Skills spec) can call `fanyi` for you automatically — just say "翻译一下 serendipity" or "和谐 用英语怎么说" and the agent runs `fanyi` under the hood, returning the full iciba / youdao / LLM results.
+This repo ships an [Agent Skill](skills/fanyi) so AI agents (Claude Code, Claude.ai, and other tools that support the Agent Skills spec) can call `fanyi` for you automatically — just say "翻译一下 serendipity" or "和谐 用英语怎么说" and the agent runs `fanyi` under the hood, returning the full iciba / youdao / LLM results.
 
 ### Install
 
