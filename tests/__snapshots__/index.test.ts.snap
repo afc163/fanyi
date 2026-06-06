@@ -22,7 +22,7 @@ Commands:
   $ fanyi config set llm true
   $ fanyi config set LLM_API_KEY <your-key>        (配置自己的 API Key)
   $ fanyi config set LLM_API_BASE_URL <your-url>     (可选，默认走免费代理)
-  $ fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4.7-flash)
+  $ fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4-flash)
   $ fanyi config list
 
 "
@@ -50,7 +50,7 @@ Commands:
   $ fanyi config set llm true
   $ fanyi config set LLM_API_KEY <your-key>        (配置自己的 API Key)
   $ fanyi config set LLM_API_BASE_URL <your-url>     (可选，默认走免费代理)
-  $ fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4.7-flash)
+  $ fanyi config set LLM_MODEL_ID <model-id>         (可选，默认 glm-4-flash)
   $ fanyi config list
 
 "
