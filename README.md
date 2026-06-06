@@ -8,6 +8,7 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 [![npm download][download-image]][download-url]
 [![build status][github-actions-image]][github-actions-url]
 [![Codecov][codecov-image]][codecov-url]
+[![Agent Skill][skill-image]][skill-url]
 
 [npm-image]: http://img.shields.io/npm/v/fanyi.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/fanyi
@@ -17,6 +18,8 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 [codecov-url]: https://app.codecov.io/gh/afc163/fanyi
 [download-image]: https://img.shields.io/npm/dm/fanyi.svg?style=flat-square
 [download-url]: https://npmjs.org/package/fanyi
+[skill-image]: https://img.shields.io/badge/Agent-Skill-d97757?style=flat-square
+[skill-url]: https://github.com/afc163/fanyi/tree/main/skills/fanyi
 
 ![](https://github.com/user-attachments/assets/edf0d6f7-a3d1-496d-9422-71522198d61c)
 
@@ -148,3 +151,35 @@ $ fanyi config set LLM_MODEL_ID your-model-id         // set LLM_MODEL_ID
 If you have only set `LLM_API_KEY` and left `LLM_API_BASE_URL` `LLM_MODEL_ID` empty, it will call `deepseek-chat` at [DeepSeek's Platform](https://platform.deepseek.com) by default.
 
 If you want to use other LLMs, make sure you have properly set `LLM_API_KEY` `LLM_API_BASE_URL` and `LLM_MODEL_ID`. Also, the api endpoint should be [OpenAi Compatible](https://platform.openai.com/docs/api-reference/chat/create).
+
+## Agent Skill
+
+This repo ships an [Agent Skill](https://github.com/afc163/fanyi/tree/main/skills/fanyi) so AI agents (Claude Code, Claude.ai, and other tools that support the Agent Skills spec) can call `fanyi` for you automatically — just say "翻译一下 serendipity" or "和谐 用英语怎么说" and the agent runs `fanyi` under the hood, returning the full iciba / youdao / LLM results.
+
+### Install
+
+First make sure the CLI is installed globally so the skill can invoke it:
+
+```bash
+$ npm i fanyi -g
+```
+
+Then install the skill into your agent's skills directory. For Claude Code:
+
+```bash
+$ git clone https://github.com/afc163/fanyi.git
+$ cp -r fanyi/skills/fanyi ~/.claude/skills/fanyi
+```
+
+Other agents: copy `skills/fanyi` into wherever your tool loads skills from.
+
+### Usage
+
+Once installed, the skill triggers on any Chinese ↔ English translation or lookup request, even without naming the tool:
+
+- `翻译一下 serendipity`
+- `子非鱼焉知鱼之乐 用英语怎么说`
+- `serendipity 是什么意思`
+
+The agent will run `fanyi <word>` and show you the dictionary and LLM results.
+
