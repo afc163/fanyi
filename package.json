@@ -21,7 +21,7 @@
   "files": ["index.mjs", "bin", "lib"],
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^12.1.0",
+    "commander": "^15.0.0",
     "dayjs": "^1.11.13",
     "gradient-string": "^3.0.0",
     "openai": "^4.79.1",
