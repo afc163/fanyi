@@ -9,6 +9,7 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 [![build status][github-actions-image]][github-actions-url]
 [![Codecov][codecov-image]][codecov-url]
 [![Agent Skill][skill-image]][skill-url]
+[![Sponsor][sponsor-image]][sponsor-url]
 
 [npm-image]: http://img.shields.io/npm/v/fanyi.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/fanyi
@@ -20,6 +21,8 @@ A 🇨🇳 and 🇺🇸🇬🇧 translator in your command line, powered by icib
 [download-url]: https://npmjs.org/package/fanyi
 [skill-image]: https://img.shields.io/badge/Agent-Skill-d97757?style=flat-square
 [skill-url]: skills/fanyi
+[sponsor-image]: https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=flat-square&logo=github-sponsors
+[sponsor-url]: https://github.com/sponsors/afc163
 
 ![](https://github.com/user-attachments/assets/edf0d6f7-a3d1-496d-9422-71522198d61c)
 
@@ -183,4 +186,9 @@ Once installed, the skill triggers on any Chinese ↔ English translation or loo
 - `serendipity 是什么意思`
 
 The agent will run `fanyi <word>` and show you the dictionary and LLM results.
+
+## Sponsor
+
+如果 fanyi 对你有帮助，欢迎通过 [GitHub Sponsors](https://github.com/sponsors/afc163) 支持作者持续维护 ❤️
+
 
