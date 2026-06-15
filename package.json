@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.2",
-    "c8": "^10.1.2",
+    "c8": "^11.0.0",
     "husky": "^9.1.6",
     "lint-staged": "^16.0.0",
     "np": "^10.0.7",
