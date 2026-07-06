@@ -84,6 +84,7 @@ export default async (word, options) => {
       stop();
       spinner.stop();
       printIciba(word, result?.message, options);
+      // biome-ignore lint/correctness/noUnusedVariables: the thrown error is intentionally hidden from CLI output.
     } catch (error) {
       stop();
       spinner.fail('访问 iciba 失败，请检查网络');
@@ -103,6 +104,7 @@ export default async (word, options) => {
       stop();
       spinner.stop();
       printYoudao(word, result, options);
+      // biome-ignore lint/correctness/noUnusedVariables: the thrown error is intentionally hidden from CLI output.
     } catch (error) {
       stop();
       spinner.fail('访问 youdao 失败，请检查网络');
@@ -194,6 +196,7 @@ export default async (word, options) => {
             buffer = lines.pop() || '';
             for (const line of lines) {
               const trimmed = line.trim();
+              // biome-ignore lint/complexity/useOptionalChain: keep the explicit empty-line guard readable.
               if (!trimmed || !trimmed.startsWith('data:')) continue;
               const data = trimmed.slice(5).trim();
               if (data === '[DONE]') continue;
