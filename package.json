@@ -25,7 +25,7 @@
     "dayjs": "^1.11.13",
     "gradient-string": "^3.0.0",
     "openai": "^6.44.0",
-    "ora": "^8.1.0",
+    "ora": "^9.4.1",
     "update-notifier": "^7.3.1"
   },
   "lint-staged": {
