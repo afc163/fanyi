@@ -84,7 +84,7 @@ export default async (word, options) => {
       stop();
       spinner.stop();
       printIciba(word, result?.message, options);
-    } catch (error) {
+    } catch {
       stop();
       spinner.fail('访问 iciba 失败，请检查网络');
     }
@@ -103,7 +103,7 @@ export default async (word, options) => {
       stop();
       spinner.stop();
       printYoudao(word, result, options);
-    } catch (error) {
+    } catch {
       stop();
       spinner.fail('访问 youdao 失败，请检查网络');
     }
@@ -194,7 +194,7 @@ export default async (word, options) => {
             buffer = lines.pop() || '';
             for (const line of lines) {
               const trimmed = line.trim();
-              if (!trimmed || !trimmed.startsWith('data:')) continue;
+              if (!trimmed?.startsWith('data:')) continue;
               const data = trimmed.slice(5).trim();
               if (data === '[DONE]') continue;
               try {

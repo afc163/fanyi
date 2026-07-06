@@ -13,12 +13,23 @@
     "fy": "bin/fanyi.mjs",
     "fanyi": "bin/fanyi.mjs"
   },
-  "keywords": ["chinese", "translator", "iciba", "deepseek", "cli", "fanyi"],
+  "keywords": [
+    "chinese",
+    "translator",
+    "iciba",
+    "deepseek",
+    "cli",
+    "fanyi"
+  ],
   "engines": {
     "node": ">=20.0.0"
   },
   "readmeFilename": "README.md",
-  "files": ["index.mjs", "bin", "lib"],
+  "files": [
+    "index.mjs",
+    "bin",
+    "lib"
+  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
