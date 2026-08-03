@@ -35,7 +35,7 @@
     "commander": "^12.1.0",
     "dayjs": "^1.11.13",
     "gradient-string": "^3.0.0",
-    "openai": "^6.44.0",
+    "openai": "^7.2.0",
     "ora": "^9.4.1",
     "update-notifier": "^7.3.1"
   },
